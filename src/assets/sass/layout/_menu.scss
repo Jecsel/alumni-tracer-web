@@ -6,18 +6,19 @@
         top: 60px;
         left: 0;
         z-index: 999;
-        background-color: $menuBgColor;
+        background-color: $darkMenuBgColor;
         @include shadow(1px 3px 3px rgba(0, 0, 0, 0.12));
         @include transition(left $transitionDuration);
 
         .layout-menu-title {
-            color: $menuTitleTextColor;
+            color: $darkMenuTitleTextColor;
             letter-spacing: 0.5px;
             padding: 25px 0 10px 0;
             font-size: 12px;
-            border-bottom: 1px solid #383838;
+            border-bottom: 1px solid $darkMenuTitleBorderBottomColor;
             margin-left: 20px;
             margin-right: 20px;
+            margin-bottom: 10px;
         }
 
         .layout-menu {
@@ -34,16 +35,16 @@
                     > a {
                         background-color: $primaryColor;
                         @include border-radius-bottom(0);
-
+    
                         span {
                             color: $primaryTextColor;
                         }
-
+    
                         i {
                             color: $primaryTextColor;
                         }
-
-                        i.layout-menuitem-toggler {
+    
+                        i.layout-submenu-toggler {
                             @include rotate(-180deg);
                         }
                     }
@@ -53,6 +54,7 @@
                     > li:first-child {
                         padding-top: 10px;
                     }
+
                     > li:last-child {
                         padding-bottom: 10px;
                     }
@@ -62,7 +64,7 @@
             li {
                 a {
                     padding: 10px 20px;
-                    color: $menuItemTextColor;
+                    color: $darkMenuItemTextColor;
                     position: relative;
                     display: block;
                     text-decoration: none;
@@ -89,7 +91,7 @@
                     }
 
                     i {
-                        color: $menuItemIconColor;
+                        color: $darkMenuItemIconColor;
                         vertical-align: middle;
                         margin-right: 16px;
                     }
@@ -115,7 +117,7 @@
                     margin: 0;
                     padding: 0;
                     overflow: hidden;
-                    background-color: $submenuBgColor;
+                    background-color: $darkMenuSubmenuBgColor;
 
                     li {
                         a {
@@ -175,14 +177,16 @@
         }
 
         .ui-scrollpanel {
-            background-color: $menuBgColor;
+            background-color: transparent;
             border-radius: 0;
             border: none;
+
             .ui-scrollpanel-bar {
                 background-color: #aaaaaa;
                 opacity: 0.3;
                 filter: alpha(opacity=30);
             }
+
             .ui-scrollpanel-hidden {
                 display: block;
                 visibility: hidden;
@@ -194,6 +198,55 @@
                 padding-bottom: 170px;
             }
         }
+    }
+
+    &.layout-menu-light {
+        .layout-sidebar {
+            background-color: $lightMenuBgColor;
+
+            .layout-menu-title {
+                color: $lightMenuTitleTextColor;
+                border-bottom: 1px solid $lightMenuTitleBorderBottomColor;
+            }
+
+            .layout-menu {  
+                > li {
+                    &.active-menuitem {
+                        > a {
+                            background-color: $primaryColor;
+        
+                            span {
+                                color: $primaryTextColor;
+                            }
+        
+                            i {
+                                color: $primaryTextColor;
+                            }
+                        }
+                    }
+                }
+
+                li {
+                    a {
+                        color: $lightMenuItemTextColor;
+                       
+                        i {
+                            color: $lightMenuItemIconColor;
+                        } 
+                    }
+
+                    &:hover {
+                        > i {
+                            color: $lightMenuItemTextColor;
+                        } 
+                    }
+        
+                    ul {
+                        background-color: $lightMenuSubmenuBgColor;
+                    }
+                }
+            }
+        }            
     }
 }
 
@@ -300,6 +353,7 @@
                             overflow: auto;
                             max-height: 450px;
                             @include border-radius-bottom(3px);
+                            @include shadow(0 2px 4px 0 rgba(0, 0, 0, 0.10));
 
                             li {
                                 a {
@@ -411,6 +465,7 @@
                             max-height: 450px;
                             min-width: 250px;
                             border-left: 4px solid $primaryColor;
+                            @include shadow(0 2px 4px 0 rgba(0, 0, 0, 0.10));
 
                             > li {
                                 padding: 0 10px;

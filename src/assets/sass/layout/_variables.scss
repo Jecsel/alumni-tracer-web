@@ -4,11 +4,20 @@
 $bodyBgColor:#fdfdfd;
 
 //menu
-$menuTitleTextColor:#656565;
-$menuBgColor:#050505;
-$menuItemTextColor:#BBBBBB;
-$menuItemIconColor:#BBBBBB;
-$submenuBgColor:#1d1d1d;
+$darkMenuTitleTextColor:#656565;
+$darkMenuTitleBorderBottomColor:#383838;
+$darkMenuBgColor:#050505;
+$darkMenuItemTextColor:#BBBBBB;
+$darkMenuItemIconColor:#BBBBBB;
+$darkMenuSubmenuBgColor:#1d1d1d;
+
+$lightMenuTitleTextColor:#828282;
+$lightMenuTitleBorderBottomColor:#9b9b9b;
+$lightMenuBgColor:#ffffff;
+$lightMenuItemTextColor:#333333;
+$lightMenuItemIconColor:#828282;
+$lightMenuSubmenuBgColor:#efefef;
+
 $badgeTextColor:$primaryTextColor;
 $badgeBgColor:$primaryColor;
 
@@ -33,4 +42,3 @@ $rightPanelHeaderBgColor:#323232;
 $rightPanelHeaderTextColor:#ffffff;
 $rightPanelContentBgColor:#323232;
 $rightPanelContentTextColor:#ffffff;
-

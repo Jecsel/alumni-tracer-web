@@ -23,6 +23,13 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         this.model = [
             {label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/']},
             {
+                label: 'Menu Colors', icon: 'fa fa-fw fa-paint-brush',
+                items: [
+                    {label: 'Light', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = true },
+                    {label: 'Dark', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = false }
+                ]
+            },
+            {
                 label: 'Layouts', icon: 'fa fa-fw fa-cog',
                 items: [
                     {label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },

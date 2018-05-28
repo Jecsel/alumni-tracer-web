@@ -131,21 +131,19 @@
         #topbar-profile-menu-button {
             float: right;
             top: 0;
-            height: 20px;
+            height: 60px;
             padding: 20px;
             font-weight: 500;
-
+    
             img {
                 width: 25px;
                 height: 25px;
                 vertical-align: middle;
                 border: 0 none;
-                float: right;
-                margin-right: 12px;
+                margin-right: 6px;
             }
-
+    
             span {
-                display: inline-block;
                 vertical-align: middle;
                 font-size: 14px;
                 line-height: 21px;
@@ -153,19 +151,19 @@
                 margin-right: 10px;
                 color: $topbarProfileTextColor;
             }
-
+    
             i {
+                vertical-align: middle;
                 color: $topbarProfileTextColor;
-                float: right;
             }
-
+    
             &:hover {
                 background-color: $topbarMenuHoverBgColor;
             }
         }
 
         #topbar-usermenu {
-            right: 16px;
+            right: 0;
             top: 60px;
             left: auto;
             -webkit-animation-duration: $transitionDuration;
@@ -176,7 +174,8 @@
             position: fixed;
             display: none;
             width: 240px;
-            background-color: $menuBgColor;
+            background-color: $darkMenuBgColor;
+            @include shadow(0 2px 4px 0 rgba(0, 0, 0, 0.10));
 
             &.usermenu-active {
                 display: block;
@@ -186,7 +185,7 @@
                 a {
                     display: block;
                     text-align: left;
-                    color: $menuItemTextColor;
+                    color: $darkMenuItemTextColor;
                     padding: 10px 20px;
                     font-weight: 500;
                     text-decoration: none;
@@ -209,7 +208,7 @@
                         width: 18px;
                         height: 18px;
                         text-align: center;
-                        color: #ffffff;
+                        color: $primaryTextColor;
                         border-radius: 24px;
                     }
 
@@ -251,6 +250,20 @@
                         color: $primaryColor;
                     }
                 }
+            }
+        }
+    }
+
+    &.layout-menu-light {
+        .layout-topbar {
+            #topbar-usermenu {
+                background-color: $lightMenuBgColor;
+    
+                li {
+                    a {
+                        color: $lightMenuItemTextColor;
+                    }
+                }                               
             }
         }
     }
