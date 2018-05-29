@@ -2,23 +2,23 @@
 
 //anchor
 $linkColor:$primaryColor;
-$linkHoverColor:$primaryDarkColor;
-$linkActiveColor:$primaryDarkerColor;
+$linkHoverColor:$primaryDarkerColor;
+$linkActiveColor:$primaryDarkestColor;
 
 //highlight
-$highlightBgColor:$secondaryColor;
-$highlightColorText:$secondaryColorText;
+$highlightBgColor:$primaryColor;
+$highlightColorText:$primaryTextColor;
 
 //input field
-$inputPadding:0.429em;
+$inputPadding:.429em;
 $inputBgColor:#ffffff;
-$inputBorder:1px solid #a6a6a6;
-$inputHoverBorderColor:#212121;
-$inputFocusBorderColor:$primaryColor;
-$inputFocusShadow:none;
+$inputBorder:1px solid #c4c4c4;
+$inputHoverBorderColor:#7f7f7f;
+$inputFocusBorderColor:#7f7f7f;
 $inputErrorBorderColor:#a80000;
 $inputPlaceholderTextColor:#666666;
-$inputTransition:border-color $transitionDuration;
+$inputFocusShadow:0 0 6px 0 rgba(0, 0, 0, 0.16);
+$inputTransition:border-color $transitionDuration,box-shadow $transitionDuration;
 
 //groups
 $inputGroupBorderColor:#a6a6a6;
@@ -34,8 +34,8 @@ $inputListItemBgColor:transparent;
 $inputListItemTextColor:#333333;
 $inputListItemHoverBgColor:#eaeaea;
 $inputListItemHoverTextColor:#333333;
-$inputListItemHighlightBgColor:$secondaryColor;
-$inputListItemHighlightTextColor:$secondaryColorText;
+$inputListItemHighlightBgColor:$highlightBgColor;
+$inputListItemHighlightTextColor:$highlightColorText;
 $inputListItemBorder:0 none;
 $inputListItemMargin:0;
 $inputListItemDividerColor:#d8dae2;
@@ -72,28 +72,34 @@ $buttonIconOnlyPadding:0.429em;
 $buttonIconOnlyWidth:2.143em;
 $buttonBgColor:$primaryColor;
 $buttonBorder:1px solid $primaryColor;
-$buttonTextColor:$primaryColorText;
-$buttonHoverBgColor:$primaryDarkAltColor;
-$buttonHoverTextColor:$primaryDarkAltColorText;
-$buttonHoverBorderColor:$primaryDarkAltColor;
-$buttonActiveBgColor:$primaryDarkColor;
-$buttonActiveTextColor:$primaryDarkColorText;
-$buttonActiveBorderColor:$primaryDarkColor;
-$buttonFocusBorderColor:$primaryDarkColor;
-$buttonFocusOutline:0 none;
-$buttonFocusOutlineOffset:0px;
+$buttonTextColor:$primaryTextColor;
+
+$buttonHoverBgColor:$primaryDarkerColor;
+$buttonHoverTextColor:$primaryTextColor;
+$buttonHoverBorderColor:$primaryDarkerColor;
+
+$buttonActiveBgColor:$primaryDarkestColor;
+$buttonActiveTextColor:$primaryTextColor;
+$buttonActiveBorderColor:$primaryDarkestColor;
+
+$buttonFocusBorderColor:$primaryColor;
+$buttonFocusOutline:1px solid $primaryColor;
+$buttonFocusOutlineOffset:1px;
+
 $buttonTransition:background-color $transitionDuration;
 $raisedButtonShadow:0 2px 3px 0 rgba(0, 0, 0, 0.15);
 $roundedButtonBorderRadius:15px;
+
 $secondaryButtonBgColor:#f4f4f4;
 $secondaryButtonBorder:1px solid #f4f4f4;
 $secondaryButtonTextColor:#333333;
 $secondaryButtonHoverBgColor:#c8c8c8;
 $secondaryButtonHoverTextColor:#212121;
 $secondaryButtonHoverBorderColor:#c8c8c8;
-$secondaryButtonActiveBgColor:$secondaryColor;
-$secondaryButtonActiveTextColor:$secondaryColorText;
-$secondaryButtonActiveBorderColor:$secondaryColor;
+$secondaryButtonActiveBgColor:$primaryColor;
+$secondaryButtonActiveTextColor:#ffffff;
+$secondaryButtonActiveBorderColor:$primaryColor;
+
 $infoButtonBgColor:#007ad9;
 $infoButtonBorder:1px solid #007ad9;
 $infoButtonTextColor:#ffffff;
@@ -103,6 +109,7 @@ $infoButtonHoverBorderColor:#116fbf;
 $infoButtonActiveBgColor:#005b9f;
 $infoButtonActiveTextColor:#ffffff;
 $infoButtonActiveBorderColor:#005b9f;
+
 $successButtonBgColor:#34A835;
 $successButtonBorder:1px solid #34A835;
 $successButtonTextColor:#ffffff;
@@ -112,6 +119,7 @@ $successButtonHoverBorderColor:#107D11;
 $successButtonActiveBgColor:#0C6B0D;
 $successButtonActiveTextColor:#ffffff;
 $successButtonActiveBorderColor:#0C6B0D;
+
 $warningButtonBgColor:#ffba01;
 $warningButtonBorder:1px solid #ffba01;
 $warningButtonTextColor:#333333;
@@ -121,6 +129,7 @@ $warningButtonHoverBorderColor:#ED990B;
 $warningButtonActiveBgColor:#D38B10;
 $warningButtonActiveTextColor:#333333;
 $warningButtonActiveBorderColor:#D38B10;
+
 $dangerButtonBgColor:#e91224;
 $dangerButtonBorder:1px solid #e91224;
 $dangerButtonTextColor:#ffffff;
@@ -136,12 +145,12 @@ $checkboxWidth:20px;
 $checkboxHeight:20px;
 $checkboxActiveBorderColor:$primaryColor;
 $checkboxActiveBgColor:$primaryColor;
-$checkboxActiveTextColor:$primaryColorText;
+$checkboxActiveTextColor:$primaryTextColor;
 $checkboxActiveHoverBgColor:$primaryDarkerColor;
-$checkboxActiveHoverTextColor:$primaryColorText;
+$checkboxActiveHoverTextColor:$primaryTextColor;
 $checkboxActiveHoverBorderColor:$primaryDarkerColor;
 $checkboxActiveFocusBgColor:$primaryDarkerColor;
-$checkboxActiveFocusTextColor:$primaryColorText;
+$checkboxActiveFocusTextColor:$primaryTextColor;
 $checkboxActiveFocusBorderColor:$primaryDarkerColor;
 $checkboxFocusBgColor:$inputBgColor;
 $checkboxFocusTextColor:$primaryColor;
@@ -153,12 +162,12 @@ $radiobuttonWidth:20px;
 $radiobuttonHeight:20px;
 $radiobuttonActiveBorderColor:$primaryColor;
 $radiobuttonActiveBgColor:$primaryColor;
-$radiobuttonActiveTextColor:$primaryColorText;
+$radiobuttonActiveTextColor:$primaryTextColor;
 $radiobuttonActiveHoverBgColor:$primaryDarkerColor;
-$radiobuttonActiveHoverTextColor:$primaryColorText;
+$radiobuttonActiveHoverTextColor:$primaryTextColor;
 $radiobuttonActiveHoverBorderColor:$primaryDarkerColor;
 $radiobuttonActiveFocusBgColor:$primaryDarkerColor;
-$radiobuttonActiveFocusTextColor:$primaryColorText;
+$radiobuttonActiveFocusTextColor:$primaryTextColor;
 $radiobuttonActiveFocusBorderColor:$primaryDarkerColor;
 $radiobuttonFocusBgColor:$inputBgColor;
 $radiobuttonFocusTextColor:$primaryColor;
@@ -174,23 +183,23 @@ $toggleButtonHoverBgColor:#c8c8c8;
 $toggleButtonHoverBorderColor:#c8c8c8;
 $toggleButtonHoverTextColor:#333333;
 $toggleButtonHoverIconColor:#212121;
-$toggleButtonActiveBgColor:$secondaryColor;
-$toggleButtonActiveBorderColor:$secondaryColor;
-$toggleButtonActiveTextColor:$secondaryColorText;
-$toggleButtonActiveIconColor:$secondaryColorText;
-$toggleButtonActiveHoverBgColor:$secondaryDarkColor;
-$toggleButtonActiveHoverBorderColor:$secondaryDarkColor;
-$toggleButtonActiveHoverTextColor:$secondaryDarkColorText;
-$toggleButtonActiveHoverIconColor:$secondaryDarkColorText;
+$toggleButtonActiveBgColor:$primaryColor;
+$toggleButtonActiveBorderColor:$primaryColor;
+$toggleButtonActiveTextColor:#ffffff;
+$toggleButtonActiveIconColor:#ffffff;
+$toggleButtonActiveHoverBgColor:$primaryDarkestColor;
+$toggleButtonActiveHoverBorderColor:$primaryDarkestColor;
+$toggleButtonActiveHoverTextColor:#ffffff;
+$toggleButtonActiveHoverIconColor:#ffffff;
 $toggleButtonFocusOutline:0 none;
 $toggleButtonFocusBgColor:#c8c8c8;
 $toggleButtonFocusBorderColor:#c8c8c8;
 $toggleButtonFocusTextColor:#333333;
 $toggleButtonFocusIconColor:#212121;
-$toggleButtonActiveFocusBgColor:$secondaryDarkColor;
-$toggleButtonActiveFocusBorderColor:$secondaryDarkColor;
-$toggleButtonActiveFocusTextColor:$secondaryDarkColorText;
-$toggleButtonActiveFocusIconColor:$secondaryDarkColorText;
+$toggleButtonActiveFocusBgColor:#c8c8c8;
+$toggleButtonActiveFocusBorderColor:#7f7f7f;
+$toggleButtonActiveFocusTextColor:#333333;
+$toggleButtonActiveFocusIconColor:#212121;
 
 //inplace
 $inplacePadding:$inputPadding;
@@ -204,7 +213,7 @@ $ratingCancelIconColor:#e4018d;
 $ratingCancelHoverIconColor:#b5019f;
 $ratingIconFontSize:20px;
 $ratingStarIconColor:$textColor;
-$ratingStarIconHoverColor:$secondaryDarkColor;
+$ratingStarIconHoverColor:$primaryDarkestColor;
 
 //slider
 $sliderBgColor:#c8c8c8;
@@ -235,7 +244,7 @@ $calendarCellDateHeight:1.714em;
 $calendarCellDateHoverBgColor:#eaeaea;
 $calendarCellDateBorderRadius:$borderRadius;
 $calendarCellDateSelectedBgColor:$primaryColor;
-$calendarCellDateSelectedTextColor:$primaryColorText;
+$calendarCellDateSelectedTextColor:$primaryTextColor;
 $calendarCellDateTodayBgColor:#d0d0d0;
 $calendarCellDateTodayTextColor:$textColor;
 $calendarTimePickerDivider: 1px solid #d8dae2;
@@ -255,30 +264,11 @@ $inputSwitchOffHandleHoverBgColor:#848484;
 $inputSwitchOffHandleFocusBgColor:#848484; 
 $inputSwitchOnBorderColor:$primaryColor; 
 $inputSwitchOnBgColor:$primaryColor; 
-$inputSwitchOnHandleBgColor:$primaryDarkColor; 
-$inputSwitchOnHandleFocusBgColor:$primaryDarkColor; 
-$inputSwitchOnHandleHoverBgColor:$primaryDarkerColor; 
+$inputSwitchOnHandleBgColor:$primaryDarkerColor; 
+$inputSwitchOnHandleFocusBgColor:$primaryDarkerColor; 
+$inputSwitchOnHandleHoverBgColor:$primaryDarkestColor; 
 $inputSwitchTransition:border-color $transitionDuration; 
 $inputSwitchHandleTransition:background-color $transitionDuration; 
-
-//keyboard
-$keyboardButtonPadding:6px;
-$keyboardButtonMargin:1px;
-$keyboardButtonBorder:1px solid transparent;
-$keyboardButtonBgColor:#ffffff;
-$keyboardButtonTextColor:$textColor;
-$keyboardButtonHoverBorder:1px solid transparent;
-$keyboardButtonHoverBgColor:#eaeaea;
-$keyboardButtonHoverTextColor:$textColor;
-$keyboardButtonActiveBorder:1px solid $primaryColor;
-$keyboardButtonActiveBgColor:$primaryColor;
-$keyboardButtonActiveTextColor:$primaryColorText;
-$keyboardSpecialButtonBorder:1px solid transparent;
-$keyboardSpecialButtonBgColor:$secondaryColor;
-$keyboardSpecialButtonTextColor:$secondaryColorText;
-$keyboardSpecialButtonHoverBorder:1px solid transparent;
-$keyboardSpecialButtonHoverBgColor:$secondaryDarkColor;
-$keyboardSpecialButtonHoverTextColor:$secondaryDarkColorText;
 
 //panel common
 $panelHeaderBorder:$containerHeaderBorder;
@@ -359,9 +349,9 @@ $tableFooterCellBorder:1px solid #c8c8c8;
 $tableResizerHelperBgColor:$primaryColor;
 
 //schedule
-$scheduleEventBgColor:$primaryDarkColor;
-$scheduleEventBorder:1px solid $primaryDarkColor;
-$scheduleEventTextColor:$primaryDarkColorText;
+$scheduleEventBgColor:$primaryDarkestColor;
+$scheduleEventBorder:1px solid $primaryDarkestColor;
+$scheduleEventTextColor:#ffffff;
 
 //tree
 $treeNodePadding:0.143em 0;
@@ -419,10 +409,10 @@ $dialogHeaderPadding:1em;
 $confirmDialogPadding:1.5em;
 
 //overlay panel
-$overlayPanelCloseIconBgColor:$secondaryColor;
-$overlayPanelCloseIconColor:$secondaryColorText;
-$overlayPanelCloseIconHoverBgColor:$secondaryDarkColor;
-$overlayPanelCloseIconHoverColor:$secondaryDarkColorText;
+$overlayPanelCloseIconBgColor:$primaryColor;
+$overlayPanelCloseIconColor:#ffffff;
+$overlayPanelCloseIconHoverBgColor:$primaryDarkestColor;
+$overlayPanelCloseIconHoverColor:#ffffff;
 
 //tooltip
 $tooltipBgColor:#333333;
