@@ -3,7 +3,17 @@ import {MenuItem} from 'primeng/primeng';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
-    templateUrl: './panelsdemo.component.html'
+    templateUrl: './panelsdemo.component.html',
+    styles: [`
+        :host ::ng-deep button {
+            margin-right: .25em;
+            margin-left: .25em;
+        }
+
+        :host ::ng-deep .ui-splitbutton button {
+            margin-right: 0;
+        }`
+    ]
 })
 export class PanelsDemoComponent implements OnInit {
 

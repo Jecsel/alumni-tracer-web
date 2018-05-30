@@ -15,13 +15,17 @@
     }
 
     .ui-accordion-header {
-        background-color: $rightPanelHeaderBgColor;
-        color: $rightPanelHeaderTextColor;
-        border: none;
-        font-size: 13px;
-
-        .ui-icon-triangle-1-e {
+        margin-bottom: 0;
+        a {
+            background-color: $rightPanelHeaderBgColor;
             color: $rightPanelHeaderTextColor;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+
+            .ui-accordion-toggle-icon {
+                color: $rightPanelHeaderTextColor;
+            }
         }
     }
 
@@ -68,6 +72,10 @@
         color: $rightPanelHeaderTextColor;
         text-align: center;
         display: block;
+    }
+
+    .ui-panel-titlebar {
+        display: none;
     }
 
     .ui-panel-content {

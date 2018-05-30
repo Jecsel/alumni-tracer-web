@@ -3,7 +3,13 @@ import {Message} from 'primeng/primeng';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
-    templateUrl: './messagesdemo.component.html'
+    templateUrl: './messagesdemo.component.html',
+    styles: [`
+        :host ::ng-deep button {
+            margin-right: .25em;
+            margin-left: .25em;
+        }`
+    ]
 })
 export class MessagesDemoComponent {
 

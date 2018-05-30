@@ -1,1 +1,21 @@
 //Add your extensions to the theme here so that upgrading does not cause migration issues where you can simply update the theme_core instead.
+@import './_variables';
+.ui-rating {
+    a {
+        .fa-star {
+            color: $ratingStarActiveIconColor;
+        }
+    }
+}
+.ui-datepicker .ui-datepicker-calendar td.ui-datepicker-today a {
+    font-weight: 600;
+}
+.ui-treetable tbody > div td .ui-treetable-checkbox .fa-check {
+    color: #333333;
+}
+.ui-steps .ui-steps-item .ui-menuitem-link .ui-steps-number {
+    padding-top: .25em;
+}
+.ui-menubar .ui-submenu-list .ui-menuitem {
+    margin: 0;
+}
