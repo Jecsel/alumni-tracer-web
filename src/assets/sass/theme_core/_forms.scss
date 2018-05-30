@@ -718,6 +718,10 @@ body {
                 }
             }
 
+            .fa-star {
+                color: $ratingStarActiveIconColor;
+            }
+
             .ui-rating-icon {
                 font-size: $ratingIconFontSize;
             }
@@ -903,6 +907,7 @@ body {
                     a {
                         background-color: $calendarCellDateTodayBgColor;
                         color: $calendarCellDateTodayTextColor;
+                        font-weight: 600;
                     }
                 }
             }

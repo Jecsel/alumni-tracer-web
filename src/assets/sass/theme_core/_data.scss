@@ -294,7 +294,7 @@ body {
             border-top: 0 none;
         }
     }
-    
+
     .ui-dataview {
         .ui-dataview-header {
             background-color: $panelHeaderBgColor;
@@ -533,7 +533,7 @@ body {
         .ui-tree-container {
             padding: 0;
             margin: 0;
-        
+
             .ui-treenode {
                 padding: $treeNodePadding;
 
@@ -649,7 +649,7 @@ body {
             &.ui-state-highlight {
                 background-color: $highlightBgColor;
                 color: $highlightColorText;
-                        
+
                 .ui-node-toggler {
                     i {
                         color: darken($highlightBgColor, 25%);
@@ -831,8 +831,15 @@ body {
                         line-height: inherit;
                     }
 
-                    .ui-treetable-checkbox .ui-chkbox-icon {
-                        margin: 1px 0 0 0;
+                    .ui-treetable-checkbox {
+
+                        .fa-check {
+                            color: #333333;
+                        }
+
+                        .ui-chkbox-icon {
+                            margin: 1px 0 0 0;
+                        }
                     }
                 }
             }
