@@ -8,5 +8,7 @@ $topbarIconHoverBgColor:#128391;
 $topbarMenuHoverBgColor:#88A571;
 $topbarProfileTextColor:#ffffff;
 $activeSubMenuItemTextColor:$primaryColor;
+$sidebarMenuItemActiveRouteTextColor:$primaryColor;
+$sidebarMenuItemActiveRouteIconColor:$primaryColor;
 
 @import '../../sass/layout/_layout';
