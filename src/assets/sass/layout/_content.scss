@@ -17,26 +17,23 @@ body {
                     ul {
                         padding-left: 0;
                         margin: 0;
-                    }
 
-                    i {
-                        color: $routeBarMenuItemIconColor;
-                        font-size: 18px;
-                        margin-right: 8px;
-                    }
+                        li {
+                            list-style-type: none;
+                            display: inline-block;
+                            padding: 0 .25em;
+    
+                            a {
+                                font-size: 14px;
+                                color: $routeBarMenuItemTextColor;
+                            }
 
-                    span {
-                        font-size: 14px;
-                        color: $routeBarMenuItemTextColor;
-                    }
-
-                    li {
-                        list-style-type: none;
-                        display: inline-block;
-
-                        a {
-                            font-size: 14px;
-                            color: $routeBarMenuItemTextColor;
+                            i {
+                                color: $routeBarMenuItemIconColor;
+                                font-size: 18px;
+                                position: relative;
+                                top: 1px;
+                            }
                         }
                     }
                 }
