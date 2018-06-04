@@ -235,7 +235,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 ]
             },
             {
-                label: 'Docs', icon: 'fa fa-fw fa-file-code-o', routerLink: ['/documentation']
+                label: 'Documentation', icon: 'fa fa-fw fa-file-code-o', routerLink: ['/documentation']
             },
             {
                 label: 'Buy Now', icon: 'fa fa-fw fa-credit-card-alt', url: ['https://www.primefaces.org/store']
@@ -271,6 +271,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         this.app.onMenuClick(event);
     }
 }
+
 @Component({
     /* tslint:disable:component-selector */
     selector: '[app-submenu]',

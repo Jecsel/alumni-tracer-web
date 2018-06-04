@@ -4,14 +4,18 @@ import { BreadcrumbService } from '../../breadcrumb.service';
 @Component({
     templateUrl: './documentation.component.html',
     styles: [`
-        .docs pre {
+        .docs pre.doc-command {
             font-family: monospace;
-            background-color: #dee4e9;
-            color: #757575;
+            background-color: #EFEFEF;
+            color: #333333;
             padding: 1em;
             font-size: 14px;
-            border-radius: 3px;
+            border-radius: 0;
             overflow: auto;
+        }
+
+        .docs p {
+            line-height: 1.5;
         }`
     ]
 })

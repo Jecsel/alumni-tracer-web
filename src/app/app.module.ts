@@ -6,7 +6,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppRoutes} from './app.routes';
 
-
 import {AccordionModule} from 'primeng/primeng';
 import {AutoCompleteModule} from 'primeng/primeng';
 import {BreadcrumbModule} from 'primeng/primeng';

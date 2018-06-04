@@ -232,92 +232,90 @@
         }
 
         .statistics {
-            .ui-panel {
-                width: 100%;
+            width: 100%;                
 
-                .ui-panel-content {
-                    padding: 0;
+            .ui-panel-content {
+                padding: 0;
 
-                    .left-side {
-                        padding: 53px 100px 53px 20px;
-                        float: right;
+                .left-side {
+                    padding: 53px 100px 53px 20px;
+                    float: right;
 
-                        i {
-                            color: #ABABAB;
+                    i {
+                        color: #ABABAB;
+                        display: inline-block;
+                        font-size: 18px;
+                    }
+
+                    .icon-label {
+                        color: #ABABAB;
+                        font-size: 14px;
+                        display: inline-block;
+                    }
+
+                    span {
+                        color: #353535;
+                        font-weight: 500;
+                        font-size: 24px;
+                        display: block;
+                    }
+
+                    .statsbar {
+                        display: block;
+                        width: 80%;
+                        background-color: #f4f4f4;
+                        margin-top: 12px;
+                        margin-bottom: 12px;
+
+                        .statsbar-value {
+                            background-color: $primaryColor;
+                            height: 4px;
+                        }
+                    }
+                }
+
+                .right-side {
+                    padding: 50px;
+                    text-align: center;
+
+                    i {
+                        color: #ABABAB;
+                        font-size: 18px;
+                    }
+
+                    span {
+                        margin-right: 20px;
+                    }
+
+                    .knob-container {
+                        text-align: center;
+                        margin-bottom: 15px;
+
+                        .knob {
+                            width: 150px;
+                            height: 150px;
+                            line-height: 150px;
+                            margin-top: 20px;
+                            font-size: 50px;
+                            color: #6a6a7d;
+                            @include border-radius(50%);
                             display: inline-block;
-                            font-size: 18px;
-                        }
-
-                        .icon-label {
-                            color: #ABABAB;
-                            font-size: 14px;
-                            display: inline-block;
-                        }
-
-                        span {
-                            color: #353535;
-                            font-weight: 500;
-                            font-size: 24px;
-                            display: block;
-                        }
-
-                        .statsbar {
-                            display: block;
-                            width: 80%;
-                            background-color: #f4f4f4;
-                            margin-top: 12px;
-                            margin-bottom: 12px;
-
-                            .statsbar-value {
-                                background-color: $primaryColor;
-                                height: 4px;
-                            }
+                            text-align: center;
+                            border: 5px solid $primaryColor;
+                            border-left-color: lighten($primaryColor, 30%);
                         }
                     }
 
-                    .right-side {
-                        padding: 50px;
-                        text-align: center;
-
-                        i {
-                            color: #ABABAB;
-                            font-size: 18px;
-                        }
+                    .details {
+                        font-size: 14px;
+                        color: #ABABAB;
 
                         span {
-                            margin-right: 20px;
+                            margin-right: 6px;
                         }
 
-                        .knob-container {
-                            text-align: center;
-                            margin-bottom: 15px;
-
-                            .knob {
-                                width: 150px;
-                                height: 150px;
-                                line-height: 150px;
-                                margin-top: 20px;
-                                font-size: 50px;
-                                color: #6a6a7d;
-                                @include border-radius(50%);
-                                display: inline-block;
-                                text-align: center;
-                                border: 5px solid $primaryColor;
-                                border-left-color: lighten($primaryColor, 30%);
-                            }
-                        }
-
-                        .details {
+                        i {
                             font-size: 14px;
-                            color: #ABABAB;
-
-                            span {
-                                margin-right: 6px;
-                            }
-
-                            i {
-                                font-size: 14px;
-                            }
                         }
                     }
                 }
@@ -325,65 +323,63 @@
         }
 
         .global-sales {
-            .ui-panel {
-                .ui-panel-content {
-                    padding: 0;
-                    padding-left: 5px;
+            .ui-panel-content {
+                padding: 0;
+                padding-left: 5px;
 
-                    table {
-                        width: 100%;
+                table {
+                    width: 100%;
 
-                        thead {
-                            tr {
-                                th {
-                                    color: #ABABAB;
-                                    font-weight: 600;
-                                    font-size: 13px;
+                    thead {
+                        tr {
+                            th {
+                                color: #ABABAB;
+                                font-weight: 600;
+                                font-size: 13px;
 
-                                    &.country {
-                                        text-align: left;
-                                    }
+                                &.country {
+                                    text-align: left;
                                 }
                             }
                         }
+                    }
 
-                        tbody {
-                            tr {
-                                padding: 9px 18px;
-                                line-height: 50px;
+                    tbody {
+                        tr {
+                            padding: 9px 18px;
+                            line-height: 50px;
 
-                                td {
-                                    color: #353535;
-                                    font-size: 13px;
-                                    font-weight: 400;
-                                    text-align: center;
+                            td {
+                                color: #353535;
+                                font-size: 13px;
+                                font-weight: 400;
+                                text-align: center;
 
-                                    img {
-                                        width: 32px;
-                                        height: 32px;
-                                        vertical-align: middle;
-                                        margin-right: 10px;
+                                img {
+                                    width: 32px;
+                                    height: 32px;
+                                    vertical-align: middle;
+                                    margin-right: 10px;
+                                }
+
+                                span {
+                                    vertical-align: middle;
+                                }
+
+                                i {
+                                    font-size: 20px;
+
+                                    &.up {
+                                        color: #44BE2D;
                                     }
 
-                                    span {
-                                        vertical-align: middle;
+                                    &.down {
+                                        color: #D83A19;
                                     }
+                                }
 
-                                    i {
-                                        font-size: 20px;
-
-                                        &.up {
-                                            color: #44BE2D;
-                                        }
-
-                                        &.down {
-                                            color: #D83A19;
-                                        }
-                                    }
-
-                                    &.country {
-                                        text-align: left;
-                                    }
+                                &.country {
+                                    text-align: left;
                                 }
                             }
                         }
@@ -393,71 +389,68 @@
         }
 
         .profile {
-            .ui-panel {
-                margin-bottom: 16px;
+            margin-bottom: 16px;
+            .ui-panel-titlebar {
+                display: none;
+            }
 
-                .ui-panel-titlebar {
-                    display: none;
+            .ui-panel-content {
+                padding: 0;
+
+                .bg-image {
+                    background: url("../../layout/images/bg-image-profile.png") no-repeat;
+                    height: 190px;
+                    width: 100%;
+                    background-size: cover;
                 }
 
-                .ui-panel-content {
-                    padding: 0;
+                .profile-info {
+                    text-align: center;
+                    padding-bottom:25px;
+                    margin-top: -60px;
 
-                    .bg-image {
-                        background: url("../../layout/images/bg-image-profile.png") no-repeat;
-                        height: 190px;
-                        width: 100%;
-                        background-size: cover;
+                    .profile-image {
+                        height: 120px;
+                        width: 120px;
                     }
 
-                    .profile-info {
+                    .name {
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: #353535;
+                    }
+
+                    i {
+                        font-size: 13px;
+                        color: #ABABAB;
+                        margin-right: 5px;
+                    }
+
+                    span {
+                        font-size: 13px;
+                        color: #696969;
+                        font-weight: 500;
+                    }
+
+                    .profile-numbers {
+                        display: inline-block;
                         text-align: center;
-                        padding-bottom:25px;
-                        margin-top: -60px;
+                        margin: 15px;
 
-                        .profile-image {
-                            height: 120px;
-                            width: 120px;
-                        }
-
-                        .name {
+                        .header {
                             display: block;
-                            font-size: 14px;
-                            font-weight: 600;
-                            color: #353535;
-                        }
-
-                        i {
-                            font-size: 13px;
                             color: #ABABAB;
-                            margin-right: 5px;
-                        }
-
-                        span {
                             font-size: 13px;
-                            color: #696969;
                             font-weight: 500;
+                            margin-top: 16px;
                         }
 
-                        .profile-numbers {
-                            display: inline-block;
-                            text-align: center;
-                            margin: 15px;
-
-                            .header {
-                                display: block;
-                                color: #ABABAB;
-                                font-size: 13px;
-                                font-weight: 500;
-                                margin-top: 16px;
-                            }
-
-                            .number {
-                                display: block;
-                                color: #353535;
-                                font-size: 20px;
-                                font-weight: 400;
-                            }
+                        .number {
+                            display: block;
+                            color: #353535;
+                            font-size: 20px;
+                            font-weight: 400;
                         }
                     }
                 }
@@ -465,83 +458,82 @@
         }
 
         .inbox {
-            .ui-panel {
-                margin-bottom: 16px;
-                .ui-panel-content {
+            margin-bottom: 16px; 
+                
+            .ui-panel-content {
+                padding: 0;
+
+                ul {
                     padding: 0;
+                    margin: 0;
 
-                    ul {
-                        padding: 0;
-                        margin: 0;
+                    li {
+                        list-style: none;
+                        padding: 18px 20px;
 
-                        li {
-                            list-style: none;
-                            padding: 18px 20px;
+                        .image-container {
+                            padding-right: 4px;
+                            display: inline-block;
 
-                            .image-container {
-                                padding-right: 4px;
-                                display: inline-block;
-
-                                img {
-                                    width: 55px;
-                                    height: 55px;
-                                    display: inline-block;
-                                    vertical-align: middle;
-                                }
-                            }
-
-                            .seperator {
-                                width: 1px;
-                                height: 50px;
-                                background-color: $primaryColor;
+                            img {
+                                width: 55px;
+                                height: 55px;
                                 display: inline-block;
                                 vertical-align: middle;
                             }
+                        }
 
-                            .message-box {
+                        .seperator {
+                            width: 1px;
+                            height: 50px;
+                            background-color: $primaryColor;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .message-box {
+                            display: inline-block;
+                            font-size: 13px;
+                            vertical-align: middle;
+                            width: 73%;
+                            padding-left: 12px;
+
+                            .messager {
+                                color: #323232;
+                                font-weight: 600;
                                 display: inline-block;
+                            }
+
+                            .time {
+                                display: inline-block;
+                                color: #ABABAB;
+                            }
+
+                            .message {
+                                display: block;
+                            }
+                        }
+
+                        .message-status {
+                            float: right;
+                            text-align: right;
+                            vertical-align: middle;
+                            width: 7%;
+
+                            i {
+                                font-size: 18px;
+                                color: $primaryColor;
+                                display: block;
+
+                                &.unread {
+                                    color: #ABABAB;
+                                }
+                            }
+
+                            span {
                                 font-size: 13px;
-                                vertical-align: middle;
-                                width: 73%;
-                                padding-left: 12px;
-
-                                .messager {
-                                    color: #323232;
-                                    font-weight: 600;
-                                    display: inline-block;
-                                }
-
-                                .time {
-                                    display: inline-block;
-                                    color: #ABABAB;
-                                }
-
-                                .message {
-                                    display: block;
-                                }
-                            }
-
-                            .message-status {
-                                float: right;
-                                text-align: right;
-                                vertical-align: middle;
-                                width: 7%;
-
-                                i {
-                                    font-size: 18px;
-                                    color: $primaryColor;
-                                    display: block;
-
-                                    &.unread {
-                                        color: #ABABAB;
-                                    }
-                                }
-
-                                span {
-                                    font-size: 13px;
-                                    color: #ABABAB;
-                                    font-weight: 500;
-                                }
+                                color: #ABABAB;
+                                font-weight: 500;
                             }
                         }
                     }
@@ -550,84 +542,82 @@
         }
 
         .timeline {
-            .ui-panel {
-                .ui-panel-content {
+            .ui-panel-content {
+                padding: 0;
+                font-size: 13px;
+
+                ul {
                     padding: 0;
-                    font-size: 13px;
+                    margin: 0;
 
-                    ul {
-                        padding: 0;
-                        margin: 0;
+                    li {
+                        list-style: none;
+                        padding: 22px 0px;
+                        position: relative;
 
-                        li {
-                            list-style: none;
-                            padding: 22px 0px;
-                            position: relative;
+                        .date-indicator {
+                            display: inline-block;
+                            vertical-align: middle;
+                            text-align: center;
+                            width: 60px;
 
-                            .date-indicator {
-                                display: inline-block;
-                                vertical-align: middle;
-                                text-align: center;
-                                width: 60px;
-
-                                .date {
-                                    display: block;
-                                }
-
-                                .time {
-                                }
+                            .date {
+                                display: block;
                             }
 
-                            .activity-link {
-                                width: 1px;
-                                height: 100%;
+                            .time {
+                            }
+                        }
+
+                        .activity-link {
+                            width: 1px;
+                            height: 100%;
+                            position: absolute;
+                            left: 72px;
+                            top: 0;
+                            background-color: #dedede;
+                            display: inline-block;
+                        }
+
+                        i {
+                            display: inline-block;
+                            vertical-align: middle;
+                            position: absolute;
+                            top: 36px;
+                            font-size: 20px;
+
+                            &.device {
+                                float: right;
+                                vertical-align: middle;
                                 position: absolute;
-                                left: 72px;
-                                top: 0;
-                                background-color: #dedede;
-                                display: inline-block;
+                                right: 14px;
                             }
 
-                            i {
-                                display: inline-block;
-                                vertical-align: middle;
-                                position: absolute;
-                                top: 36px;
-                                font-size: 20px;
-
-                                &.device {
-                                    float: right;
-                                    vertical-align: middle;
-                                    position: absolute;
-                                    right: 14px;
-                                }
-
-                                &.success {
-                                    color: #44BE2D;
-                                }
-
-                                &.error {
-                                    color: #FF7458;
-                                }
-
-                                &.code {
-                                    color: #2162B0;
-                                }
+                            &.success {
+                                color: #44BE2D;
                             }
 
-                            .timeline-subject {
-                                display: inline-block;
-                                vertical-align: middle;
-                                margin-left: 22px;
+                            &.error {
+                                color: #FF7458;
+                            }
 
-                                .timeline-header {
-                                    display: block;
-                                    font-weight: 500;
-                                }
+                            &.code {
+                                color: #2162B0;
+                            }
+                        }
 
-                                .timeline-subheader {
-                                    color: #ABABAB;
-                                }
+                        .timeline-subject {
+                            display: inline-block;
+                            vertical-align: middle;
+                            margin-left: 22px;
+
+                            .timeline-header {
+                                display: block;
+                                font-weight: 500;
+                            }
+
+                            .timeline-subheader {
+                                color: #ABABAB;
                             }
                         }
                     }
@@ -636,93 +626,90 @@
         }
 
         .projects {
-            .ui-panel {
-                margin-bottom: 16px;
-                .ui-panel-content {
-                    padding: 0;
+            margin-bottom: 16px;
 
-                    ul {
-                        margin: 0;
-                        padding: 20px 0;
-                        background: url("../../layout/images/bg-projects.png") no-repeat;
-                        width: 100%;
-                        background-size: cover;
-                        position: relative;
+            .ui-panel-content {
+                padding: 0;
 
-                        li {
-                            list-style: none;
-                            margin: 8px 0;
-                            background-color: rgba(255, 255, 255, .10);
-                            padding: 20px 24px;
+                ul {
+                    margin: 0;
+                    padding: 20px 0;
+                    background: url("../../layout/images/bg-projects.png") no-repeat;
+                    width: 100%;
+                    background-size: cover;
+                    position: relative;
 
-                            .project-info {
-                                vertical-align: middle;
-                                text-align: left;
-                                display: inline-block;
-                                width: 25%;
+                    li {
+                        list-style: none;
+                        margin: 8px 0;
+                        background-color: rgba(255, 255, 255, .10);
+                        padding: 20px 24px;
 
-                                .project-name {
-                                    font-size: 14px;
-                                    font-weight: 500;
-                                    color: #ffffff;
-                                    display: block;
-                                }
+                        .project-info {
+                            vertical-align: middle;
+                            text-align: left;
+                            display: inline-block;
+                            width: 25%;
 
-                                .project-firm {
-                                    font-size: 13px;
-                                    color: #b0b0ae;
-                                    display: block;
-                                }
+                            .project-name {
+                                font-size: 14px;
+                                font-weight: 500;
+                                color: #ffffff;
+                                display: block;
                             }
 
-                            .person-container {
-                                width: 45%;
+                            .project-firm {
+                                font-size: 13px;
+                                color: #b0b0ae;
+                                display: block;
+                            }
+                        }
+
+                        .person-container {
+                            width: 45%;
+                            text-align: center;
+                            display: inline-block;
+                            vertical-align: middle;
+
+                            .persons {
+                                vertical-align: middle;
                                 text-align: center;
                                 display: inline-block;
-                                vertical-align: middle;
 
-                                .persons {
+                                img {
+                                    height: 42px;
                                     vertical-align: middle;
-                                    text-align: center;
-                                    display: inline-block;
-
-                                    img {
-                                        height: 42px;
-                                        vertical-align: middle;
-                                    }
-                                }
-
-                                span {
-                                    vertical-align: middle;
-                                    text-align: center;
-                                    display: inline-block;
-                                    color: #ffffff;
-                                    font-size: 13px;
-                                    margin-left: 21px;
                                 }
                             }
 
-                            .button {
+                            span {
+                                vertical-align: middle;
+                                text-align: center;
                                 display: inline-block;
-                                vertical-align: middle;
-                                float: right;
+                                color: #ffffff;
+                                font-size: 13px;
+                                margin-left: 21px;
                             }
+                        }
+
+                        .button {
+                            display: inline-block;
+                            vertical-align: middle;
+                            float: right;
                         }
                     }
                 }
             }
         }
 
-        .table {
-            .ui-panel {
-                .ui-panel-content {
-                    padding: 0;
-                    border: 0 none;
+        .inventory {
+            .ui-panel-titlebar {
+                border-bottom: 0 none;
+            }
 
-                    .ui-paginator {
-                        border-top: none;
-                    }
-                }
+            .ui-panel-content {
+                padding: 0;
+                border: 0 none;
             }
         }
     }
@@ -732,44 +719,42 @@
     .layout-content {
         .layout-dashboard {
             .inbox {
-                .ui-panel {
-                    .ui-panel-content {
-                        ul {
-                            li {
-                                .image-container {
+                .ui-panel-content {
+                    ul {
+                        li {
+                            .image-container {
+                                display: block;
+                                padding-right: 27px;
+                                text-align: center;
+                            }
+
+                            .seperator {
+                                display: none;
+                            }
+
+                            .message-box {
+                                width: 91%;
+                                padding: 0;
+                                text-align: center;
+
+                                .messager {
                                     display: block;
-                                    padding-right: 27px;
-                                    text-align: center;
                                 }
 
-                                .seperator {
-                                    display: none;
+                                .time {
+                                    display: block;
                                 }
 
-                                .message-box {
-                                    width: 91%;
-                                    padding: 0;
-                                    text-align: center;
-
-                                    .messager {
-                                        display: block;
-                                    }
-
-                                    .time {
-                                        display: block;
-                                    }
-
-                                    .message {
-                                        display: block;
-                                        text-align: left;
-                                    }
+                                .message {
+                                    display: block;
+                                    text-align: left;
                                 }
+                            }
 
-                                .message-status {
-                                    float: none;
-                                    width: 5%;
-                                    display: inline-block;
-                                }
+                            .message-status {
+                                float: none;
+                                width: 5%;
+                                display: inline-block;
                             }
                         }
                     }
@@ -777,28 +762,26 @@
             }
 
             .projects {
-                .ui-panel {
-                    .ui-panel-content {
-                        ul {
-                            li {
+                .ui-panel-content {
+                    ul {
+                        li {
+                            text-align: center;
+
+                            .project-info {
+                                width: 100%;
+                                margin-bottom: 10px;
                                 text-align: center;
+                            }
 
-                                .project-info {
-                                    width: 100%;
-                                    margin-bottom: 10px;
-                                    text-align: center;
-                                }
+                            .person-container {
+                                width: 100%;
+                                display: block;
+                                margin-bottom: 15px;
+                            }
 
-                                .person-container {
-                                    width: 100%;
-                                    display: block;
-                                    margin-bottom: 15px;
-                                }
-
-                                .button {
-                                    float: none;
-                                    display: block;
-                                }
+                            .button {
+                                float: none;
+                                display: block;
                             }
                         }
                     }
