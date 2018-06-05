@@ -110,17 +110,6 @@
                     &:hover {
                         border-color: $primaryColor;
                     }
-
-                    &.active-menuitem-routerlink {
-                        span {
-                            color: $sidebarMenuItemActiveRouteTextColor;
-                        }
-
-                        i {
-                            color: $sidebarMenuItemActiveRouteIconColor;
-                        }
-                    }
-
                 }
 
                 ul {
