@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Message} from 'primeng/primeng';
+import { Component } from '@angular/core';
+import { Message } from 'primeng/primeng';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
@@ -24,6 +24,6 @@ export class FileDemoComponent {
         }
 
         this.msgs = [];
-        this.msgs.push({severity: 'info', summary: 'Success', detail: 'Upload Completed'});
+        this.msgs.push({ severity: 'info', summary: 'Success', detail: 'Upload Completed' });
     }
 }

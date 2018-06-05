@@ -79,7 +79,7 @@ export class DataDemoComponent implements OnInit {
     sortOrder: number;
 
     constructor(private carService: CarService, private eventService: EventService, private nodeService: NodeService,
-                private breadcrumbService: BreadcrumbService) {
+        private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Components' },
             { label: 'Data', routerLink: ['/data'] }
@@ -107,21 +107,21 @@ export class DataDemoComponent implements OnInit {
         this.nodeService.getFiles().then(files => this.files2 = files);
         this.nodeService.getFiles().then(files => this.files3 = files);
         this.nodeService.getFilesystem().then(files => this.files4 = files);
-        this.eventService.getEvents().then(events => {this.events = events; });
+        this.eventService.getEvents().then(events => { this.events = events; });
 
         this.carouselCars = [
-            {vin: 'r3278r2', year: 2010, brand: 'Audi', color: 'Black'},
-            {vin: 'jhto2g2', year: 2015, brand: 'BMW', color: 'White'},
-            {vin: 'h453w54', year: 2012, brand: 'Honda', color: 'Blue'},
-            {vin: 'g43gwwg', year: 1998, brand: 'Renault', color: 'White'},
-            {vin: 'gf45wg5', year: 2011, brand: 'Volkswagen', color: 'Red'},
-            {vin: 'bhv5y5w', year: 2015, brand: 'Jaguar', color: 'Blue'},
-            {vin: 'ybw5fsd', year: 2012, brand: 'Ford', color: 'Yellow'},
-            {vin: '45665e5', year: 2011, brand: 'Mercedes', color: 'Brown'},
-            {vin: 'he6sb5v', year: 2015, brand: 'Ford', color: 'Black'}
+            { vin: 'r3278r2', year: 2010, brand: 'Audi', color: 'Black' },
+            { vin: 'jhto2g2', year: 2015, brand: 'BMW', color: 'White' },
+            { vin: 'h453w54', year: 2012, brand: 'Honda', color: 'Blue' },
+            { vin: 'g43gwwg', year: 1998, brand: 'Renault', color: 'White' },
+            { vin: 'gf45wg5', year: 2011, brand: 'Volkswagen', color: 'Red' },
+            { vin: 'bhv5y5w', year: 2015, brand: 'Jaguar', color: 'Blue' },
+            { vin: 'ybw5fsd', year: 2012, brand: 'Ford', color: 'Yellow' },
+            { vin: '45665e5', year: 2011, brand: 'Mercedes', color: 'Brown' },
+            { vin: 'he6sb5v', year: 2015, brand: 'Ford', color: 'Black' }
         ];
 
-        this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'};
+        this.scheduleHeader = { left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay' };
 
         this.data = [{
             label: 'F.C Barcelona',
@@ -155,9 +155,9 @@ export class DataDemoComponent implements OnInit {
         }];
 
         this.sortOptions = [
-            {label: 'Newest First', value: '!year'},
-            {label: 'Oldest First', value: 'year'},
-            {label: 'Brand', value: 'brand'}
+            { label: 'Newest First', value: '!year' },
+            { label: 'Oldest First', value: 'year' },
+            { label: 'Brand', value: 'brand' }
         ];
     }
 

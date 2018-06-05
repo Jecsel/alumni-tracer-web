@@ -13,24 +13,24 @@ import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ NoopAnimationsModule, RouterTestingModule, ScrollPanelModule, AccordionModule, PanelModule ],
-      declarations: [
-        AppComponent,
-        AppTopBarComponent,
-        AppMenuComponent,
-        AppSubMenuComponent,
-        AppRightPanelComponent,
-        AppFooterComponent,
-        AppBreadcrumbComponent
-      ],
-        providers: [BreadcrumbService]
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [NoopAnimationsModule, RouterTestingModule, ScrollPanelModule, AccordionModule, PanelModule],
+            declarations: [
+                AppComponent,
+                AppTopBarComponent,
+                AppMenuComponent,
+                AppSubMenuComponent,
+                AppRightPanelComponent,
+                AppFooterComponent,
+                AppBreadcrumbComponent
+            ],
+            providers: [BreadcrumbService]
+        }).compileComponents();
+    }));
+    it('should create the app', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 });

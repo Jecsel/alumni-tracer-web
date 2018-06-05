@@ -1,9 +1,9 @@
-import {Component, Input, OnInit, AfterViewInit, ViewChild} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
-import {MenuItem, ScrollPanel} from 'primeng/primeng';
-import {AppComponent} from './app.component';
+import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { MenuItem, ScrollPanel } from 'primeng/primeng';
+import { AppComponent } from './app.component';
 
 @Component({
     selector: 'app-menu',
@@ -17,147 +17,223 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
     @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ScrollPanel;
 
-    constructor(public app: AppComponent) {}
+    constructor(public app: AppComponent) { }
 
     ngOnInit() {
         this.model = [
-            {label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/']},
+            { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
             {
                 label: 'Menu Colors', icon: 'fa fa-fw fa-paint-brush',
                 items: [
-                    {label: 'Light', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = true },
-                    {label: 'Dark', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = false }
+                    { label: 'Light', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = true },
+                    { label: 'Dark', icon: 'fa fa-fw fa-paint-brush', command: event => this.app.lightMenu = false }
                 ]
             },
             {
                 label: 'Layouts', icon: 'fa fa-fw fa-cog',
                 items: [
-                    {label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },
-                    {label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'overlay' },
-                    {label: 'Slim', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'slim' },
-                    {label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal' }
+                    { label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'static' },
+                    { label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'overlay' },
+                    { label: 'Slim', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'slim' },
+                    { label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.menuMode = 'horizontal' }
                 ]
             },
             {
                 label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 15,
                 items: [
-                    {label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('pink', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('pink', 'dark') }
-                        ]},
-                    {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
-                        items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('indigo', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('indigo', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('pink', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('pink', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Green', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('green', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('green', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('indigo', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('indigo', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Green', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('amber', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('amber', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('green', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('green', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('deeppurple', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('deeppurple', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('amber', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('amber', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('blue', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('blue', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('deeppurple', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('deeppurple', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Dark Blue Grey', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('darkblue', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('darkblue', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('blue', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('blue', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Dark Blue Grey', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('cyan', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('cyan', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('darkblue', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('darkblue', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('purple', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('purple', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('cyan', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('cyan', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('deeporange', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('deeporange', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('purple', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('purple', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('lime', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('lime', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('deeporange', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('deeporange', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('yellow', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('yellow', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('lime', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('lime', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('bluegrey', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('bluegrey', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('yellow', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('yellow', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Mojito', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('mojito', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('mojito', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('bluegrey', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('bluegrey', 'dark')
+                            }
                         ]
                     },
-                    {label: 'Grey', icon: 'fa fa-fw fa-paint-brush',
+                    {
+                        label: 'Mojito', icon: 'fa fa-fw fa-paint-brush',
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('grey', 'light') },
-                            { label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                command: (event) => this.changeTheme('grey', 'dark') }
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('mojito', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('mojito', 'dark')
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Grey', icon: 'fa fa-fw fa-paint-brush',
+                        items: [
+                            {
+                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('grey', 'light')
+                            },
+                            {
+                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                command: (event) => this.changeTheme('grey', 'dark')
+                            }
                         ]
                     }
                 ]
@@ -165,28 +241,30 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
             {
                 label: 'Components', icon: 'fa fa-fw fa-bars',
                 items: [
-                    {label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample']},
-                    {label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms']},
-                    {label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data']},
-                    {label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels']},
-                    {label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/overlays']},
-                    {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/menus']},
-                    {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/messages']},
-                    {label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/charts']},
-                    {label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/file']},
-                    {label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/misc']}
+                    { label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample'] },
+                    { label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms'] },
+                    { label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data'] },
+                    { label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels'] },
+                    { label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/overlays'] },
+                    { label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/menus'] },
+                    { label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/messages'] },
+                    { label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/charts'] },
+                    { label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/file'] },
+                    { label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/misc'] }
                 ]
             },
             {
                 label: 'Pages', icon: 'fa fa-fw fa-cube',
                 items: [
-                    {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty']},
-                    {label: 'Landing Page', icon: 'fa fa-fw fa-globe', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'},
-                    {label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'},
-                    {label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank'},
-                    {label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle',
-                      url: 'assets/pages/access.html', target: '_blank'}
+                    { label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty'] },
+                    { label: 'Landing Page', icon: 'fa fa-fw fa-globe', url: 'assets/pages/landing.html', target: '_blank' },
+                    { label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank' },
+                    { label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank' },
+                    { label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank' },
+                    {
+                        label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle',
+                        url: 'assets/pages/access.html', target: '_blank'
+                    }
                 ]
             },
             {
@@ -198,16 +276,16 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                             {
                                 label: 'Submenu 1.1', icon: 'fa fa-fw fa-sign-in',
                                 items: [
-                                    {label: 'Submenu 1.1.1', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 1.1.2', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 1.1.3', icon: 'fa fa-fw fa-sign-in'},
+                                    { label: 'Submenu 1.1.1', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 1.1.2', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 1.1.3', icon: 'fa fa-fw fa-sign-in' },
                                 ]
                             },
                             {
                                 label: 'Submenu 1.2', icon: 'fa fa-fw fa-sign-in',
                                 items: [
-                                    {label: 'Submenu 1.2.1', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 1.2.2', icon: 'fa fa-fw fa-sign-in'}
+                                    { label: 'Submenu 1.2.1', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 1.2.2', icon: 'fa fa-fw fa-sign-in' }
                                 ]
                             },
                         ]
@@ -218,16 +296,16 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                             {
                                 label: 'Submenu 2.1', icon: 'fa fa-fw fa-sign-in',
                                 items: [
-                                    {label: 'Submenu 2.1.1', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 2.1.2', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 2.1.3', icon: 'fa fa-fw fa-sign-in'},
+                                    { label: 'Submenu 2.1.1', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 2.1.2', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 2.1.3', icon: 'fa fa-fw fa-sign-in' },
                                 ]
                             },
                             {
                                 label: 'Submenu 2.2', icon: 'fa fa-fw fa-sign-in',
                                 items: [
-                                    {label: 'Submenu 2.2.1', icon: 'fa fa-fw fa-sign-in'},
-                                    {label: 'Submenu 2.2.2', icon: 'fa fa-fw fa-sign-in'}
+                                    { label: 'Submenu 2.2.1', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 2.2.2', icon: 'fa fa-fw fa-sign-in' }
                                 ]
                             },
                         ]
@@ -244,7 +322,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
+        setTimeout(() => { this.layoutMenuScrollerViewChild.moveBar(); }, 100);
     }
 
     changeTheme(theme: string, scheme: string) {
@@ -337,7 +415,7 @@ export class AppSubMenuComponent {
 
     constructor(public app: AppComponent, public appMenu: AppMenuComponent) { }
 
-    itemClick(event: Event, item: MenuItem, index: number)  {
+    itemClick(event: Event, item: MenuItem, index: number) {
         if (this.root) {
             this.app.menuHoverActive = !this.app.menuHoverActive;
         }
@@ -395,7 +473,7 @@ export class AppSubMenuComponent {
     set reset(val: boolean) {
         this._reset = val;
 
-        if (this._reset && (this.app.isHorizontal() ||  this.app.isSlim())) {
+        if (this._reset && (this.app.isHorizontal() || this.app.isSlim())) {
             this.activeIndex = null;
         }
     }

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {CarService} from '../service/carservice';
-import {CountryService} from '../service/countryservice';
-import {Car} from '../domain/car';
-import {SelectItem, MenuItem} from 'primeng/primeng';
+import { Component, OnInit } from '@angular/core';
+import { CarService } from '../service/carservice';
+import { CountryService } from '../service/countryservice';
+import { Car } from '../domain/car';
+import { SelectItem, MenuItem } from 'primeng/primeng';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
@@ -63,36 +63,36 @@ export class FormsDemoComponent implements OnInit {
 
     ngOnInit() {
         this.carOptions = [];
-        this.carOptions.push({label: 'Audi', value: 'Audi'});
-        this.carOptions.push({label: 'BMW', value: 'BMW'});
-        this.carOptions.push({label: 'Fiat', value: 'Fiat'});
-        this.carOptions.push({label: 'Ford', value: 'Ford'});
-        this.carOptions.push({label: 'Honda', value: 'Honda'});
-        this.carOptions.push({label: 'Jaguar', value: 'Jaguar'});
-        this.carOptions.push({label: 'Mercedes', value: 'Mercedes'});
-        this.carOptions.push({label: 'Renault', value: 'Renault'});
-        this.carOptions.push({label: 'VW', value: 'VW'});
-        this.carOptions.push({label: 'Volvo', value: 'Volvo'});
+        this.carOptions.push({ label: 'Audi', value: 'Audi' });
+        this.carOptions.push({ label: 'BMW', value: 'BMW' });
+        this.carOptions.push({ label: 'Fiat', value: 'Fiat' });
+        this.carOptions.push({ label: 'Ford', value: 'Ford' });
+        this.carOptions.push({ label: 'Honda', value: 'Honda' });
+        this.carOptions.push({ label: 'Jaguar', value: 'Jaguar' });
+        this.carOptions.push({ label: 'Mercedes', value: 'Mercedes' });
+        this.carOptions.push({ label: 'Renault', value: 'Renault' });
+        this.carOptions.push({ label: 'VW', value: 'VW' });
+        this.carOptions.push({ label: 'Volvo', value: 'Volvo' });
 
         this.cities = [];
-        this.cities.push({label: 'Select City', value: 0});
-        this.cities.push({label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}});
-        this.cities.push({label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}});
-        this.cities.push({label: 'London', value: {id: 3, name: 'London', code: 'LDN'}});
-        this.cities.push({label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}});
-        this.cities.push({label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}});
+        this.cities.push({ label: 'Select City', value: 0 });
+        this.cities.push({ label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } });
+        this.cities.push({ label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } });
+        this.cities.push({ label: 'London', value: { id: 3, name: 'London', code: 'LDN' } });
+        this.cities.push({ label: 'Istanbul', value: { id: 4, name: 'Istanbul', code: 'IST' } });
+        this.cities.push({ label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } });
 
         this.citiesListbox = this.cities.slice(1);
 
         this.types = [];
-        this.types.push({label: 'Xbox One', value: 'Xbox One'});
-        this.types.push({label: 'PS4', value: 'PS4'});
-        this.types.push({label: 'Wii U', value: 'Wii U'});
+        this.types.push({ label: 'Xbox One', value: 'Xbox One' });
+        this.types.push({ label: 'PS4', value: 'PS4' });
+        this.types.push({ label: 'Wii U', value: 'Wii U' });
 
         this.splitButtonItems = [
-            {label: 'Update', icon: 'fa-refresh'},
-            {label: 'Delete', icon: 'fa-close'},
-            {label: 'Home', icon: 'fa-home', url: 'http://www.primefaces.org/primeng'}
+            { label: 'Update', icon: 'fa-refresh' },
+            { label: 'Delete', icon: 'fa-close' },
+            { label: 'Home', icon: 'fa-home', url: 'http://www.primefaces.org/primeng' }
         ];
     }
 

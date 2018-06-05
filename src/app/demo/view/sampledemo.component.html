@@ -20,21 +20,21 @@
                         <div class="ui-g-12 ui-md-8">
                             <input id="input" type="text" pInputText/>
                         </div>
-                        
+
                         <div class="ui-g-12 ui-md-4">
                             <label for="textarea">Textarea</label>
                         </div>
                         <div class="ui-g-12 ui-md-8">
                             <textarea [rows]="3" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
                         </div>
-                        
+
                         <div class="ui-g-12 ui-md-4">
                             <label for="calendar">Calendar</label>
                         </div>
                         <div class="ui-g-12 ui-md-8">
                             <p-calendar id="calendar"></p-calendar>
                         </div>
-                        
+
                         <div class="ui-g-12 ui-md-4">
                             <label for="autocomplete">AutoComplete</label>
                         </div>
@@ -54,7 +54,7 @@
                             <label for="password">Password</label>
                         </div>
                         <div class="ui-g-12 ui-md-8">
-                            <input id="password" pPassword type="password" [feedback]="false"/>
+                            <input id="password" pPassword type="password" [feedback]="false" />
                         </div>
 
                         <div class="ui-g-12 ui-md-4">
@@ -63,7 +63,7 @@
                         <div class="ui-g-12 ui-md-8">
                             <button pButton type="button" label="Edit" icon="fa-edit"></button>
                         </div>
-    
+
                         <div class="ui-g-12 ui-md-4">
                             SplitButton
                         </div>
@@ -85,7 +85,7 @@
                             <p-slider></p-slider>
                         </div>
                     </div>
-                    
+
                     <div class="ui-g-12 ui-md-6">
                         <div class="ui-g-12 ui-md-4">
                             Checkbox
@@ -120,14 +120,14 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="ui-g-12 ui-md-4">
                             <label for="mask">Mask</label>
                         </div>
                         <div class="ui-g-12 ui-md-8">
                             <p-inputMask mask="99/99/9999" slotChar="dd/mm/yyyy" placeholder="Date"></p-inputMask>
                         </div>
-                    
+
                         <div class="ui-g-12 ui-md-4">
                             <label for="spinner">Spinner</label>
                         </div>
@@ -185,7 +185,8 @@
 
             <div class="card card-w-title">
                 <h1>DataTable</h1>
-                <p-table [columns]="cols" [value]="cars" selectionMode="single" dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3" [responsive]="true">
+                <p-table [columns]="cols" [value]="cars" selectionMode="single" dataKey="vin" [style]="{'margin-bottom':'20px'}" [(selection)]="selectedCar3"
+                    [responsive]="true">
                     <ng-template pTemplate="caption">
                         DataTable
                     </ng-template>

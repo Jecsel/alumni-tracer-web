@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
@@ -71,7 +71,7 @@ export class ChartsDemoComponent implements OnInit {
                         '#eeb210'
                     ]
                 }]
-            };
+        };
 
         this.polarData = {
             datasets: [{
