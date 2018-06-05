@@ -18,6 +18,7 @@
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr [pSelectableRow]="rowData">
                       <td *ngFor="let col of columns">
+                        <span class="ui-column-title">{{col.header}}</span>
                         {{rowData[col.field]}}
                       </td>
                     </tr>
