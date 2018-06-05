@@ -833,6 +833,12 @@ body {
                         color: $dataIconColor;
                         vertical-align: middle;
                         line-height: 1.5;
+                        font-size: $fontSize + 2;
+                    }
+
+                    .ui-treetable-chkbox {
+                        vertical-align: middle;
+                        margin-right: $inlineSpacing;
                     }
                 }
 

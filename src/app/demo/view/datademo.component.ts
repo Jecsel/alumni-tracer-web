@@ -1,22 +1,30 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {CarService} from '../service/carservice';
-import {NodeService} from '../service/nodeservice';
-import {EventService} from '../service/eventservice';
-import {Car} from '../domain/car';
-import {TreeNode} from 'primeng/primeng';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CarService } from '../service/carservice';
+import { NodeService } from '../service/nodeservice';
+import { EventService } from '../service/eventservice';
+import { Car } from '../domain/car';
+import { TreeNode, SelectItem } from 'primeng/api';
 import { BreadcrumbService } from '../../breadcrumb.service';
 
 @Component({
     templateUrl: './datademo.component.html',
     styles: [`
-        .cars-datalist ul {
-            margin: 0;
-            padding: 0;
+        .ui-dataview .search-icon {
+            margin-top: 3em;
         }
 
-        @media (max-width:640px) {
-            .cars-datalist .text-column {
+        .ui-dataview .filter-container {
+            text-align: center;
+        }
+
+        @media (max-width: 40em) {
+            .ui-dataview .car-details, .ui-dataview .search-icon{
                 text-align: center;
+                margin-top: 0;
+            }
+
+            .ui-dataview .filter-container {
+                text-align: left;
             }
         }
     `],
@@ -27,8 +35,6 @@ export class DataDemoComponent implements OnInit {
     cars1: Car[];
 
     cars2: Car[];
-
-    cars3: Car[];
 
     cols: any[];
 
@@ -52,6 +58,10 @@ export class DataDemoComponent implements OnInit {
 
     files2: TreeNode[];
 
+    files3: TreeNode[];
+
+    files4: TreeNode[];
+
     events: any[];
 
     selectedNode1: TreeNode;
@@ -59,6 +69,14 @@ export class DataDemoComponent implements OnInit {
     selectedNode2: TreeNode;
 
     scheduleHeader: any;
+
+    sortOptions: SelectItem[];
+
+    sortKey: string;
+
+    sortField: string;
+
+    sortOrder: number;
 
     constructor(private carService: CarService, private eventService: EventService, private nodeService: NodeService,
                 private breadcrumbService: BreadcrumbService) {
@@ -82,12 +100,13 @@ export class DataDemoComponent implements OnInit {
             { field: 'type', header: 'Type' }
         ];
         this.carService.getCarsMedium().then(cars => this.cars2 = cars);
-        this.carService.getCarsMedium().then(cars => this.cars3 = cars);
         this.carService.getCarsMedium().then(cars => this.sourceCars = cars);
         this.targetCars = [];
         this.carService.getCarsSmall().then(cars => this.orderListCars = cars);
         this.nodeService.getFiles().then(files => this.files1 = files);
-        this.nodeService.getFilesystem().then(files => this.files2 = files);
+        this.nodeService.getFiles().then(files => this.files2 = files);
+        this.nodeService.getFiles().then(files => this.files3 = files);
+        this.nodeService.getFilesystem().then(files => this.files4 = files);
         this.eventService.getEvents().then(events => {this.events = events; });
 
         this.carouselCars = [
@@ -134,5 +153,23 @@ export class DataDemoComponent implements OnInit {
                 }
             ]
         }];
+
+        this.sortOptions = [
+            {label: 'Newest First', value: '!year'},
+            {label: 'Oldest First', value: 'year'},
+            {label: 'Brand', value: 'brand'}
+        ];
+    }
+
+    onSortChange(event) {
+        const value = event.value;
+
+        if (value.indexOf('!') === 0) {
+            this.sortOrder = -1;
+            this.sortField = value.substring(1, value.length);
+        } else {
+            this.sortOrder = 1;
+            this.sortField = value;
+        }
     }
 }

@@ -123,13 +123,12 @@
                             height: 55px;
                             display: inline-block;
                             vertical-align: middle;
-                            margin-right: 5px;
                         }
 
-                        .seperator {
+                        .separator {
                             width: 1px;
                             height: 50px;
-                            margin-right: 5px;
+                            margin: 0 8px 0 4px;
                             background-color: $primaryColor;
                             display: inline-block;
                             vertical-align: middle;
@@ -181,7 +180,7 @@
 
                     li {
                         list-style: none;
-                        padding-bottom: 12px;
+                        padding-bottom: 14px;
                         color: #323232;
 
                         .ui-chkbox {
@@ -236,51 +235,16 @@
 
             .ui-panel-content {
                 padding: 0;
+                min-height: 383px;
 
-                .left-side {
-                    padding: 53px 100px 53px 20px;
-                    float: right;
-
-                    i {
-                        color: #ABABAB;
-                        display: inline-block;
-                        font-size: 18px;
-                    }
-
-                    .icon-label {
-                        color: #ABABAB;
-                        font-size: 14px;
-                        display: inline-block;
-                    }
-
-                    span {
-                        color: #353535;
-                        font-weight: 500;
-                        font-size: 24px;
-                        display: block;
-                    }
-
-                    .statsbar {
-                        display: block;
-                        width: 80%;
-                        background-color: #f4f4f4;
-                        margin-top: 12px;
-                        margin-bottom: 12px;
-
-                        .statsbar-value {
-                            background-color: $primaryColor;
-                            height: 4px;
-                        }
-                    }
-                }
-
-                .right-side {
+                .stats-left {
                     padding: 50px;
                     text-align: center;
 
                     i {
                         color: #ABABAB;
                         font-size: 18px;
+                        margin-right: 4px;
                     }
 
                     span {
@@ -319,12 +283,50 @@
                         }
                     }
                 }
+
+                .stats-right {
+                    padding: 53px 100px 53px 20px;
+                    float: right;
+
+                    i {
+                        color: #ABABAB;
+                        display: inline-block;
+                        font-size: 18px;
+                        margin-right: 4px;
+                    }
+
+                    .icon-label {
+                        color: #ABABAB;
+                        font-size: 14px;
+                        display: inline-block;
+                    }
+
+                    span {
+                        color: #353535;
+                        font-weight: 500;
+                        font-size: 24px;
+                        display: block;
+                    }
+
+                    .statsbar {
+                        display: block;
+                        width: 80%;
+                        background-color: #f4f4f4;
+                        margin-top: 12px;
+                        margin-bottom: 24px;
+
+                        .statsbar-value {
+                            background-color: $primaryColor;
+                            height: 4px;
+                        }
+                    }
+                }
             }
         }
 
         .global-sales {
             .ui-panel-content {
-                padding: 0;
+                padding: 12px 0;
                 padding-left: 5px;
 
                 table {
@@ -470,6 +472,7 @@
                     li {
                         list-style: none;
                         padding: 18px 20px;
+                        position: relative;
 
                         .image-container {
                             padding-right: 4px;
@@ -483,12 +486,13 @@
                             }
                         }
 
-                        .seperator {
+                        .separator {
                             width: 1px;
                             height: 50px;
                             background-color: $primaryColor;
                             display: inline-block;
                             vertical-align: middle;
+                            margin: 0 8px 0 4px;
                         }
 
                         .message-box {
@@ -496,7 +500,6 @@
                             font-size: 13px;
                             vertical-align: middle;
                             width: 73%;
-                            padding-left: 12px;
 
                             .messager {
                                 color: #323232;
@@ -515,10 +518,11 @@
                         }
 
                         .message-status {
-                            float: right;
+                            position: absolute;
                             text-align: right;
                             vertical-align: middle;
-                            width: 7%;
+                            right: 20px;
+                            top: 20px;
 
                             i {
                                 font-size: 18px;
@@ -728,7 +732,7 @@
                                 text-align: center;
                             }
 
-                            .seperator {
+                            .separator {
                                 display: none;
                             }
 
@@ -752,7 +756,6 @@
                             }
 
                             .message-status {
-                                float: none;
                                 width: 5%;
                                 display: inline-block;
                             }
