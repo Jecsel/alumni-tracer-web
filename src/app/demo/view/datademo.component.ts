@@ -42,8 +42,6 @@ export class DataDemoComponent implements OnInit {
 
     data: TreeNode[];
 
-    selectedNode: TreeNode;
-
     selectedCar: Car;
 
     sourceCars: Car[];
@@ -67,6 +65,10 @@ export class DataDemoComponent implements OnInit {
     selectedNode1: TreeNode;
 
     selectedNode2: TreeNode;
+
+    selectedNode3: TreeNode;
+
+    selectedNodes: TreeNode[];
 
     scheduleHeader: any;
 
