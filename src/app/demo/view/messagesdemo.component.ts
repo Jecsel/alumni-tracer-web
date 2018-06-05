@@ -14,7 +14,7 @@ import { BreadcrumbService } from '../../breadcrumb.service';
 export class MessagesDemoComponent {
 
     msgs: Message[] = [];
-    
+
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Components' },

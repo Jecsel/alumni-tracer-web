@@ -247,18 +247,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
     }
 
-    changeTheme(theme, style) {
+    changeTheme(theme: string, scheme: string) {
         const layoutLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('layout-css');
         layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
 
         const themeLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('theme-css');
-
-        if (style === 'dark') {
-            themeLink.href = 'assets/theme/' + theme + '/theme-dark.css';
-        }
-        if (style === 'light') {
-            themeLink.href = 'assets/theme/' + theme + '/theme-light.css';
-        }
+        themeLink.href = 'assets/theme/' + theme + '/theme-' + scheme + '.css';
     }
 
     onMenuClick(event) {

@@ -19,7 +19,7 @@ export class AppComponent {
 
     layoutMenuScroller: HTMLDivElement;
 
-    lightMenu: boolean = true;
+    lightMenu = true;
 
     menuClick: boolean;
 

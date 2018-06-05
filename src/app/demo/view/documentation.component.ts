@@ -20,7 +20,7 @@ import { BreadcrumbService } from '../../breadcrumb.service';
     ]
 })
 export class DocumentationComponent {
-    
+
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Documentation', routerLink: ['/documentation'] }

@@ -10,7 +10,7 @@ export class FileDemoComponent {
     msgs: Message[];
 
     uploadedFiles: any[] = [];
-    
+
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Components' },
