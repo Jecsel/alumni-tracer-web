@@ -38,13 +38,13 @@ export class OverlaysDemoComponent implements OnInit {
 
         this.images = [];
         this.images.push({source: 'assets/demo/images/sopranos/sopranos1.jpg',
-          thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Nature 1'});
+          thumbnail: 'assets/demo/images/sopranos/sopranos1_small.jpg', title: 'Sopranos 1'});
         this.images.push({source: 'assets/demo/images/sopranos/sopranos2.jpg',
-          thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg', title: 'Nature 2'});
+          thumbnail: 'assets/demo/images/sopranos/sopranos2_small.jpg', title: 'Sopranos 2'});
         this.images.push({source: 'assets/demo/images/sopranos/sopranos3.jpg',
-          thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg', title: 'Nature 3'});
+          thumbnail: 'assets/demo/images/sopranos/sopranos3_small.jpg', title: 'Sopranos 3'});
         this.images.push({source: 'assets/demo/images/sopranos/sopranos4.jpg',
-          thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg', title: 'Nature 4'});
+          thumbnail: 'assets/demo/images/sopranos/sopranos4_small.jpg', title: 'Sopranos 4'});
     }
 
     confirm() {
