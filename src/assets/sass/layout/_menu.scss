@@ -241,76 +241,76 @@
                 border-bottom: 1px solid $lightMenuTitleBorderBottomColor;
             }
 
-            .layout-menu {        
+            .layout-menu {
                 > li {
                     &.active-menuitem {
                         > a {
                             background-color: $primaryColor;
-    
+
                             span {
                                 color: $primaryTextColor;
                             }
-    
+
                             i {
                                 color: $primaryTextColor;
                             }
-    
+
                             &.active-menuitem-routerlink {
                                 span {
                                     color: $primaryTextColor;
                                 }
-    
+
                                 i {
                                     color: $primaryTextColor;
                                 }
                             }
                         }
                     }
-    
+
                     > a {
                         &.active-menuitem-routerlink {
                             span {
                                 color: $sidebarMenuItemActiveRouteTextColor;
                             }
-    
+
                             i {
                                 color: $sidebarMenuItemActiveRouteIconColor;
                             }
                         }
                     }
                 }
-    
+
                 li {
                     a {
                         color: $lightMenuItemTextColor;
-    
+
                         i {
                             color: $lightMenuItemIconColor;
                         }
                     }
-    
+
                     ul {
                         background-color: $lightMenuSubmenuBgColor;
-    
+
                         li {
-                            a {    
+                            a {
                                 &.active-menuitem-routerlink {
                                     span {
                                         color: $sidebarMenuItemActiveRouteTextColor;
                                     }
-    
+
                                     i {
                                         color: $sidebarMenuItemActiveRouteIconColor;
                                     }
                                 }
                             }
-    
+
                             &.active-menuitem {
                                 > a {
                                     span {
                                         color: $activeSubMenuItemTextColor;
                                     }
-    
+
                                     i {
                                         color: $activeSubMenuItemTextColor;
                                     }
@@ -642,6 +642,11 @@
                             overflow: visible;
                         }
                     }
+
+                    .ui-scrollpanel-bar {
+                        display: none;
+                    }
+                    
                     .menu-scroll-content {
                         width: 100%;
                         padding-bottom: 0;

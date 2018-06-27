@@ -180,6 +180,7 @@ body {
 
             .ui-menuitem-link {
                 .ui-submenu-icon {
+                    vertical-align: middle;
                     right: 0.429em;
                 }
             }
@@ -437,6 +438,7 @@ body {
                 > .ui-menuitem {
                     > .ui-menuitem-link {
                         > .ui-submenu-icon {
+                            vertical-align: middle;
                             right: 0.429em;
                         }
                     }
@@ -468,12 +470,12 @@ body {
                     display: inline-block;
                     margin-right: $inlineSpacing;
 
-                    &.fa-caret-right {
-                        @include icon_override_fa("\f054");
+                    &.pi-caret-right {
+                        @include icon-override("\f054");
                     }
 
-                    &.fa-caret-down {
-                        @include icon_override_fa("\f078");
+                    &.pi-caret-down {
+                        @include icon-override("\f078");
                     }
                 }
             }

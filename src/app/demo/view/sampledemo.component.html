@@ -61,14 +61,14 @@
                             Button
                         </div>
                         <div class="ui-g-12 ui-md-8">
-                            <button pButton type="button" label="Edit" icon="fa-edit"></button>
+                            <button pButton type="button" label="Edit" icon="fa fa-edit"></button>
                         </div>
 
                         <div class="ui-g-12 ui-md-4">
                             SplitButton
                         </div>
                         <div class="ui-g-12 ui-md-8">
-                            <p-splitButton label="Save" icon="fa-save" [model]="splitButtonItems"></p-splitButton>
+                            <p-splitButton label="Save" icon="fa fa-save" [model]="splitButtonItems"></p-splitButton>
                         </div>
 
                         <div class="ui-g-12 ui-md-4">
@@ -153,7 +153,7 @@
                             Dialog
                         </div>
                         <div class="ui-g-12 ui-md-8">
-                            <button type="button" label="Login" icon="fa-external-link" (click)="dialogVisible=true" pButton></button>
+                            <button type="button" label="Login" icon="fa fa-external-link" (click)="dialogVisible=true" pButton></button>
                         </div>
 
                         <div class="ui-g-12 ui-md-4">
@@ -177,7 +177,7 @@
 
                     <p-footer>
                         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                            <button type="button" label="Login" icon="fa-user" (click)="dialogVisible=false" pButton></button>
+                            <button type="button" label="Login" icon="fa fa-user" (click)="dialogVisible=false" pButton></button>
                         </div>
                     </p-footer>
                 </p-dialog>
@@ -258,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-1 search-icon">
-                                <button pButton type="button" icon="fa-search" (click)="selectCar($event, car)"></button>
+                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -268,7 +268,7 @@
                                 <img src="assets/demo/images/car/{{car.brand}}.png">
                                 <div class="car-detail">{{car.year}} - {{car.color}}</div>
                                 <hr class="ui-widget-content" style="border-top:0">
-                                <button pButton type="button" icon="fa-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
                             </p-panel>
                         </div>
                     </ng-template>
@@ -348,7 +348,7 @@
 
             <div class="card card-w-title">
                 <h1>Menu</h1>
-                <p-menu [model]="menuItems"></p-menu>
+                <p-menu [model]="menuItems" [style]="{'width':'100%'}"></p-menu>
             </div>
 
             <div class="card card-w-title">
