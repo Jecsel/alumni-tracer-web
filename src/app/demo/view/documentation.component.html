@@ -3,13 +3,13 @@
         <div class="card docs no-margin">
 
             <h1>Current Version</h1>
-            <p>Angular 6.0.x and PrimeNG 6.0.x</p>
+            <p>Angular 6 and PrimeNG 6</p>
 
             <h1>Dependencies</h1>
             <p>Ecuador has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
 
             <h1>Getting Started</h1>
-            <p>Ecuador is a true native application template for Angular and is distributed as a CLI project. In case CLI is not installed already, use 
+            <p>Ecuador is a true native application template for Angular and is distributed as a CLI project. In case CLI is not installed already, use
                 the command below to set it up.
             </p>
 
@@ -349,14 +349,16 @@ export class AppMenuComponent &#123;
           <p>Install PrimeNG</p>
 <pre class="doc-command">
 npm install primeng@latest --save
+npm install primeicons@latest --save
 </pre>
 
-          <p>Add PrimeNG CSS at styles section in angular-cli.json.</p>
+          <p>Add PrimeNG CSS at styles section in angular.json.</p>
 
 <pre>
 <code class="language-json" pCode>
 "styles": [
     "../node_modules/primeng/resources/primeng.min.css",        //required: PrimeNG components
+    "node_modules/primeicons/primeicons.css",                   //required: PrimeIcons
     "styles.scss"                                               //your styles and overrides
 ],
 </code>
@@ -427,8 +429,8 @@ $containerHeaderActiveHoverHoverBorder:1px solid $primaryDarkerColor;
 $containerHeaderActiveHoverrTextColor:$primaryTextColor;
 $containerHeaderActiveHoverIconColor:$primaryTextColor;
 
-@import '../../sass/theme/_theme'; 
-</code>    
+@import '../../sass/theme/_theme';
+</code>
 </pre>
 </div>
 
@@ -1015,7 +1017,7 @@ $dialogHeaderPadding:1em;
 $confirmDialogPadding:1.5em;
 
 //general
-$disabledOpacity:.5;    
+$disabledOpacity:.5;
 </code>
 </pre>
 </div>
@@ -1069,9 +1071,17 @@ export class ControlPanelComponent &#123;
             <p>Ecuador uses PrimeNG Grid CSS (ui-g-*) throughout the demos such as Dashboard, however any Grid library can be used with it since Ecuador itself does not depend on Grid CSS.</p>
 
             <h1>Migration Guide</h1>
-            <p>Most of the time updates are related to styling so sass/layout, sass/theme_core will be the commonly updated folders. For seamless updates and easier maintenance, we suggest avoiding editing sass/layout, sass/theme and sass/theme_core folders and keeping your CSS customizations 
-                in a separate sass file such as styles.scss as defined in .angular-cli.json so that your changes are not overriden with an update. 
+            <p>Most of the time updates are related to styling so sass/layout, sass/theme_core will be the commonly updated folders. For seamless updates and easier maintenance, we suggest avoiding editing sass/layout, sass/theme and sass/theme_core folders and keeping your CSS customizations
+                in a separate sass file such as styles.scss as defined in angular.json so that your changes are not overriden with an update.
                 Additionally you may also use the _theme_extensions.scss and _layout_styles.scss files under sass folder which are empty files provided for you to add your customizations to theme and layout respectively.</p>
+            <h4>1.0.0 to 6.0.0</h4>
+            <p>Brings support for Angular 6 and RxJS 6, adds theming for new components in PrimeNG such as the new TreeTable
+                and improves behaviors of the layout menus.</p>
+            <ul>
+                <li>Add PrimeIcons package.</li>
+                <li>Update layout css files.</li>
+                <li>Update theme css files.</li>
+            </ul>
         </div>
     </div>
 </div>
