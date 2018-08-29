@@ -154,14 +154,6 @@ body {
                     }
                 }
             }
-
-            .pi-caret-right {
-                @include icon_override("\f054");
-            }
-
-            .pi-caret-down {
-                @include icon_override("\f078");
-            }
         }
 
         .ui-accordion-content {
