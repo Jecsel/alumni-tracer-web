@@ -476,6 +476,24 @@
                         display: none;
                     }
                 }
+                .ui-scrollpanel {
+                    .ui-scrollpanel-wrapper {
+                        overflow: visible;
+                        .ui-scrollpanel-content {
+                            overflow: visible;
+                            padding: 0;
+                        }
+                    }
+
+                    .ui-scrollpanel-bar {
+                        display: none;
+                    }
+
+                    .menu-scroll-content {
+                        width: 100%;
+                        padding: 0;
+                    }
+                }
             }
 
             .layout-main {
@@ -626,15 +644,7 @@
                         }
                     }
                 }
-            }
 
-            .layout-main {
-                margin-left: 60px;
-            }
-        }
-
-        &.layout-menu-horizontal, &.layout-menu-slim {
-            .layout-sidebar {
                 .ui-scrollpanel {
                     .ui-scrollpanel-wrapper {
                         overflow: visible;
@@ -646,12 +656,16 @@
                     .ui-scrollpanel-bar {
                         display: none;
                     }
-                    
+
                     .menu-scroll-content {
                         width: 100%;
-                        padding-bottom: 0;
+                        padding: 0;
                     }
                 }
+            }
+
+            .layout-main {
+                margin-left: 60px;
             }
         }
     }
