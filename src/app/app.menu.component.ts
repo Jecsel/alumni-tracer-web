@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.model = [
-            { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/'] },
+            { label: 'Dashboard', icon: 'fa fa-fw fa-home', routerLink: ['/']},
             {
                 label: 'Menu Colors', icon: 'fa fa-fw fa-paint-brush',
                 items: [
@@ -241,7 +241,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
             {
                 label: 'Components', icon: 'fa fa-fw fa-bars',
                 items: [
-                    { label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample'] },
+                    { label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample']  },
                     { label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms'] },
                     { label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data'] },
                     { label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels'] },
@@ -361,7 +361,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 </a>
 
                 <a (click)="itemClick($event,child,i)" (mouseenter)="onMouseEnter(i)" *ngIf="child.routerLink"
-                   [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink"
+                   [routerLink]="child.routerLink" routerLinkActive="active-menuitem-routerlink" [fragment]="child.fragment"
                    [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
                     <i [ngClass]="child.icon"></i>
                     <span>{{child.label}}</span>
