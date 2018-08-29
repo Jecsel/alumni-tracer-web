@@ -72,9 +72,9 @@ export class DashboardDemoComponent implements OnInit {
         };
 
         this.items = [
-            { label: 'Save', icon: 'fa fa-check' },
-            { label: 'Update', icon: 'fa fa-refresh' },
-            { label: 'Delete', icon: 'fa fa-trash' }
+            { label: 'Save', icon: 'fa fa-fw fa-check' },
+            { label: 'Update', icon: 'fa fa-fw fa-refresh' },
+            { label: 'Delete', icon: 'fa fa-fw fa-trash' }
         ];
     }
 }
