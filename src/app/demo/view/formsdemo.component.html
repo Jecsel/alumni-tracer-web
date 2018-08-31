@@ -72,25 +72,37 @@
                     <label for="popup">Popup:</label>
                 </div>
                 <div class="ui-g-12">
-                    <p-calendar id="popup"></p-calendar>
+                    <p-calendar id="popup" placeholder="Popup" [showButtonBar]="true"></p-calendar>
                 </div>
                 <div class="ui-g-12">
                     <label for="datetime">DateTime:</label>
                 </div>
                 <div class="ui-g-12">
-                    <p-calendar id="datetime" dateFormat="mm/dd/yy" showTime="true"></p-calendar>
+                    <p-calendar id="datetime" dateFormat="mm/dd/yy" showTime="true" placeholder="DateTime" [minDate]="yesterday"></p-calendar>
                 </div>
                 <div class="ui-g-12">
                     <label for="time">Time:</label>
                 </div>
                 <div class="ui-g-12">
-                    <p-calendar id="time" showTime="true" [timeOnly]="true"></p-calendar>
+                    <p-calendar id="time" showTime="true" [timeOnly]="true" placeholder="Time"></p-calendar>
                 </div>
                 <div class="ui-g-12">
                     <label for="showIcon">Button:</label>
                 </div>
                 <div class="ui-g-12">
-                    <p-calendar id="showIcon" [showIcon]="true"></p-calendar>
+                    <p-calendar id="showIcon" [showIcon]="true" placeholder="Button"></p-calendar>
+                </div>
+                <div class="ui-g-12">
+                    <label for="multiple">Multiple Month:</label>
+                </div>
+                <div class="ui-g-12">
+                    <p-calendar id="multiple" [numberOfMonths]="3" placeholder="Multiple Months"></p-calendar>
+                </div>
+                <div class="ui-g-12">
+                    <label for="month">Month Picker:</label>
+                </div>
+                <div class="ui-g-12">
+                    <p-calendar id="month" placeholder="Month Picker" dateFormat="mm/yy" view="month"></p-calendar>
                 </div>
             </div>
         </div>
