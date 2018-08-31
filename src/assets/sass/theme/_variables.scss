@@ -264,12 +264,12 @@ $spinnerButtonWidth:1.429em;
 
 //input switch
 $inputSwitchBorderRadius:8px;
-$inputSwitchOffHandleBgColor:#a6a6a6;
+$inputSwitchOffHandleBgColor:darken($inputBgColor, 10%);
 $inputSwitchOffHandleHoverBgColor:#848484;
 $inputSwitchOffHandleFocusBgColor:#848484;
-$inputSwitchOnBorderColor:$primaryColor;
-$inputSwitchOnBgColor:$primaryColor;
-$inputSwitchOnHandleBgColor:$primaryDarkerColor;
+$inputSwitchOnBorderColor:lighten($highlightBgColor, 15%);
+$inputSwitchOnBgColor:lighten($highlightBgColor, 15%);
+$inputSwitchOnHandleBgColor:lighten($highlightBgColor, 5%);
 $inputSwitchOnHandleFocusBgColor:$primaryDarkerColor;
 $inputSwitchOnHandleHoverBgColor:$primaryDarkestColor;
 $inputSwitchTransition:border-color $transitionDuration;
