@@ -245,7 +245,7 @@
                 }
             }
 
-            #landing-menu {
+            #landing-menu-footer {
                 .landing-box {
                     text-align: left;
                     padding: 0;
@@ -315,9 +315,9 @@
                         height: 36px;
                         width: 36px;
 
-                        i {
-                            color: #ffffff;
-                            margin-top: 5px;
+                        img {
+                            margin-top: 12px;
+                            width: 13px;
                         }
 
                         &:hover {
@@ -405,7 +405,7 @@
                 text-align: center;
                 padding: 50px;
 
-                #landing-menu {
+                #landing-menu-footer {
                     text-align: center;
 
                     .landing-box {
