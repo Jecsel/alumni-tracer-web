@@ -255,12 +255,14 @@ body {
 
         &:enabled:focus {
             background-color: lighten($infoButtonBgColor, 5%);
+            outline-color: lighten($infoButtonBgColor, 5%);
         }
 
         &:enabled:active {
             background-color: $infoButtonActiveBgColor;
             color: $infoButtonActiveTextColor;
             border-color: $infoButtonActiveBorderColor;
+            outline-color: $infoButtonActiveBorderColor;
         }
     }
 
@@ -277,12 +279,14 @@ body {
 
         &:enabled:focus {
             background-color: lighten($successButtonBgColor, 5%);
+            outline-color: lighten($successButtonBgColor, 5%);
         }
 
         &:enabled:active {
             background-color: $successButtonActiveBgColor;
             color: $successButtonActiveTextColor;
             border-color: $successButtonActiveBorderColor;
+            outline-color: $successButtonActiveBorderColor;
         }
     }
 
@@ -299,12 +303,14 @@ body {
 
         &:enabled:focus {
             background-color: lighten($warningButtonBgColor, 5%);
+            outline-color: lighten($warningButtonBgColor, 5%);
         }
 
         &:enabled:active {
             background-color: $warningButtonActiveBgColor;
             color: $warningButtonActiveTextColor;
             border-color: $warningButtonActiveBorderColor;
+            outline-color: $warningButtonActiveBorderColor;
         }
     }
 
@@ -321,12 +327,14 @@ body {
 
         &:enabled:focus {
             background-color: lighten($dangerButtonBgColor, 5%);
+            outline-color: lighten($dangerButtonBgColor, 5%);
         }
 
         &:enabled:active  {
             background-color: $dangerButtonActiveBgColor;
             color: $dangerButtonActiveTextColor;
             border-color: $dangerButtonActiveBorderColor;
+            outline-color: $dangerButtonActiveBorderColor;
         }
     }
 }
