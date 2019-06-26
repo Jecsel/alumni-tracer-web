@@ -359,6 +359,11 @@ body {
             .fc-row {
                 background-color: $panelHeaderBgColor;
                 color: $panelHeaderTextColor;
+
+                th {
+                    border: $panelHeaderBorder;
+                    padding: $panelHeaderPadding;
+                }
             }
         }
 
