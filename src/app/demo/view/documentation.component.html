@@ -105,7 +105,7 @@ export class AppMenuComponent &#123;
 
     model: any[];
 
-    @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ScrollPanel;
+    @ViewChild('layoutMenuScroller', &#123; static: false &#125;) layoutMenuScrollerViewChild: ScrollPanel;
 
     constructor(public app: AppComponent) &#123;&#125;
 
