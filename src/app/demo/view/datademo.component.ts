@@ -201,8 +201,9 @@ export class DataDemoComponent implements OnInit {
             plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
             defaultDate: '2016-01-12',
             header: {
-                right: 'prev,next, today',
-                left: 'title'
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
             }
         };
 
