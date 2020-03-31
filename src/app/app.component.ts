@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuService } from './app.menu.service';
 
 @Component({
     selector: 'app-root',
@@ -17,8 +18,6 @@ export class AppComponent {
 
     staticMenuMobileActive: boolean;
 
-    layoutMenuScroller: HTMLDivElement;
-
     lightMenu = false;
 
     menuClick: boolean;
@@ -27,13 +26,13 @@ export class AppComponent {
 
     activeTopbarItem: any;
 
-    resetMenu: boolean;
-
     menuHoverActive: boolean;
 
     rightPanelActive: boolean;
 
     rightPanelClick: boolean;
+
+    constructor(private menuService: MenuService) {}
 
     onLayoutClick() {
         if (!this.topbarItemClick) {
@@ -47,7 +46,7 @@ export class AppComponent {
 
         if (!this.menuClick) {
             if (this.isHorizontal() || this.isSlim()) {
-                this.resetMenu = true;
+                this.menuService.reset();
             }
 
             if (this.overlayMenuActive || this.staticMenuMobileActive) {
@@ -80,7 +79,6 @@ export class AppComponent {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;
     }
 
     onTopbarMenuButtonClick(event) {

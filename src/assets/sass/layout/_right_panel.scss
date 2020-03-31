@@ -7,7 +7,12 @@
     position: fixed;
     background-color: $rightPanelBgColor;
     padding: 20px 0 20px 10px;
+    overflow: auto;
     @include transition(right $transitionDuration);
+
+    .right-panel-scroll-content {
+        padding-bottom: 150px;
+    }
 
     .header {
         color: $rightPanelHeaderTextColor;
@@ -125,29 +130,10 @@
     &.layout-right-panel-active {
         right: 0;
     }
-
-    .ui-scrollpanel  {
-        border-radius: 0;
-        border: none;
-        .ui-scrollpanel-hidden {
-            display: block;
-            visibility: hidden;
-        }
-        .right-panel-scroll-content{
-            width: 248px;
-            padding-bottom: 120px;
-        }
-    }
 }
 
 @media (max-width: 1024px) {
     #layout-right-panel {
         top: 120px;
-
-        .ui-scrollpanel  {
-            .right-panel-scroll-content{
-                padding-bottom: 180px;
-            }
-        }
     }
 }

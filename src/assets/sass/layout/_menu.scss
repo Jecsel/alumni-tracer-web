@@ -6,6 +6,7 @@
         top: 60px;
         left: 0;
         z-index: 999;
+        overflow: auto;
         background-color: $darkMenuBgColor;
         @include shadow(1px 3px 3px rgba(0, 0, 0, 0.12));
         @include transition(left $transitionDuration);
@@ -25,6 +26,7 @@
             list-style-type: none;
             margin: 0;
             padding: 0 10px;
+            padding-bottom: 150px;
 
             .layout-menu-tooltip {
                 display: none;
@@ -89,6 +91,8 @@
                     color: $darkMenuItemTextColor;
                     position: relative;
                     display: block;
+                    cursor: pointer;
+                    user-select: none;
                     text-decoration: none;
                     border: 1px solid transparent;
                     @include border-radius(3px);
@@ -205,29 +209,6 @@
                         }
                     }
                 }
-            }
-        }
-
-        .ui-scrollpanel {
-            background-color: transparent;
-            border-radius: 0;
-            border: none;
-
-            .ui-scrollpanel-bar {
-                background-color: #aaaaaa;
-                opacity: 0.3;
-                filter: alpha(opacity=30);
-            }
-
-            .ui-scrollpanel-hidden {
-                display: block;
-                visibility: hidden;
-            }
-
-            .menu-scroll-content {
-                width: 242px;
-                padding-right: 18px;
-                padding-bottom: 170px;
             }
         }
     }
@@ -372,6 +353,7 @@
                 z-index: 99;
                 position: fixed;
                 padding: 10px 12px;
+                overflow: visible;
 
                 .layout-menu-title {
                     display: none;
@@ -476,24 +458,6 @@
                         display: none;
                     }
                 }
-                .ui-scrollpanel {
-                    .ui-scrollpanel-wrapper {
-                        overflow: visible;
-                        .ui-scrollpanel-content {
-                            overflow: visible;
-                            padding: 0;
-                        }
-                    }
-
-                    .ui-scrollpanel-bar {
-                        display: none;
-                    }
-
-                    .menu-scroll-content {
-                        width: 100%;
-                        padding: 0;
-                    }
-                }
             }
 
             .layout-main {
@@ -509,6 +473,7 @@
             .layout-sidebar {
                 width: 60px;
                 left:0;
+                overflow: visible;
 
                 .layout-menu-title {
                     display: none;
@@ -644,24 +609,6 @@
                         }
                     }
                 }
-
-                .ui-scrollpanel {
-                    .ui-scrollpanel-wrapper {
-                        overflow: visible;
-                        .ui-scrollpanel-content {
-                            overflow: visible;
-                        }
-                    }
-
-                    .ui-scrollpanel-bar {
-                        display: none;
-                    }
-
-                    .menu-scroll-content {
-                        width: 100%;
-                        padding: 0;
-                    }
-                }
             }
 
             .layout-main {
@@ -693,15 +640,6 @@
                 top: 120px;
                 width: 100%;
                 animation: showNav 250ms ease-in-out both;
-                .ui-scrollpanel {
-                    .menu-scroll-content {
-                        width: 100%;
-                        padding-bottom: 230px;
-                    }
-                    .ui-scrollpanel-bar-x {
-                        display: none;
-                    }
-                }
             }
         }
     }

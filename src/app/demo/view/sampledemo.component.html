@@ -1,7 +1,7 @@
 <div class="ui-fluid">
     <div class="ui-g">
         <div class="ui-g-12">
-            <div class="ui-messages ui-widget ui-corner-all ui-messages-success" style="margin: 0 0 1em 0; display: block">
+            <div class="ui-messages ui-widget ui-corner-all ui-messages-success" style="margin: 0 0 1em 0">
                 <span class="ui-messages-icon fa fa-fw fa-2x fa-check"></span>
                 <ul style="display: inline-block">
                     <li>
@@ -258,7 +258,7 @@
                                 </div>
                             </div>
                             <div class="ui-g-12 ui-md-1 search-icon">
-                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)"></button>
+                                <button pButton type="button" icon="fa fa-search"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -268,7 +268,7 @@
                                 <img src="assets/demo/images/car/{{car.brand}}.png">
                                 <div class="car-detail">{{car.year}} - {{car.color}}</div>
                                 <hr class="ui-widget-content" style="border-top:0">
-                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+                                <button pButton type="button" icon="fa fa-search" style="margin-top:0"></button>
                             </p-panel>
                         </div>
                     </ng-template>
@@ -360,23 +360,24 @@
         <div class="ui-g-12">
             <div class="card card-w-title">
                 <h1>Carousel</h1>
-                <p-carousel headerText="Cars" [value]="carouselCars">
+                <p-carousel [value]="carouselCars" [numVisible]="4" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
                     <ng-template let-car pTemplate="item">
-                        <div class="ui-g" style="text-align:center">
-                            <div class="ui-g-12" style="text-align:center">
-                                <img src="assets/demo/images/car/{{car.brand}}.png" />
+                        <div class="car-details">
+                            <div class="p-grid p-nogutter">
+                                <div class="p-col-12">
+                                    <img src="assets/demo/images/car/{{car.brand}}.png" />
+                                </div>
+                                <div class="p-col-12 car-data">
+                                    <div class="car-title">{{car.brand}}</div>
+                                    <div class="car-subtitle">{{car.year}} | {{car.color}}</div>
+
+                                    <div class="car-buttons">
+                                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                                        <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ui-g-6">Vin: </div>
-                            <div class="ui-g-6" style="font-weight:bold">{{car.vin}}</div>
-
-                            <div class="ui-g-6">Year: </div>
-                            <div class="ui-g-6" style="font-weight:bold">{{car.year}}</div>
-
-                            <div class="ui-g-6">Brand: </div>
-                            <div class="ui-g-6" style="font-weight:bold">{{car.brand}}</div>
-
-                            <div class="ui-g-6">Color: </div>
-                            <div class="ui-g-6" style="font-weight:bold">{{car.color}}</div>
                         </div>
                     </ng-template>
                 </p-carousel>

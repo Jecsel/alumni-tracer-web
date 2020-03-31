@@ -7,20 +7,18 @@ import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { AppRightPanelComponent } from './app.rightpanel.component';
 import { BreadcrumbService } from './breadcrumb.service';
 import { AppFooterComponent } from './app.footer.component';
-import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { AppMenuComponent } from './app.menu.component';
 import { AccordionModule } from 'primeng/accordion';
 import { PanelModule } from 'primeng/panel';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule, RouterTestingModule, ScrollPanelModule, AccordionModule, PanelModule],
+            imports: [NoopAnimationsModule, RouterTestingModule, AccordionModule, PanelModule],
             declarations: [
                 AppComponent,
                 AppTopBarComponent,
                 AppMenuComponent,
-                AppSubMenuComponent,
                 AppRightPanelComponent,
                 AppFooterComponent,
                 AppBreadcrumbComponent

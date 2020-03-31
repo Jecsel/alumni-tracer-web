@@ -897,6 +897,11 @@ body {
                         background-color: $calendarCellDateTodayBgColor;
                         color: $calendarCellDateTodayTextColor;
                         font-weight: 600;
+
+                        &.ui-state-active {
+                            color: $calendarCellDateSelectedTextColor;
+                            background-color: $calendarCellDateSelectedBgColor;
+                        }
                     }
                 }
             }
@@ -1101,6 +1106,10 @@ body {
               @include border-radius-right($borderRadius);
             }
         }
+    }
+
+    .ui-calendar .ui-datepicker {
+        min-width: 19em;
     }
 
     ::-webkit-input-placeholder {color:$inputPlaceholderTextColor}
