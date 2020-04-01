@@ -1,6 +1,6 @@
 {
     "name": "ecuador",
-    "version": "9.0.0-SNAPSHOT",
+    "version": "9.0.0",
     "license": "MIT",
     "scripts": {
         "ng": "ng",
@@ -27,7 +27,7 @@
         "@fullcalendar/timegrid": "4.0.1",
         "chart.js": "2.7.3",
         "intl": "1.2.5",
-        "primeng": "9.0.1",
+        "primeng": "9.0.3",
         "quill": "1.1.8",
         "rxjs": "6.5.4",
         "web-animations-js": "github:angular/web-animations-js#release_pr208",
