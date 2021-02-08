@@ -1,12 +1,12 @@
-<div class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': menuMode === 'horizontal',
-                                        'layout-menu-overlay': menuMode === 'overlay',
-                                        'layout-menu-static': menuMode === 'static',
-                                        'layout-menu-slim': menuMode === 'slim',
-                                        'layout-menu-light': lightMenu === true,
+<div class="layout-wrapper" [ngClass]="{'layout-menu-horizontal': app.menuMode === 'horizontal',
+                                        'layout-menu-overlay': app.menuMode === 'overlay',
+                                        'layout-menu-static': app.menuMode === 'static',
+                                        'layout-menu-slim': app.menuMode === 'slim',
+                                        'layout-menu-light': app.lightMenu === true,
                                         'layout-menu-overlay-active': overlayMenuActive,
                                         'layout-menu-mobile-active': staticMenuMobileActive,
                                         'layout-menu-static-inactive': staticMenuDesktopInactive,
-                                        'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple}" (click)="onLayoutClick()">
+                                        'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple}" (click)="onLayoutClick()">
 
     <app-topbar></app-topbar>
 

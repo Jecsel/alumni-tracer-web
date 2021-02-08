@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 
 @Component({
@@ -7,7 +8,7 @@ import { AppMainComponent } from './app.main.component';
         <a style="cursor: pointer" id="layout-config-button" class="layout-config-button" (click)="onConfigButtonClick($event)">
             <i class="pi pi-cog"></i>
         </a>
-        <div class="layout-config" [ngClass]="{'layout-config-active': app.configActive}" (click)="app.onConfigClick($event)">
+        <div class="layout-config" [ngClass]="{'layout-config-active': appMain.configActive}" (click)="appMain.onConfigClick($event)">
             <h5>Menu Type</h5>
             <div class="p-field-radiobutton">
                 <p-radioButton name="menuMode" value="static" [(ngModel)]="app.menuMode" inputId="mode1"></p-radioButton>
@@ -47,14 +48,13 @@ import { AppMainComponent } from './app.main.component';
             </div>
 
             <h5>Ripple Effect</h5>
-			<p-inputSwitch [ngModel]="app.ripple" (onChange)="app.onRippleChange($event)"></p-inputSwitch>
+			<p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
 
             <h5>Themes</h5>
             <div class="layout-themes">
                 <div *ngFor="let t of themes">
                     <a style="cursor: pointer" (click)="changeTheme(t.name)"
                        [ngStyle]="{'background-image': 'linear-gradient(to right, ' + t.color1 +','+ t.color2+')'} ">
-                        <i class="pi pi-check" *ngIf="theme === t.name"></i>
                     </a>
                 </div>
             </div>
@@ -65,9 +65,7 @@ export class AppConfigComponent implements OnInit {
 
     themes: any[];
 
-    theme = 'blue';
-
-    constructor(public app: AppMainComponent) {}
+    constructor(public appMain: AppMainComponent, public app: AppComponent) {}
 
     ngOnInit() {
         this.themes = [
@@ -90,7 +88,7 @@ export class AppConfigComponent implements OnInit {
     }
 
     changeTheme(theme: string) {
-        this.theme = theme;
+        this.app.theme = theme;
 
         const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
         const layoutHref = 'assets/layout/css/layout-' + theme + '.css';
@@ -127,8 +125,8 @@ export class AppConfigComponent implements OnInit {
     }
 
     onConfigButtonClick(event) {
-        this.app.configActive = !this.app.configActive;
-        this.app.configClick = true;
+        this.appMain.configActive = !this.appMain.configActive;
+        this.appMain.configClick = true;
         event.preventDefault();
     }
 }
