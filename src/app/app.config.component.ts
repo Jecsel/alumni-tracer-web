@@ -50,7 +50,7 @@ import { AppMainComponent } from './app.main.component';
             <h5>Ripple Effect</h5>
 			<p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
 
-            <h5>Themes</h5>
+            <h5>Menu Themes</h5>
             <div class="layout-themes">
                 <div *ngFor="let t of themes">
                     <a style="cursor: pointer" (click)="changeTheme(t.name)"
