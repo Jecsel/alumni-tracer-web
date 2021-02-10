@@ -583,38 +583,45 @@
             </p-panel>
 
             <p-panel header="Inventory" styleClass="inventory">
-                <p-table [value]="products" [paginator]="true" [rows]="5">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th pSortableColumn="id">ID
-                                <p-sortIcon field="id"></p-sortIcon>
-                            </th>
-                            <th pSortableColumn="category">Category
-                                <p-sortIcon field="category"></p-sortIcon>
-                            </th>
-                            <th pSortableColumn="price">Price
-                                <p-sortIcon field="price"></p-sortIcon>
-                            </th>
-                            <th pSortableColumn="inventoryStatus">Status
-                                <p-sortIcon field="inventoryStatus"></p-sortIcon>
-                            </th>
-                            <th></th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-product>
-                        <tr>
-                            <td>{{product.id}}</td>
-                            <td>{{product.category}}</td>
-                            <td>{{product.price | currency:'USD'}}</td>
-                            <td><span
-                                [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
-                            </td>
-                            <td style="text-align: center">
-                                <button pButton type="button" icon="pi pi-search"></button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
+                <p-table [value]="products" [paginator]="true" [rows]="5" styleClass="p-datatable-customers">
+					<ng-template pTemplate="header">
+						<tr>
+							<th pSortableColumn="id">ID
+								<p-sortIcon field="id"></p-sortIcon>
+							</th>
+							<th pSortableColumn="category">Category
+								<p-sortIcon field="category"></p-sortIcon>
+							</th>
+							<th pSortableColumn="price">Price
+								<p-sortIcon field="price"></p-sortIcon>
+							</th>
+							<th pSortableColumn="inventoryStatus">Status
+								<p-sortIcon field="inventoryStatus"></p-sortIcon>
+							</th>
+							<th></th>
+						</tr>
+					</ng-template>
+					<ng-template pTemplate="body" let-product>
+						<tr>
+							<td>
+								<span class="p-column-title">Id</span>
+								{{product.id}}</td>
+							<td>
+								<span class="p-column-title">Category</span>
+								{{product.category}}</td>
+							<td>
+								<span class="p-column-title">Price</span>
+								{{product.price | currency:'USD'}}</td>
+							<td>
+								<span class="p-column-title">Status</span>
+								<span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
+							</td>
+							<td style="text-align: center">
+								<button pButton type="button" icon="pi pi-search"></button>
+							</td>
+						</tr>
+					</ng-template>
+				</p-table>
             </p-panel>
         </div>
         <div class="p-col-12 p-md-12 p-lg-12">
