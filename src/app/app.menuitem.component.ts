@@ -12,7 +12,7 @@ import {AppMainComponent} from './app.main.component';
     /* tslint:enable:component-selector */
     template: `
 		<ng-container>
-			<a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items"
+			<a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="(!item.routerLink || item.items) && item.visible !== false"
 			   (mouseenter)="onMouseEnter()" (keydown.enter)="itemClick($event)"
 			   [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
@@ -20,7 +20,7 @@ import {AppMainComponent} from './app.main.component';
 				<i class="pi pi-fw pi-angle-down layout-menuitem-toggler" *ngIf="item.items"></i>
 				<span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
 			</a>
-			<a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
+			<a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="(item.routerLink && !item.items) && item.visible !== false"
 			   [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
 			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
@@ -28,11 +28,11 @@ import {AppMainComponent} from './app.main.component';
 				<i class="pi pi-fw pi-angle-down layout-menuitem-toggler" *ngIf="item.items"></i>
 				<span class="menuitem-badge" *ngIf="item.badge">{{item.badge}}</span>
 			</a>
-			<div class="layout-menu-tooltip">
+			<div class="layout-menu-tooltip" *ngIf="item.visible !== false">
 				<div class="layout-menu-tooltip-arrow"></div>
 				<div class="layout-menu-tooltip-text">{{item.label}}</div>
 			</div>
-			<ul *ngIf="item.items && active"
+			<ul *ngIf="(item.items && active) && item.visible !== false"
 				[@children]="((app.isSlim()||app.isHorizontal()) && root) ? (active ? 'visible' : 'hidden') :
 				(active ? 'visibleAnimated' : 'hiddenAnimated')">
 				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
@@ -130,7 +130,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         // avoid processing disabled items
         if (this.item.disabled) {
             event.preventDefault();
-            return true;
+            return;
         }
 
         // navigate with hover in horizontal mode

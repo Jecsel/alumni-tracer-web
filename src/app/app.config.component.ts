@@ -96,7 +96,7 @@ export class AppConfigComponent implements OnInit {
         this.replaceLink(layoutLink, layoutHref);
 
         const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
-        const themeHref = 'assets/theme-' + theme  + '.css';
+        const themeHref = 'assets/theme/theme-' + theme  + '.css';
 
         this.replaceLink(themeLink, themeHref);
     }
