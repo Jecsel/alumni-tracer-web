@@ -1,5 +1,6 @@
+
 <div class="card icons-demo">
-	<h4>Icons</h4>
+	<h3>Icons</h3>
 
 	<h5>Getting Started</h5>
 	<p>PrimeIcons use the <strong>pi pi-&#123;icon&#125;</strong> syntax such as <strong>pi pi-check</strong>.
@@ -43,8 +44,8 @@
 		<input class="icon-filter" (input)="onFilter($event)" pInputText placeholder="Search an icon">
 	</div>
 
-	<div class="p-grid icons-list">
-		<div class="p-col-12 p-md-2" *ngFor="let icon of filteredIcons">
+	<div class="grid icons-list">
+		<div class="col-12 sm:col-4 lg:col-3 xl:col-2 pb-5" *ngFor="let icon of filteredIcons">
 			<i class="pi pi-{{icon.properties.name}}"></i>
 			<div>pi-{{icon.properties.name}}</div>
 		</div>

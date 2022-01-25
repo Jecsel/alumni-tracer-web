@@ -1,36 +1,36 @@
 <div class="layout-dashboard">
-    <div class="p-grid">
-        <div class="p-col-12 p-md-6 p-lg-3">
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3">
             <div class="overview-box sales">
                 <img src="assets/layout/images/icon-sales.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">SALES</div>
                 <div class="overview-numbers">
                     $ 32,700
                 </div>
-                <div class="overview-subinfo p-grid">
-                    <div class="p-col-6 progressbar">
+                <div class="overview-subinfo grid">
+                    <div class="col-6 progressbar">
                         <div class="progress sale"></div>
                     </div>
-                    <span class="p-col-6">23% more</span>
+                    <span class="col-6">23% more</span>
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
             <div class="overview-box views">
                 <img src="assets/layout/images/icon-views.png" alt="ecuador-layout" style="margin-top:10px" />
                 <div class="overview-title">VIEWS</div>
                 <div class="overview-numbers">
                     21,009
                 </div>
-                <div class="overview-subinfo p-grid">
-                    <div class="p-col-6 progressbar">
+                <div class="overview-subinfo grid">
+                    <div class="col-6 progressbar">
                         <div class="progress view"></div>
                     </div>
-                    <span class="p-col-6">7% more</span>
+                    <span class="col-6">7% more</span>
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
             <div class="overview-box users">
                 <img src="assets/layout/images/icon-users.png" alt="ecuador-layout" />
                 <div class="overview-title">USERS</div>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-md-6 p-lg-3">
+        <div class="col-12 md:col-6 lg:col-3">
             <div class="overview-box checkins">
                 <img src="assets/layout/images/icon-checkin.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">CHECK-INS</div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <p-panel header="Contacts" styleClass="contacts">
                 <ul>
                     <li>
@@ -107,7 +107,7 @@
                 </ul>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <p-panel header="Tasks" styleClass="tasks">
                 <ul>
                     <li>
@@ -155,28 +155,28 @@
                 </ul>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <p-panel header="Resolution Center" styleClass="resolution-center">
-                <div class="p-grid">
-                    <div class="p-col-12">
+                <div class="grid">
+                    <div class="col-12">
                         <input type="text" pInputText placeholder="Name">
                     </div>
-                    <div class="p-col-12">
+                    <div class="col-12">
                         <p-dropdown [options]="cities" [(ngModel)]="selectedCity"></p-dropdown>
                     </div>
-                    <div class="p-col-12">
+                    <div class="col-12">
                         <textarea type="text" pInputTextarea placeholder="Message"></textarea>
                     </div>
-                    <div class="p-col-12">
+                    <div class="col-12">
                         <button type="button" label="Send" pButton></button>
                     </div>
                 </div>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-12 p-xl-6">
+        <div class="col-12 md:col-12 lg:col-12 xl:col-6">
             <p-panel header="Statistics" styleClass="statistics">
-                <div class="p-grid">
-                    <div class="p-col-12 p-md-6 p-lg-6 p-xl-6 stats-left">
+                <div class="grid">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6 stats-left">
                         <div>
                             <i class="pi pi-arrow-up"></i>
                             <span>50%</span>
@@ -193,7 +193,7 @@
                             <i class="pi pi-chevron-right"></i>
                         </div>
                     </div>
-                    <div class="p-col-12 p-md-6 p-lg-6 p-xl-6 stats-right">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6 stats-right">
                         <i class="pi pi-arrow-up"></i>
                         <span class="icon-label">Raised</span>
                         <span>$ 85,397</span>
@@ -216,7 +216,7 @@
                 </div>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-12 p-xl-6">
+        <div class="col-12 md:col-12 lg:col-12 xl:col-6">
             <p-panel header="Global Sales" styleClass="global-sales">
                 <table>
                     <thead>
@@ -305,7 +305,7 @@
                 </table>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <p-panel styleClass="profile">
                 <div class="bg-image">
                 </div>
@@ -460,7 +460,7 @@
                 </ul>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-8">
+        <div class="col-12 md:col-12 lg:col-8">
             <p-panel header="Inbox" styleClass="inbox">
                 <ul>
                     <li>
@@ -624,7 +624,7 @@
 				</p-table>
             </p-panel>
         </div>
-        <div class="p-col-12 p-md-12 p-lg-12">
+        <div class="col-12 md:col-12 lg:col-12">
             <p-panel header="Upcoming Events" [style]="{'height':'100%'}">
                 <full-calendar [options]="fullcalendarOptions" ></full-calendar>
             </p-panel>
