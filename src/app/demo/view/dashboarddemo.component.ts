@@ -7,7 +7,7 @@ import { BreadcrumbService } from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./tabledemo.scss'],
+    styleUrls: ['../../../assets/demo/badges.scss']
 })
 export class DashboardDemoComponent implements OnInit {
 

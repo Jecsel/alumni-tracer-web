@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
-
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 @Component({
   templateUrl: './blocks.component.html'
 })
 export class BlocksComponent{
 
+    constructor(private breadcrumbService: BreadcrumbService) {
+        this.breadcrumbService.setItems([
+            {label: 'Prime Blocks'},
+            {label: 'Free Blocks'}
+        ]);
+    }
   block1: string = `
   <div class="grid grid-nogutter surface-section text-800">
       <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
@@ -203,7 +209,7 @@ export class BlocksComponent{
   </div>`;
 
       block5: string = `
-  <div class="bg-gray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
+  <div class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
       <div class="font-bold mr-8">🔥 Hot Deals!</div>
       <div class="align-items-center hidden lg:flex">
           <span class="line-height-3">Libero voluptatum atque exercitationem praesentium provident odit.</span>

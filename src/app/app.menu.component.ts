@@ -28,7 +28,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']},
                     {label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']},
                     {label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']},
-                    {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']},
+                    {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], preventExact: true},
                     {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']},
                     {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
                     {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
@@ -36,14 +36,14 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label:'Prime Blocks', icon:'pi pi-fw pi-prime',
+                label:'Prime Blocks', icon:'pi pi-fw pi-prime', routerLink: ['/blocks'],
                 items:[
                     {label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks']},
                     {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank'},
                 ]
             },
             {
-                label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],
+                label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['/utilities'],
                 items: [
                     {label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['utilities/icons']},
                     {label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank'},

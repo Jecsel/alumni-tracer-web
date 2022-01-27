@@ -1,10 +1,10 @@
-<div class="grid misc-demo">
+<div class="grid">
     <div class="col-12">
         <div class="card">
             <h5>ProgressBar</h5>
             <div class="grid">
                 <div class="col">
-                    <p-progressBar [value]="value" [showValue]="false"></p-progressBar>
+                    <p-progressBar [value]="value" [showValue]="true"></p-progressBar>
                 </div>
                 <div class="col">
                     <p-progressBar [value]="50" [showValue]="false"></p-progressBar>
@@ -16,7 +16,7 @@
         <div class="card">
             <h4>Badge</h4>
             <h5>Numbers</h5>
-            <div class="badges">
+            <div>
                 <p-badge [value]="2" styleClass="mr-2"></p-badge>
                 <p-badge [value]="8" severity="success" styleClass="mr-2"></p-badge>
                 <p-badge [value]="4" severity="info" styleClass="mr-2"></p-badge>
@@ -35,7 +35,7 @@
             <p-button label="Messages" icon="pi pi-users" styleClass="p-button-warning" badge="8" badgeClass="p-badge-danger"></p-button>
 
             <h5>Sizes</h5>
-            <div class="badges">
+            <div>
                 <p-badge [value]="2" styleClass="mr-2"></p-badge>
                 <p-badge [value]="4" size="large" severity="warning" styleClass="mr-2"></p-badge>
                 <p-badge [value]="6" size="xlarge" severity="success" styleClass="mr-2"></p-badge>
@@ -111,41 +111,41 @@
         <div class="card">
             <h4>Chip</h4>
             <h5>Basic</h5>
-            <div class="flex align-items-center">
-                <p-chip label="Action" styleClass="mr-2"></p-chip>
-                <p-chip label="Comedy" styleClass="mr-2"></p-chip>
-                <p-chip label="Mystery" styleClass="mr-2"></p-chip>
-                <p-chip label="Thriller" [removable]="true"></p-chip>
+            <div class="flex align-items-center flex-column sm:flex-row">
+                <p-chip label="Action" styleClass="m-1"></p-chip>
+                <p-chip label="Comedy" styleClass="m-1"></p-chip>
+                <p-chip label="Mystery" styleClass="m-1"></p-chip>
+                <p-chip label="Thriller" styleClass="m-1" [removable]="true"></p-chip>
             </div>
 
             <h5>Icon</h5>
-            <div class="flex align-items-center">
-                <p-chip label="Apple" icon="pi pi-apple" styleClass="mr-2"></p-chip>
-                <p-chip label="Facebook" icon="pi pi-facebook" styleClass="mr-2"></p-chip>
-                <p-chip label="Google" icon="pi pi-google" styleClass="mr-2"></p-chip>
-                <p-chip label="Microsoft" icon="pi pi-microsoft" [removable]="true"></p-chip>
+            <div class="flex align-items-center flex-column sm:flex-row">
+                <p-chip label="Apple" icon="pi pi-apple" styleClass="m-1"></p-chip>
+                <p-chip label="Facebook" icon="pi pi-facebook" styleClass="m-1"></p-chip>
+                <p-chip label="Google" icon="pi pi-google" styleClass="m-1"></p-chip>
+                <p-chip label="Microsoft" icon="pi pi-microsoft" styleClass="m-1" [removable]="true"></p-chip>
             </div>
 
             <h5>Image</h5>
-            <div class="flex align-items-center">
-                <p-chip label="Amy Elsner" image="assets/demo/images/avatar/amyelsner.png" styleClass="mr-2"></p-chip>
-                <p-chip label="Asiya Javayant" image="assets/demo/images/avatar/asiyajavayant.png" styleClass="mr-2"></p-chip>
-                <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="mr-2"></p-chip>
-                <p-chip label="Xuxue Feng" image="assets/demo/images/avatar/xuxuefeng.png" [removable]="true"></p-chip>
+            <div class="flex align-items-center flex-column sm:flex-row">
+                <p-chip label="Amy Elsner" image="assets/demo/images/avatar/amyelsner.png" styleClass="m-1"></p-chip>
+                <p-chip label="Asiya Javayant" image="assets/demo/images/avatar/asiyajavayant.png" styleClass="m-1"></p-chip>
+                <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="m-1"></p-chip>
+                <p-chip label="Xuxue Feng" image="assets/demo/images/avatar/xuxuefeng.png" styleClass="m-1" [removable]="true"></p-chip>
             </div>
 
             <h5>Styling</h5>
-            <div class="flex align-items-center">
-                <p-chip label="Action" styleClass="mr-2 custom-chip"></p-chip>
-                <p-chip label="Comedy" styleClass="mr-2 custom-chip"></p-chip>
-                <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="mr-2 custom-chip"></p-chip>
-                <p-chip label="Xuxue Feng" image="assets/demo/images/avatar/xuxuefeng.png" [removable]="true" styleClass="custom-chip"></p-chip>
+            <div class="flex align-items-center flex-column sm:flex-row">
+                <p-chip label="Action" styleClass="m-1 custom-chip"></p-chip>
+                <p-chip label="Comedy" styleClass="m-1 custom-chip"></p-chip>
+                <p-chip label="Onyama Limba" image="assets/demo/images/avatar/onyamalimba.png" styleClass="m-1 custom-chip"></p-chip>
+                <p-chip label="Xuxue Feng" image="assets/demo/images/avatar/xuxuefeng.png" [removable]="true" styleClass="m-1 custom-chip"></p-chip>
             </div>
         </div>
 
         <div class="card">
             <h4>Skeleton</h4>
-            <div class="custom-skeleton p-4">
+            <div class="border-round border-1 surface-border p-4">
                 <div class="flex mb-3">
                     <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
                     <div>
