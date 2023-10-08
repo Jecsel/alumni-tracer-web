@@ -1,19 +1,19 @@
-<div class="layout-topbar">
+<div class="layout-topbar" *ngIf="!isRegUser">
     <a href="#" id="topbar-menu-button" (click)="app.onMenuButtonClick($event)">
         <i class="pi pi-angle-left arrow"></i>
         <i class="pi pi-angle-up mobile"></i>
     </a>
 
-    <div class="search-input">
+    <div class="search-input" style="visibility: hidden;">
         <i class="pi pi-search icon-search"></i>
         <input type="text"/>
     </div>
 
     <a href="/" class="logo-container">
-        <img src="assets/layout/images/ecuador-logo.png" alt="ecuador-layout" />
+        <img src="assets/images/rsu_logo.png" alt="ecuador-layout" style="height: inherit;" />
     </a>
 
-    <a id="topbar-profile-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
+    <a id="topbar-profile-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)" style="top: 0;">
         <span>Jeniffer Reynolds</span>
         <img src="assets/layout/images/avatar.png" alt="ecuador-layout" class="topbar-profile" />
         <i class="pi pi-caret-down"></i>
@@ -131,3 +131,5 @@
     </a>
 
 </div>
+
+<p-tabMenu *ngIf="isRegUser" [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)"></p-tabMenu>

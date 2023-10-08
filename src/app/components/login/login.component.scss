@@ -1,0 +1,17 @@
+@import url(.../../../../../assets/sass/layout/_login.scss);
+
+.login-lbl{
+    font-size: x-large;
+    color: green;
+    font-weight: 600;
+}
+
+.sign-up-link {
+    text-align: start;
+
+    span{
+        font-size: 12px;
+        color: green;
+        font-weight: 700;
+    }
+}

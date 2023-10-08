@@ -30,14 +30,35 @@ import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {AppInvoiceComponent} from './pages/app.invoice.component';
 import {AppHelpComponent} from './pages/app.help.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AccountComponent } from './components/account/account.component';
+import { JobPortalComponent } from './components/job-portal/job-portal.component';
+import { AnnouncementComponent } from './components/announcement/announcement.component';
+import { EventComponent } from './components/event/event.component';
+import { ReportComponent } from './components/report/report.component';
+import { UserHomepageComponent } from './components/user-homepage/user-homepage.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
+                path: '',
+                redirectTo: 'login',
+                pathMatch: 'full',
+            }, 
+            {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', component: DashboardDemoComponent},
+                    {path: 'homepage', component: UserHomepageComponent},
+                    {path: 'dashboard', component: DashboardComponent},
+                    {path: 'account', component: AccountComponent},
+                    {path: 'job-hiring', component: JobPortalComponent},
+                    {path: 'announcement', component: AnnouncementComponent},
+                    {path: 'event', component: EventComponent},
+                    {path: 'report', component: ReportComponent},
+                    {path: 'home', component: DashboardDemoComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/input', component: InputDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
@@ -68,8 +89,11 @@ import {BlocksComponent} from './blocks/blocks/blocks.component';
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},
-            {path: 'login', component: AppLoginComponent},
-            {path: '**', redirectTo: '/notfound'},
+            {path: 'login', component: LoginComponent},
+            {path: 'sign-up', component: SignUpComponent},
+            {path: '**', redirectTo: '/login'},
+            // {path: '**', redirectTo: '/notfound'},
+            // {path: 'login', component: AppLoginComponent},
         ], {scrollPositionRestoration: 'enabled'})
     ],
     exports: [RouterModule]

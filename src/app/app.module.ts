@@ -148,6 +148,15 @@ import {MenuService} from './app.menu.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AccountComponent } from './components/account/account.component';
+import { JobPortalComponent } from './components/job-portal/job-portal.component';
+import { AnnouncementComponent } from './components/announcement/announcement.component';
+import { EventComponent } from './components/event/event.component';
+import { ReportComponent } from './components/report/report.component';
+import { UserHomepageComponent } from './components/user-homepage/user-homepage.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -286,7 +295,16 @@ FullCalendarModule.registerPlugins([
         AppErrorComponent,
         AppAccessdeniedComponent,
         BlockViewer,
-        BlocksComponent
+        BlocksComponent,
+        LoginComponent,
+        SignUpComponent,
+        DashboardComponent,
+        AccountComponent,
+        JobPortalComponent,
+        AnnouncementComponent,
+        EventComponent,
+        ReportComponent,
+        UserHomepageComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
