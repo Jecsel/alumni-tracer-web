@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,11 +13,28 @@ export class SignUpComponent implements OnInit {
   username: any;
   password: any;
   confirm_password: any;
-  user_type: any;
+  user_type_id: any;
   first_name: any;
   middle_name: any;
   last_name: any;
   batch_year: any;
+
+  formSignUp: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('' , [
+      Validators.required,
+      Validators.minLength(8)
+    ]),
+    confirm_password: new FormControl('' , [
+      Validators.required,
+      Validators.minLength(8)
+    ]),
+    user_type_id: new FormControl(null, Validators.required),
+    first_name: new FormControl('', Validators.required),
+    middle_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    batch_year: new FormControl(null, Validators.required)
+  });
 
   
   user_types: any[] = [
@@ -25,51 +45,35 @@ export class SignUpComponent implements OnInit {
   batch_years: any[] = [
     { id: 1, year: 2023 },
     { id: 2, year: 2022 },
-    { id: 3, year: 2021 },
-    { id: 4, year: 2020 },
-    { id: 5, year: 2019 }
+    { id: 1, year: 2021 },
+    { id: 2, year: 2020 },
+    { id: 1, year: 2019 },
+    { id: 2, year: 2018 },
   ]
 
   selectedState: any = null;
 
-  states: any[] = [
-      {name: 'Arizona', code: 'Arizona'},
-      {name: 'California', value: 'California'},
-      {name: 'Florida', code: 'Florida'},
-      {name: 'Ohio', code: 'Ohio'},
-      {name: 'Washington', code: 'Washington'}
-  ];
-
-  dropdownItems = [
-      { name: 'Option 1', code: 'Option 1' },
-      { name: 'Option 2', code: 'Option 2' },
-      { name: 'Option 3', code: 'Option 3' }
-  ];
-
-  cities1: any[] = [];
-
-  cities2: any[] = [];
-
-  city1: any = null;
-
-  city2: any = null;
-
-  cities = [
-    {name: 'New York', code: 'NY'},
-    {name: 'Rome', code: 'RM'},
-    {name: 'London', code: 'LDN'},
-    {name: 'Istanbul', code: 'IST'},
-    {name: 'Paris', code: 'PRS'}
-  ];
-
-  constructor(private breadcrumbService: BreadcrumbService) {
-    this.breadcrumbService.setItems([
-      {label: 'UI Kit'},
-      {label: 'Form Layout'}
-    ]);
-   }
+  constructor(public router: Router, public apiService: ApiService) { }
 
   ngOnInit(): void {
+  }
+
+  confirm() {
+    let form_value = this.formSignUp.value;
+    form_value.user_type_id = form_value.user_type_id.id;
+    form_value.batch_year = form_value.batch_year.year;
+
+    console.log('sign_up', form_value);
+
+    const register_data = { user: form_value};
+    this.apiService.registerUser(register_data).subscribe(
+      res => {
+        this.router.navigate(['login']);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

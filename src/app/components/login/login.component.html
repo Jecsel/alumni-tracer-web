@@ -1,43 +1,45 @@
 <div class="login-body">
     <div class="login-image">
-        <div class="login-panel">
-            <label class="login-lbl">Login</label>
-            <div class="login-form mt-5 mb-2">
-                <div class="p-col-12">
-                    <span class="p-float-label">
-                        <input type="text" id="username" pInputText [(ngModel)]="username">
-                        <label for="username">Email</label>
-                    </span>
+        <form role="form" [formGroup]="formLogin">
+            <div class="login-panel">
+                <label class="login-lbl">Login</label>
+                <div class="login-form mt-5 mb-2">
+                    <div class="p-col-12">
+                        <span class="p-float-label">
+                            <input type="text" id="username" pInputText formControlName="username">
+                            <label for="username">Email</label>
+                        </span>
+                    </div>
+                    <div class="p-col-12 mt-4">
+                        <span class="p-float-label">
+                            <input type="password" autocomplete="off" id="password" pInputText formControlName="password">
+                            <label for="password">Password</label>
+                        </span>
+                    </div>
                 </div>
-                <div class="p-col-12 mt-4">
-                    <span class="p-float-label">
-                        <input type="password" autocomplete="off" id="password" pInputText [(ngModel)]="password">
-                        <label for="password">Password</label>
-                    </span>
+    
+                <div class="p-col-12 sign-up-link">
+                    Don't have an account?
+                    <a href="#/sign-up" class="subinfo">
+                        <span>&nbsp;Sign Up</span>
+                    </a>
                 </div>
-            </div>
-
-            <div class="p-col-12 sign-up-link">
-                Don't have an account?
-                <a href="#/sign-up" class="subinfo">
-                    <span>&nbsp;Sign Up</span>
+                <div class="checkbox-container">
+                    <div class="remember-me">
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>Remember me</span>
+                    </div>
+                </div>
+    
+                <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
+    
+                <div class="separator"></div>
+    
+                <a href="#" class="subinfo">
+                    <span>Forgot your password?</span>
                 </a>
+    
             </div>
-            <div class="checkbox-container">
-                <div class="remember-me">
-                    <p-checkbox binary="true"></p-checkbox>
-                    <span>Remember me</span>
-                </div>
-            </div>
-
-            <button class="mt-5" type="button" pButton label="Login" [routerLink]="['/dashboard']"></button>
-
-            <div class="separator"></div>
-
-            <a href="#" class="subinfo">
-                <span>Forgot your password?</span>
-            </a>
-
-        </div>
+        </form>
     </div>
 </div>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AppMainComponent} from './app.main.component';
 import { MenuItem } from 'primeng/api';
+import { AuthCookieService } from './services/auth/auth-cookie-service.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-topbar',
@@ -12,7 +14,7 @@ export class AppTopBarComponent {
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = false;
   
-    constructor(public app: AppMainComponent) {}
+    constructor(public app: AppMainComponent, public authCookie: AuthCookieService) {}
   
     ngOnInit(): void {
       this.items = [
@@ -23,6 +25,7 @@ export class AppTopBarComponent {
         { label: 'Settings', icon: 'pi pi-fw pi-cog' }
       ];
   
+      this.getUserType();
       this.activeItem = this.items[0];
     }
   
@@ -32,6 +35,14 @@ export class AppTopBarComponent {
   
     activateLast() {
         this.activeItem = (this.items as MenuItem[])[(this.items as MenuItem[]).length - 1];
+    }
+
+    getUserType() {
+      const user_type_id = this.authCookie.getToken('user_type_id')
+      console.log('user_type', user_type_id);
+      if(user_type_id == '1'){
+        this.isRegUser = true;
+      }
     }
   
   }
