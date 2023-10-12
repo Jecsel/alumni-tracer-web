@@ -38,9 +38,11 @@ export class AppTopBarComponent {
     }
 
     getUserType() {
-      const user_type_id = this.authCookie.getToken('user_type_id')
+      const user_type_id: any = this.authCookie.getToken('user_type_id')
       console.log('user_type', user_type_id);
-      if(user_type_id == '1'){
+      if(user_type_id === 2 || user_type_id === '2'){
+        this.isRegUser = false;
+      } else {  
         this.isRegUser = true;
       }
     }

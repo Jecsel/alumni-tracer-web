@@ -5,7 +5,7 @@
 
     .login-image {
         height: 100%;
-        background: url("../../images/main_background.jpeg") no-repeat;
+        background: none;
         background-size: cover;
         background-position: center;
     }
@@ -33,13 +33,15 @@
 
     .login-panel {
         padding: 50px 36px;
-        position: relative;
-        margin: 0 auto;
+        position: fixed;
+        margin-top: 27px;
         width: 350px;
         height: auto;
         text-align: center;
         background-color: white;
         top: 10%;
+        left: 0;
+        right: 0;
 
         img {
             height: 28px;

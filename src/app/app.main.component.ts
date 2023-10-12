@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import { MenuService } from './app.menu.service';
-import { PrimeNGConfig } from 'primeng/api';
+import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
+import { AuthCookieService } from './services/auth/auth-cookie-service.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './app.main.component.html'
 })
 export class AppMainComponent implements OnInit{
-
+    isRegUser: boolean = false;
     topbarMenuActive: boolean;
 
     overlayMenuActive: boolean;
@@ -33,10 +34,34 @@ export class AppMainComponent implements OnInit{
 
     configClick: boolean;
 
-    constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent) {}
+    items: MenuItem[] | undefined;
+    activeItem: MenuItem | undefined;
+
+    constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent, private cookieService: AuthCookieService) {}
 
     ngOnInit() {
         this.primengConfig.ripple = true;
+
+        this.items = [
+            { label: 'Home', icon: 'pi pi-fw pi-home' },
+            { label: 'Job Portal', icon: 'pi pi-fw pi-calendar' },
+            { label: 'Events', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Announcements', icon: 'pi pi-fw pi-file' }
+        ];
+
+        this.getUserType();
+    }
+
+    onActiveItemChange(event: MenuItem) {
+        this.activeItem = event;
+      }
+
+    getUserType() {
+        const user_type_id = this.cookieService.getToken('user_type_id')
+        console.log('user_type', user_type_id);
+        if(user_type_id === "1"){
+          this.isRegUser = true;
+        }
     }
 
     onLayoutClick() {
@@ -75,6 +100,7 @@ export class AppMainComponent implements OnInit{
         this.menuClick = true;
         this.topbarMenuActive = false;
 
+        console.log('onMenuButtonClick', event);
         if (this.isOverlay()) {
             this.overlayMenuActive = !this.overlayMenuActive;
         }

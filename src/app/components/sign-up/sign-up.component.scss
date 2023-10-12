@@ -3,13 +3,15 @@ $primaryColor:#33a426;
 
 .sign-up-panel {
     padding: 50px 36px;
-    position: relative;
+    position: fixed;
     margin: 0 auto;
     width: 350px;
     height: auto;
     text-align: center;
     background-color: white;
     top: 10%;
+    left: 0;
+    right: 0;
 
     img {
         height: 28px;
