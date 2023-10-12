@@ -72,7 +72,6 @@
                     </div>
 
                     <div>
-                        <h5>Galleria</h5>
                         <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
                                     [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
                             <ng-template pTemplate="item" let-item>
@@ -80,7 +79,7 @@
                             </ng-template>
                             <ng-template pTemplate="thumbnail" let-item>
                                 <div class="grid nogutter justify-center">
-                                    <img class="thumbnail-img" [src]="item.thumbnailImageSrc" style="display: block;"/>
+                                    <img class="thumbnail-img" [src]="item.thumbnailImageSrc"/>
                                 </div>
                             </ng-template>
                         </p-galleria>

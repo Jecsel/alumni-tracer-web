@@ -45,7 +45,7 @@ import { UserHomepageComponent } from './components/user-homepage/user-homepage.
         RouterModule.forRoot([
             {
                 path: '',
-                redirectTo: 'login',
+                redirectTo: 'alumni-tracer',
                 pathMatch: 'full',
             }, 
             {
@@ -89,9 +89,9 @@ import { UserHomepageComponent } from './components/user-homepage/user-homepage.
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},
-            {path: 'login', component: LoginComponent},
+            {path: 'alumni-tracer', component: LoginComponent},
             {path: 'sign-up', component: SignUpComponent},
-            {path: '**', redirectTo: '/login'},
+            {path: '**', redirectTo: '/alumni-tracer'},
             // {path: '**', redirectTo: '/notfound'},
             // {path: 'login', component: AppLoginComponent},
         ], {scrollPositionRestoration: 'enabled'})
