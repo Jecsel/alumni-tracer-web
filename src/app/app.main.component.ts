@@ -46,7 +46,6 @@ export class AppMainComponent implements OnInit{
             { label: 'Home', icon: 'pi pi-fw pi-home' },
             { label: 'Job Portal', icon: 'pi pi-fw pi-calendar' },
             { label: 'Events', icon: 'pi pi-fw pi-pencil' },
-            { label: 'Announcements', icon: 'pi pi-fw pi-file' }
         ];
 
         this.getUserType();

@@ -16,23 +16,14 @@ import { ProductService } from 'src/app/demo/service/productservice';
 export class AccountComponent implements OnInit {
     
     productDialog: boolean;
-
     deleteProductDialog: boolean = false;
-
     deleteProductsDialog: boolean = false;
-
     products: Product[];
-
     product: Product;
-
     selectedProducts: Product[];
-
     submitted: boolean;
-
     cols: any[];
-
     statuses: any[];
-
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService, private messageService: MessageService,
@@ -44,10 +35,10 @@ export class AccountComponent implements OnInit {
     }
   
     ngOnInit() {
-        this.productService.getProducts().then(data => this.products = data);
+        this.productService.getUsers().then(data => this.products = data);
 
         this.cols = [
-            {field: 'name', header: 'Name'},
+            {field: 'first_name', header: 'First Name'},
             {field: 'price', header: 'Price'},
             {field: 'category', header: 'Category'},
             {field: 'rating', header: 'Reviews'},
@@ -55,9 +46,9 @@ export class AccountComponent implements OnInit {
         ];
 
         this.statuses = [
-            {label: 'INSTOCK', value: 'instock'},
-            {label: 'LOWSTOCK', value: 'lowstock'},
-            {label: 'OUTOFSTOCK', value: 'outofstock'}
+            {label: 'APPROVED', value: 'instock'},
+            {label: 'PENDING', value: 'lowstock'},
+            {label: 'REJECTED', value: 'outofstock'}
         ];
     }
 
