@@ -1,0 +1,43 @@
+<div class="container">
+
+    <form role="form" [formGroup]="formPersonal">
+        <div class="sign-up-panel">
+            <div class="grid mt-3">
+                <div class="col-12 md:col-2">
+                    <div class="login-form">
+                        <div class="p-col-12">
+                            <span class="p-float-label">
+                                <input class="custom-input" type="text" id="username" pInputText
+                                    formControlName="username">
+                                <label for="username">Email</label>
+                            </span>
+                        </div>
+                        <div class="p-col-12">
+                            <span class="p-float-label mt-4">
+                                <input class="custom-input" type="password" autocomplete="off" id="password" pInputText
+                                    formControlName="password">
+                                <label for="password">Password</label>
+                            </span>
+                        </div>
+                        <div class="p-col-12">
+                            <span class="p-float-label mt-4">
+                                <input class="custom-input" type="password" autocomplete="off" id="confirm_password" pInputText
+                                    formControlName="confirm_password">
+                                <label for="confirm_password">Confirm Password</label>
+                            </span>
+                        </div>
+                        <div class="grid p-fluid mt-4">
+                            <div class="col-12">
+                                <span class="p-float-label">
+                                    <p-dropdown inputId="user_type" [autoDisplayFirst]="false" [options]="user_types"
+                                        optionLabel="name" formControlName="user_type_id"></p-dropdown>
+                                    <label for="user_type">User Type</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

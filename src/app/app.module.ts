@@ -159,6 +159,7 @@ import { ReportComponent } from './components/report/report.component';
 import { UserHomepageComponent } from './components/user-homepage/user-homepage.component';
 import { PublicService } from './demo/service/publicservice';
 import { AnnouncementService } from './demo/service/announcmentservice';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -307,7 +308,8 @@ FullCalendarModule.registerPlugins([
         AnnouncementComponent,
         EventComponent,
         ReportComponent,
-        UserHomepageComponent
+        UserHomepageComponent,
+        RegistrationComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

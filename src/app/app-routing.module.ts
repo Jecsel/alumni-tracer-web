@@ -91,6 +91,7 @@ import { UserHomepageComponent } from './components/user-homepage/user-homepage.
             {path: 'notfound', component: AppNotfoundComponent},
             {path: 'alumni-tracer', component: LoginComponent},
             {path: 'sign-up', component: SignUpComponent},
+            {path: 'registration', loadChildren: () => import('./components/registration/registration.module').then(m => m.RegistrationModule)},
             {path: '**', redirectTo: '/alumni-tracer'},
             // {path: '**', redirectTo: '/notfound'},
             // {path: 'login', component: AppLoginComponent},
