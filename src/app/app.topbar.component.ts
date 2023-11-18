@@ -3,6 +3,7 @@ import { AppMainComponent} from './app.main.component';
 import { MenuItem } from 'primeng/api';
 import { AuthCookieService } from './services/auth/auth-cookie-service.service';
 import { Console } from 'console';
+import { ApiService } from './services/api/api.service';
 
 @Component({
   selector: 'app-topbar',
@@ -14,7 +15,7 @@ export class AppTopBarComponent {
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = false;
   
-    constructor(public app: AppMainComponent, public authCookie: AuthCookieService) {}
+    constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService ) {}
   
     ngOnInit(): void {
       this.items = [
@@ -27,6 +28,20 @@ export class AppTopBarComponent {
   
       this.getUserType();
       this.activeItem = this.items[0];
+      this.getUserProfile();
+    }
+
+    getUserProfile() {
+      var usr_id = this.authCookie.getToken('user_id');
+    
+      this.apiService.getUserAlumniMain(usr_id).subscribe(
+        res => {
+          console.log('User Profile', res);
+        },
+        err => {
+          console.log('Error', err);
+        }
+      )
     }
   
     onActiveItemChange(event: MenuItem) {

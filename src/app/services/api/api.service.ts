@@ -19,7 +19,7 @@ export class ApiService {
     headers: new HttpHeaders({
       Accept: "*/*",
       "Content-Type": "application/json",
-      "x-liph-token": this.getToken(),
+      "x-tracer-token": this.getToken(),
       Authorization: `Bearer ${this.getToken()}`,
     }),
   };
@@ -44,6 +44,67 @@ export class ApiService {
       );
   }
 
+  createAlumniMain(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getUserAlumniMain(id): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/alumni_main/" + id, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  createWork(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/work", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getUserAlumniWork(id): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/work/" + id, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/user", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+
+  getAllAlumniMains(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/alumni_main", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   login(req: any): Observable<any>{
 
     return this.httpClient
@@ -52,6 +113,7 @@ export class ApiService {
         map((response: any ) => {
           this.cookieService.setToken(this.token_name, response.token);
           this.cookieService.setToken('user_type_id', response.user_type_id);
+          this.cookieService.setToken('user_id', response.user_id);
           return response;
         })
       );

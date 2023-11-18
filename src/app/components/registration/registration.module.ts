@@ -7,6 +7,8 @@ import { AccountComponent } from './account/account.component';
 import { WorkComponent } from './work/work.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     DropdownModule,
+    RadioButtonModule,
+    ButtonModule,
     CommonModule,
     RouterModule.forChild([
         {path:'',component: RegistrationComponent, children:[

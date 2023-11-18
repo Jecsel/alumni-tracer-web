@@ -6,6 +6,7 @@ import { Customer, Representative } from 'src/app/demo/domain/customer';
 import { Product } from 'src/app/demo/domain/product';
 import { CustomerService } from 'src/app/demo/service/customerservice';
 import { ProductService } from 'src/app/demo/service/productservice';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
     selector: "app-account",
@@ -18,8 +19,8 @@ export class AccountComponent implements OnInit {
     productDialog: boolean;
     deleteProductDialog: boolean = false;
     deleteProductsDialog: boolean = false;
-    products: Product[];
-    product: Product;
+    products: any;
+    product: any;
     selectedProducts: Product[];
     submitted: boolean;
     cols: any[];
@@ -27,7 +28,8 @@ export class AccountComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService, private messageService: MessageService,
-                private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+                private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,
+                private apiService: ApiService) {
         this.breadcrumbService.setItems([
             {label: 'Pages'},
             {label: 'Crud'}
@@ -35,7 +37,14 @@ export class AccountComponent implements OnInit {
     }
   
     ngOnInit() {
-        this.productService.getUsers().then(data => this.products = data);
+        this.productService.getUsers().then(
+            data => {
+                this.products = data;
+                console.log("products", this.products);
+                }
+            );
+
+        
 
         this.cols = [
             {field: 'first_name', header: 'First Name'},
@@ -50,7 +59,22 @@ export class AccountComponent implements OnInit {
             {label: 'PENDING', value: 'lowstock'},
             {label: 'REJECTED', value: 'outofstock'}
         ];
+
+        this.getAllAlumniMains();
     }
+
+    getAllAlumniMains() {
+       this.apiService.getAllAlumniMains().subscribe(
+            res => {
+                console.log("getAllAlumniMains", res);
+                this.products = res.data;
+            }, 
+            err => {
+                console.log(err);
+            }
+       ) 
+    }
+
 
     openNew() {
         this.product = {};
@@ -62,12 +86,12 @@ export class AccountComponent implements OnInit {
         this.deleteProductsDialog = true;
     }
 
-    editProduct(product: Product) {
+    editProduct(product: any) {
         this.product = {...product};
         this.productDialog = true;
     }
 
-    deleteProduct(product: Product) {
+    deleteProduct(product: any) {
         this.deleteProductDialog = true;
         this.product = {...product};
     }

@@ -14,6 +14,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class LoginComponent implements OnInit {
   username: any;
   password: any;
+  showLoginModal = false;
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -132,6 +133,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPhotos();
+  }
+
+  openModalLogin() {
+    this.showLoginModal = !this.showLoginModal;
   }
 
   getPhotos(){

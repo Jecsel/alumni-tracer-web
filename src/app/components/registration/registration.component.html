@@ -5,9 +5,13 @@
                 <h5>Registration</h5>
                 <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
 
-                <router-outlet></router-outlet>
-                <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps>
+                <!-- <div *ngIf="areAllStepsValid()"> -->
+                    <router-outlet></router-outlet>
+                  <!-- </div> -->
+
+                <!-- <p-steps [model]="routeItems" styleClass="mt-5" [readonly]="false"></p-steps> -->
             </div>
+            
         </div>
     </div>
 </div>
