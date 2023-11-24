@@ -1,45 +1,218 @@
 <div class="login-body">
     <div class="login-image">
-        <form role="form" [formGroup]="formLogin">
-            <div class="login-panel">
-                <label class="login-lbl">Login</label>
-                <div class="login-form mt-5 mb-2">
-                    <div class="p-col-12">
-                        <span class="p-float-label">
-                            <input type="text" id="username" pInputText formControlName="username">
-                            <label for="username">Email</label>
-                        </span>
-                    </div>
-                    <div class="p-col-12 mt-4">
-                        <span class="p-float-label">
-                            <input type="password" autocomplete="off" id="password" pInputText formControlName="password">
-                            <label for="password">Password</label>
-                        </span>
-                    </div>
-                </div>
-    
-                <div class="p-col-12 sign-up-link">
-                    Don't have an account?
-                    <a href="#/sign-up" class="subinfo">
-                        <span>&nbsp;Sign Up</span>
-                    </a>
-                </div>
-                <div class="checkbox-container">
-                    <div class="remember-me">
-                        <p-checkbox binary="true"></p-checkbox>
-                        <span>Remember me</span>
-                    </div>
-                </div>
-    
-                <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
-    
-                <div class="separator"></div>
-    
-                <a href="#" class="subinfo">
-                    <span>Forgot your password?</span>
+        <div class="surface-ground grid" style="min-height: -webkit-fill-available;">
+            <div class="banner-header">
+                <a href="/" class="logo-container">
+                    <img src="assets/images/rsu_logo.png" alt="ecuador-layout" style="height: inherit;" />
                 </a>
-    
+                <a class="login-label" style="cursor: pointer;" (click)="openModalLogin()">
+                    <span>Login</span>
+                </a>
             </div>
-        </form>
+            <div class="col-12 md:col-12 lg:col-12" *ngIf="!showLoginModal">
+                <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+                    <div class="grid">
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Events</span>
+                                        <div class="text-900 font-medium text-xl">152</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-calendar text-blue-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">24 new </span>
+                                <span class="text-500">events</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Jobs</span>
+                                        <div class="text-900 font-medium text-xl">200</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-shopping-bag text-orange-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">%52+ </span>
+                                <span class="text-500">since last week</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Accounts</span>
+                                        <div class="text-900 font-medium text-xl">28441</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-users text-cyan-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">520  </span>
+                                <span class="text-500">newly registered</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Alumni</span>
+                                        <div class="text-900 font-medium text-xl">152 Unread</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-discord text-purple-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">35 </span>
+                                <span class="text-500">total batch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p-galleria [value]="events" [responsiveOptions]="galleriaResponsiveOptions"
+                                    [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
+                            <ng-template pTemplate="item" let-item>
+                                <img [src]="'http://localhost:3001' + item.image_url" style="width: 100%; display: block; height: 250px;"/>
+                            </ng-template>
+                            <ng-template pTemplate="thumbnail" let-events>
+                                <div class="grid nogutter justify-center">
+                                    <img class="thumbnail-img" [src]="'http://localhost:3001' + events.image_url"/>
+                                </div>
+                            </ng-template>
+                        </p-galleria>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-8 lg:col-8" *ngIf="showLoginModal">
+                <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+                    <div class="grid">
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Events</span>
+                                        <div class="text-900 font-medium text-xl">152</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-calendar text-blue-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">24 new </span>
+                                <span class="text-500">events</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Jobs</span>
+                                        <div class="text-900 font-medium text-xl">200</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-shopping-bag text-orange-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">%52+ </span>
+                                <span class="text-500">since last week</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Accounts</span>
+                                        <div class="text-900 font-medium text-xl">28441</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-users text-cyan-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">520  </span>
+                                <span class="text-500">newly registered</span>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-6 lg:col-3">
+                            <div class="surface-card shadow-2 p-3 border-round">
+                                <div class="flex justify-content-between mb-3">
+                                    <div>
+                                        <span class="block text-500 font-medium mb-3">Alumni</span>
+                                        <div class="text-900 font-medium text-xl">152 Unread</div>
+                                    </div>
+                                    <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
+                                        <i class="pi pi-discord text-purple-500 text-xl"></i>
+                                    </div>
+                                </div>
+                                <span class="text-green-500 font-medium">35 </span>
+                                <span class="text-500">total batch</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p-galleria [value]="events" [responsiveOptions]="galleriaResponsiveOptions"
+                                    [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
+                            <ng-template pTemplate="item" let-item>
+                                <img [src]="'http://localhost:3001' + item.image_url" style="width: 100%; display: block; height: 250px;"/>
+                            </ng-template>
+                            <ng-template pTemplate="thumbnail" let-events>
+                                <div class="grid nogutter justify-center">
+                                    <img class="thumbnail-img" [src]="'http://localhost:3001' + events.image_url"/>
+                                </div>
+                            </ng-template>
+                        </p-galleria>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 md:col-4 lg:col-4" *ngIf="showLoginModal">
+                <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                <form role="form" [formGroup]="formLogin">
+                    <div class="login-panel shadow-5">
+                        <label class="login-lbl">Login</label>
+                        <div class="login-form mt-5 mb-2">
+                            <div class="p-col-12">
+                                <span class="p-float-label">
+                                    <input type="text" id="username" pInputText formControlName="username">
+                                    <label for="username">Email</label>
+                                </span>
+                            </div>
+                            <div class="p-col-12 mt-4">
+                                <span class="p-float-label">
+                                    <input type="password" autocomplete="off" id="password" pInputText formControlName="password">
+                                    <label for="password">Password</label>
+                                </span>
+                            </div>
+                        </div>
+            
+                        <div class="p-col-12 sign-up-link">
+                            Don't have an account?
+                            <a href="#/registration" class="subinfo">
+                                <span>&nbsp;Sign Up</span>
+                            </a>
+                        </div>
+                        <!-- <div class="checkbox-container">
+                            <div class="remember-me">
+                                <p-checkbox binary="true"></p-checkbox>
+                                <span>Remember me</span>
+                            </div>
+                        </div> -->
+            
+                        <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
+            
+                        <!-- <div class="separator"></div>
+            
+                        <a href="#" class="subinfo">
+                            <span>Forgot your password?</span>
+                        </a> -->
+            
+                    </div>
+                </form>
+            </div>
+        </div>    
     </div>
 </div>

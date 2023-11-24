@@ -15,3 +15,52 @@
         font-weight: 700;
     }
 }
+
+.login-panel {
+    position: inherit !important;
+}
+
+.login-label {
+    cursor: pointer;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+.banner-header {
+    height: 60px;
+    text-align: center;
+    background-image: linear-gradient(to right, #33a426, #64ec42);
+    width: -webkit-fill-available;
+
+    .logo-container {
+        height: 60px;
+        top: 20px;
+        position: relative;
+
+        img {
+            height: 14px;
+            width: auto;
+            vertical-align: middle;
+            border: 0 none;
+        }
+    }
+}
+
+.header-img {
+    width: -webkit-fill-available;
+}
+
+.thumbnail-img {
+    height: 80px;
+    width: 50px;
+    display: block;
+}
+
+:host ::ng-deep .p-message {
+    margin-left: .25em;
+}
+
+:host ::ng-deep .p-toast{
+    z-index:99999;
+}

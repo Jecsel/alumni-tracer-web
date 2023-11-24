@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Table } from "primeng/table";
-import { BreadcrumbService } from "../../app.breadcrumb.service";
-import { MessageService, ConfirmationService } from "primeng/api";
-import { Customer, Representative } from "src/app/demo/domain/customer";
-import { Product } from "src/app/demo/domain/product";
-import { CustomerService } from "src/app/demo/service/customerservice";
-import { ProductService } from "src/app/demo/service/productservice";
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {BreadcrumbService} from '../../app.breadcrumb.service';
+import {MessageService, ConfirmationService} from 'primeng/api';
+import { ProductService } from 'src/app/demo/service/productservice';
+import { ApiService } from 'src/app/services/api/api.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.service';
 
 @Component({
   selector: "app-job-portal",
@@ -15,138 +14,214 @@ import { ProductService } from "src/app/demo/service/productservice";
 })
 
 export class JobPortalComponent implements OnInit {
-  customers1: Customer[];
-  customers2: Customer[];
-  customers3: Customer[];
-  selectedCustomers1: Customer[];
-  selectedCustomer: Customer;
-  representatives: Representative[];
-  statuses: any[];
-  products: Product[];
+   
+    jobDialog: boolean;
+    deleteJobDialog: boolean = false;
+    deleteProductsDialog: boolean = false;
+    job: any;
+    selectedJobs: any;
+    submitted: boolean;
+    cols: any[];
+    statuses: any[];
+    rowsPerPageOptions = [5, 10, 20];
+    jobs: any = [];
 
-    rowGroupMetadata: any;
+    file: File = null;
+    selectedFile: File | null = null;
 
-    expandedRows = {};
 
-    activityValues: number[] = [0, 100];
+    formJob: FormGroup = new FormGroup({
+        company_name: new FormControl('', [Validators.required]),
+        company_email: new FormControl('' , [Validators.required]),
+        company_address: new FormControl('', Validators.required),
+        position: new FormControl('' , [Validators.required]),
+        qualification: new FormControl('' , [Validators.required])
+    });
 
-    isExpanded: boolean = false;
-
-    idFrozen: boolean = false;
-
-    loading: boolean = true;
-
-    @ViewChild("dt") table: Table;
-
-    @ViewChild("filter") filter: ElementRef;
-
-    constructor(
-        private customerService: CustomerService,
-        private productService: ProductService,
-        private breadcrumbService: BreadcrumbService
-    ) {
+    constructor(private productService: ProductService, private messageService: MessageService,
+                private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,
+                private apiService: ApiService, private cookieService: AuthCookieService) {
         this.breadcrumbService.setItems([
-            { label: "UI Kit" },
-            { label: "Table" },
+            {label: 'Pages'},
+            {label: 'Crud'}
         ]);
     }
-
+  
     ngOnInit() {
-        this.customerService.getCustomersLarge().then((customers) => {
-            this.customers1 = customers;
-            this.loading = false;
 
-            // @ts-ignore
-            this.customers1.forEach((customer) => (customer.date = new Date(customer.date))
-            );
-        });
-        this.customerService
-            .getCustomersMedium()
-            .then((customers) => (this.customers2 = customers));
-        this.customerService
-            .getCustomersLarge()
-            .then((customers) => (this.customers3 = customers));
-        this.productService
-            .getProductsWithOrdersSmall()
-            .then((data) => (this.products = data));
-
-        this.representatives = [
-            { name: "Amy Elsner", image: "amyelsner.png" },
-            { name: "Anna Fali", image: "annafali.png" },
-            { name: "Asiya Javayant", image: "asiyajavayant.png" },
-            { name: "Bernardo Dominic", image: "bernardodominic.png" },
-            { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-            { name: "Ioni Bowcher", image: "ionibowcher.png" },
-            { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-            { name: "Onyama Limba", image: "onyamalimba.png" },
-            { name: "Stephen Shaw", image: "stephenshaw.png" },
-            { name: "XuXue Feng", image: "xuxuefeng.png" },
+        this.cols = [
+            {field: 'first_name', header: 'First Name'},
+            {field: 'price', header: 'Price'},
+            {field: 'category', header: 'Category'},
+            {field: 'rating', header: 'Reviews'},
+            {field: 'inventoryStatus', header: 'Status'}
         ];
 
         this.statuses = [
-            { label: "Unqualified", value: "unqualified" },
-            { label: "Qualified", value: "qualified" },
-            { label: "New", value: "new" },
-            { label: "Negotiation", value: "negotiation" },
-            { label: "Renewal", value: "renewal" },
-            { label: "Proposal", value: "proposal" },
+            {label: 'APPROVED', value: 'instock'},
+            {label: 'PENDING', value: 'lowstock'},
+            {label: 'REJECTED', value: 'outofstock'}
         ];
+
+        // this.getAllAlumniMains();
+        this.getAllJobs();
     }
 
-    onSort() {
-        this.updateRowGroupMetaData();
+    getAllJobs() {
+        this.apiService.getAllJobPost().subscribe(
+            res => {
+                console.log('all Jobs: ', res.data);
+                this.jobs = res.data;
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
-    updateRowGroupMetaData() {
-        this.rowGroupMetadata = {};
+    onFileSelected(event: any): void {
+        // this.file = event.target.files[0];
+        this.selectedFile = event.target.files[0];
+      }
+    
+      uploadFile(): void {
+        if (this.selectedFile != null) {
 
-        if (this.customers3) {
-            for (let i = 0; i < this.customers3.length; i++) {
-                const rowData = this.customers3[i];
-                const representativeName = rowData.representative.name;
+            let form_value = this.formJob.value;
+            form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
 
-                if (i === 0) {
-                    this.rowGroupMetadata[representativeName] = {
-                        index: 0,
-                        size: 1,
-                    };
-                } else {
-                    const previousRowData = this.customers3[i - 1];
-                    const previousRowGroup =
-                        previousRowData.representative.name;
-                    if (representativeName === previousRowGroup) {
-                        this.rowGroupMetadata[representativeName].size++;
-                    } else {
-                        this.rowGroupMetadata[representativeName] = {
-                            index: i,
-                            size: 1,
-                        };
-                    }
-                }
+
+        //   const formData: FormData = new FormData();
+      
+        //   formData.append('company_name', this.formJob.get('company_name')?.value);
+        //   formData.append('company_email', this.formJob.get('company_email')?.value);
+        //   formData.append('position', this.formJob.get('position')?.value);
+        //   formData.append('qualification', this.formJob.get('qualification')?.value);
+        //   formData.append('user_id', this.cookieService.getToken('user_id'));
+      
+        //   formData.append('file', this.file, this.file.name);
+      
+          console.log('formData', form_value);
+      
+          this.apiService.createJobPost({ job: form_value }).subscribe(
+            res => {
+              console.log('job_post', res);
+              this.addImage();
+            },
+            err => {
+              console.log('error: ', err);
+            }
+          );
+        }
+      }
+
+      addImage(): void {
+        if (!this.selectedFile) {
+          // Handle the case where no file is selected
+          return;
+        }
+    
+        const formData = new FormData();
+
+        formData.append('name', this.selectedFile.name);
+        formData.append('image', this.selectedFile);
+    
+        // Assuming you have a service to handle HTTP requests
+        this.apiService.updateJobPostImage(formData).subscribe(
+          (response) => {
+            console.log(response);
+            // Handle success
+          },
+          (error) => {
+            console.error(error);
+            // Handle error
+          }
+        );
+      }
+
+
+    openNew() {
+        this.job = {};
+        this.submitted = false;
+        this.jobDialog = true;
+    }
+
+    deleteSelectedProducts() {
+        this.deleteProductsDialog = true;
+    }
+
+    editProduct(job: any) {
+        this.job = {...job};
+        this.jobDialog = true;
+    }
+
+    deleteProduct(job: any) {
+        this.deleteJobDialog = true;
+        this.job = {...job};
+    }
+
+    confirmDeleteSelected(){
+        this.deleteProductsDialog = false;
+        this.jobs = this.jobs.filter(val => !this.selectedJobs.includes(val));
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
+        this.selectedJobs = null;
+    }
+
+    confirmDelete(){
+        this.deleteJobDialog = false;
+        this.jobs = this.jobs.filter(val => val.id !== this.job.id);
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Deleted', life: 3000});
+        this.job = {};
+    }
+
+    hideDialog() {
+        this.jobDialog = false;
+        this.submitted = false;
+    }
+
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.job.name.trim()) {
+            if (this.job.id) {
+                // @ts-ignore
+                this.job.inventoryStatus = this.job.inventoryStatus.value ? this.job.inventoryStatus.value: this.job.inventoryStatus;
+                this.jobs[this.findIndexById(this.job.id)] = this.job;
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Updated', life: 3000});
+            } else {
+                this.job.id = this.createId();
+                this.job.code = this.createId();
+                this.job.image = 'job-placeholder.svg';
+                // @ts-ignore
+                this.job.inventoryStatus = this.job.inventoryStatus ? this.job.inventoryStatus.value : 'INSTOCK';
+                this.jobs.push(this.job);
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Created', life: 3000});
+            }
+
+            this.jobs = [...this.jobs];
+            this.jobDialog = false;
+            this.job = {};
+        }
+    }
+
+    findIndexById(id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.jobs.length; i++) {
+            if (this.jobs[i].id === id) {
+                index = i;
+                break;
             }
         }
+
+        return index;
     }
 
-    expandAll() {
-        if (!this.isExpanded) {
-            this.products.forEach(
-                (product) => (this.expandedRows[product.name] = true)
-            );
-        } else {
-            this.expandedRows = {};
+    createId(): string {
+        let id = '';
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < 5; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        this.isExpanded = !this.isExpanded;
-    }
-
-    formatCurrency(value) {
-        return value.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-        });
-    }
-
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = "";
+        return id;
     }
 }

@@ -1,0 +1,12 @@
+.container {
+    margin: 30px 50px;
+
+    .w-100 {
+        width: 100%;
+    }
+
+    .announcement-container {
+        max-height: 400px;
+        overflow: scroll;
+    }
+}

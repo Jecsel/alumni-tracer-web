@@ -16,10 +16,10 @@ export class AppMenuComponent implements OnInit {
             {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/dashboard']},
             {label: 'Account', icon: 'pi pi-fw pi-home', routerLink: ['/account']},
             {label: 'Job Hiring', icon: 'pi pi-fw pi-home', routerLink: ['/job-hiring']},
-            {label: 'Announcement', icon: 'pi pi-fw pi-home', routerLink: ['/announcement']},
             {label: 'Event', icon: 'pi pi-fw pi-home', routerLink: ['/event']},
             {label: 'Report', icon: 'pi pi-fw pi-home', routerLink: ['/report']},
-            {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/home']},
+            // {label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/homepage']},
+            {label: 'Logout', icon: 'pi pi-fw pi-home', routerLink: ['/login']},
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'], badge: 15,
                 items: [
