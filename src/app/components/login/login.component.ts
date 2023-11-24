@@ -5,11 +5,13 @@ import { Product } from 'src/app/demo/domain/product';
 import { PhotoService } from 'src/app/demo/service/photoservice';
 import { PublicService } from 'src/app/demo/service/publicservice';
 import { ApiService } from 'src/app/services/api/api.service';
+import {Message, MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
   username: any;
@@ -62,8 +64,10 @@ export class LoginComponent implements OnInit {
       }
   ];
 
+  msgs: Message[] = [];
 
-  constructor(public router: Router, public apiService: ApiService, private publicService: PublicService) { }
+
+  constructor(public router: Router, public apiService: ApiService, private publicService: PublicService, private service: MessageService) { }
 
   block7: string = `
   <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
@@ -135,6 +139,14 @@ export class LoginComponent implements OnInit {
     this.getPhotos();
   }
 
+    showErrorViaToast(mess) {
+        this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
+    }
+
+    showSuccessViaToast() {
+        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    }
+
   openModalLogin() {
     this.showLoginModal = !this.showLoginModal;
   }
@@ -159,6 +171,7 @@ export class LoginComponent implements OnInit {
        
       }, err => {
         console.log(err);
+        this.showErrorViaToast(err.error.message);
       }
     )
   }

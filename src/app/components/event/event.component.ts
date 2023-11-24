@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { Table } from "primeng/table";
-import { BreadcrumbService } from "../../app.breadcrumb.service";
-import { MessageService, ConfirmationService } from "primeng/api";
-import { Customer, Representative } from "src/app/demo/domain/customer";
-import { Product } from "src/app/demo/domain/product";
-import { CustomerService } from "src/app/demo/service/customerservice";
-import { ProductService } from "src/app/demo/service/productservice";
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {BreadcrumbService} from '../../app.breadcrumb.service';
+import {MessageService, ConfirmationService} from 'primeng/api';
+import { ProductService } from 'src/app/demo/service/productservice';
+import { ApiService } from 'src/app/services/api/api.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.service';
 
 @Component({
   selector: 'app-event',
@@ -15,140 +14,202 @@ import { ProductService } from "src/app/demo/service/productservice";
 })
 
 export class EventComponent implements OnInit {
-  customers1: Customer[];
-  customers2: Customer[];
-  customers3: Customer[];
-  selectedCustomers1: Customer[];
-  selectedCustomer: Customer;
-  representatives: Representative[];
-  statuses: any[];
-  products: Product[];
+  
+    eventDialog: boolean;
+    deleteEventDialog: boolean = false;
+    deleteEventsDialog: boolean = false;
+    event: any;
+    selectedEvents: any;
+    submitted: boolean;
+    cols: any[];
+    statuses: any[];
+    rowsPerPageOptions = [5, 10, 20];
+    events: any = [];
 
-    rowGroupMetadata: any;
+    file: File = null;
+    selectedFile: File | null = null;
 
-    expandedRows = {};
 
-    activityValues: number[] = [0, 100];
+    formJob: FormGroup = new FormGroup({
+        title: new FormControl('', [Validators.required]),
+        venue: new FormControl('' , [Validators.required]),
+        date: new FormControl('', Validators.required),
+        time: new FormControl('' , [Validators.required]),
+        sponsor: new FormControl('' , [Validators.required])
+    });
 
-    isExpanded: boolean = false;
-
-    idFrozen: boolean = false;
-
-    loading: boolean = true;
-
-    @ViewChild("dt") table: Table;
-
-    @ViewChild("filter") filter: ElementRef;
-
-    constructor(
-        private customerService: CustomerService,
-        private productService: ProductService,
-        private breadcrumbService: BreadcrumbService
-    ) {
+    constructor(private productService: ProductService, private messageService: MessageService,
+                private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,
+                private apiService: ApiService, private cookieService: AuthCookieService) {
         this.breadcrumbService.setItems([
-            { label: "UI Kit" },
-            { label: "Table" },
+            {label: 'Pages'},
+            {label: 'Crud'}
         ]);
     }
-
+  
     ngOnInit() {
-        this.customerService.getCustomersLarge().then((customers) => {
-            this.customers1 = customers;
-            this.loading = false;
 
-            // @ts-ignore
-            this.customers1.forEach((customer) => (customer.date = new Date(customer.date))
-            );
-        });
-        this.customerService
-            .getCustomersMedium()
-            .then((customers) => (this.customers2 = customers));
-        this.customerService
-            .getCustomersLarge()
-            .then((customers) => (this.customers3 = customers));
-        this.productService
-            .getProductsWithOrdersSmall()
-            .then((data) => (this.products = data));
-
-        this.representatives = [
-            { name: "Amy Elsner", image: "amyelsner.png" },
-            { name: "Anna Fali", image: "annafali.png" },
-            { name: "Asiya Javayant", image: "asiyajavayant.png" },
-            { name: "Bernardo Dominic", image: "bernardodominic.png" },
-            { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-            { name: "Ioni Bowcher", image: "ionibowcher.png" },
-            { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-            { name: "Onyama Limba", image: "onyamalimba.png" },
-            { name: "Stephen Shaw", image: "stephenshaw.png" },
-            { name: "XuXue Feng", image: "xuxuefeng.png" },
+        this.cols = [
+            {field: 'first_name', header: 'First Name'},
+            {field: 'price', header: 'Price'},
+            {field: 'category', header: 'Category'},
+            {field: 'rating', header: 'Reviews'},
+            {field: 'inventoryStatus', header: 'Status'}
         ];
 
         this.statuses = [
-            { label: "Unqualified", value: "unqualified" },
-            { label: "Qualified", value: "qualified" },
-            { label: "New", value: "new" },
-            { label: "Negotiation", value: "negotiation" },
-            { label: "Renewal", value: "renewal" },
-            { label: "Proposal", value: "proposal" },
+            {label: 'APPROVED', value: 'instock'},
+            {label: 'PENDING', value: 'lowstock'},
+            {label: 'REJECTED', value: 'outofstock'}
         ];
+
+        // this.getAllAlumniMains();
+        this.getAllEventPosts();
     }
 
-    onSort() {
-        this.updateRowGroupMetaData();
+    getAllEventPosts() {
+        this.apiService.getAllEventPost().subscribe(
+            res => {
+                console.log('all Events: ', res.data);
+                this.events = res.data;
+            },
+            err => {
+                console.log(err);
+            }
+        )
     }
 
-    updateRowGroupMetaData() {
-        this.rowGroupMetadata = {};
+    onFileSelected(event: any): void {
+        this.selectedFile = event.target.files[0];
+    }
+    
+    uploadFile(): void {
+        if (this.selectedFile != null) {
 
-        if (this.customers3) {
-            for (let i = 0; i < this.customers3.length; i++) {
-                const rowData = this.customers3[i];
-                const representativeName = rowData.representative.name;
-
-                if (i === 0) {
-                    this.rowGroupMetadata[representativeName] = {
-                        index: 0,
-                        size: 1,
-                    };
-                } else {
-                    const previousRowData = this.customers3[i - 1];
-                    const previousRowGroup =
-                        previousRowData.representative.name;
-                    if (representativeName === previousRowGroup) {
-                        this.rowGroupMetadata[representativeName].size++;
-                    } else {
-                        this.rowGroupMetadata[representativeName] = {
-                            index: i,
-                            size: 1,
-                        };
-                    }
+            let form_value = this.formJob.value;
+            form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
+      
+            console.log('formData', form_value);
+        
+            this.apiService.createEventPost({ event: form_value }).subscribe(
+                res => {
+                console.log('job_post', res);
+                this.addImage();
+                },
+                err => {
+                console.log('error: ', err);
                 }
+            );
+        }
+      }
+
+      addImage(): void {
+        if (!this.selectedFile) {
+          // Handle the case where no file is selected
+          return;   
+        }
+    
+        const formData = new FormData();
+
+        formData.append('name', this.selectedFile.name);
+        formData.append('image', this.selectedFile);
+    
+        // Assuming you have a service to handle HTTP requests
+        this.apiService.updateEventPostImage(formData).subscribe(
+          (response) => {
+            console.log(response);
+            // Handle success
+          },
+          (error) => {
+            console.error(error);
+            // Handle error
+          }
+        );
+      }
+
+
+    openNew() {
+        this.event = {};
+        this.submitted = false;
+        this.eventDialog = true;
+    }
+
+    deleteSelectedProducts() {
+        this.deleteEventsDialog = true;
+    }
+
+    editEvent(event: any) {
+        this.event = {...event};
+        this.eventDialog = true;
+    }
+
+    deleteEvent(event: any) {
+        this.deleteEventDialog = true;
+        this.event = {...event};
+    }
+
+    confirmDeleteSelected(){
+        this.deleteEventsDialog = false;
+        this.events = this.events.filter(val => !this.selectedEvents.includes(val));
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
+        this.selectedEvents = null;
+    }
+
+    confirmDelete(){
+        this.deleteEventDialog = false;
+        this.events = this.events.filter(val => val.id !== this.event.id);
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Deleted', life: 3000});
+        this.event = {};
+    }
+
+    hideDialog() {
+        this.eventDialog = false;
+        this.submitted = false;
+    }
+
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.event.name.trim()) {
+            if (this.event.id) {
+                // @ts-ignore
+                this.event.inventoryStatus = this.event.inventoryStatus.value ? this.event.inventoryStatus.value: this.event.inventoryStatus;
+                this.events[this.findIndexById(this.event.id)] = this.event;
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Updated', life: 3000});
+            } else {
+                this.event.id = this.createId();
+                this.event.code = this.createId();
+                this.event.image = 'event-placeholder.svg';
+                // @ts-ignore
+                this.event.inventoryStatus = this.event.inventoryStatus ? this.event.inventoryStatus.value : 'INSTOCK';
+                this.events.push(this.event);
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Job Created', life: 3000});
+            }
+
+            this.events = [...this.events];
+            this.eventDialog = false;
+            this.event = {};
+        }
+    }
+
+    findIndexById(id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.events.length; i++) {
+            if (this.events[i].id === id) {
+                index = i;
+                break;
             }
         }
+
+        return index;
     }
 
-    expandAll() {
-        if (!this.isExpanded) {
-            this.products.forEach(
-                (product) => (this.expandedRows[product.name] = true)
-            );
-        } else {
-            this.expandedRows = {};
+    createId(): string {
+        let id = '';
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < 5; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
-        this.isExpanded = !this.isExpanded;
-    }
-
-    formatCurrency(value) {
-        return value.toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-        });
-    }
-
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = "";
+        return id;
     }
 }
-
-

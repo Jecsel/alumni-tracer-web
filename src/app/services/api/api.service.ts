@@ -54,6 +54,73 @@ export class ApiService {
       );
   }
 
+  createJobPost(data): Observable<any> {
+
+    return this.httpClient
+      .post(this.baseUrl + "/job_post", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateJobPostImage(data): Observable<any> {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "multipart/form-data",
+        "x-tracer-token": this.getToken(),
+        Authorization: `Bearer ${this.getToken()}`
+      }),
+    };
+
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+
+    return this.httpClient 
+      .post(this.baseUrl + "/job_post/updateImage", data, { headers })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  createEventPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateEventPostImage(data): Observable<any> {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "multipart/form-data",
+        "x-tracer-token": this.getToken(),
+        Authorization: `Bearer ${this.getToken()}`
+      }),
+    };
+
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+
+    return this.httpClient 
+      .post(this.baseUrl + "/event_post/updateImage", data, { headers })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getUserAlumniMain(id): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/alumni_main/" + id, this.httpOptions)
@@ -87,6 +154,26 @@ export class ApiService {
   getAllUsers(): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/user", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllJobPost(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/job_post", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllEventPost(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/event_post", this.httpOptions)
       .pipe(
         map((res: any) => {
           return res;

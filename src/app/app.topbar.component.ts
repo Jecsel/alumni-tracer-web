@@ -14,6 +14,7 @@ export class AppTopBarComponent {
     items: MenuItem[] | undefined;
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = false;
+    myProfile: any = {};
   
     constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService ) {}
   
@@ -37,6 +38,8 @@ export class AppTopBarComponent {
       this.apiService.getUserAlumniMain(usr_id).subscribe(
         res => {
           console.log('User Profile', res);
+          this.myProfile = res.data;
+          console.log('myProfile', this.myProfile);
         },
         err => {
           console.log('Error', err);

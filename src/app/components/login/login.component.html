@@ -76,7 +76,7 @@
 
                     <div>
                         <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
-                                    [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
+                                    [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
                             <ng-template pTemplate="item" let-item>
                                 <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 250px;"/>
                             </ng-template>
@@ -156,7 +156,7 @@
 
                     <div>
                         <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
-                                    [containerStyle]="{'max-width': '800px', 'margin':'auto'}" [numVisible]="6" [circular]="true">
+                                    [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
                             <ng-template pTemplate="item" let-item>
                                 <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 250px;"/>
                             </ng-template>
@@ -170,6 +170,7 @@
                 </div>
             </div>
             <div class="col-12 md:col-4 lg:col-4" *ngIf="showLoginModal">
+                <p-toast key="tst" [baseZIndex]="99999"></p-toast>
                 <form role="form" [formGroup]="formLogin">
                     <div class="login-panel shadow-5">
                         <label class="login-lbl">Login</label>
@@ -190,7 +191,7 @@
             
                         <div class="p-col-12 sign-up-link">
                             Don't have an account?
-                            <a href="#/sign-up" class="subinfo">
+                            <a href="#/registration" class="subinfo">
                                 <span>&nbsp;Sign Up</span>
                             </a>
                         </div>
