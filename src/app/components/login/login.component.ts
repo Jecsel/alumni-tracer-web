@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   username: any;
   password: any;
   showLoginModal = false;
+  events: any = [];
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -137,6 +138,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPhotos();
+    this.getAllEventPosts();
   }
 
     showErrorViaToast(mess) {
@@ -175,5 +177,17 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  getAllEventPosts() {
+    this.apiService.getAllEventPost().subscribe(
+        res => {
+            console.log('all Events: ', res.data);
+            this.events = res.data;
+        },
+        err => {
+            console.log(err);
+        }
+    )
+}
 
 }

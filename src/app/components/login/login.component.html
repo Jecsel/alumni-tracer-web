@@ -75,14 +75,14 @@
                     </div>
 
                     <div>
-                        <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
+                        <p-galleria [value]="events" [responsiveOptions]="galleriaResponsiveOptions"
                                     [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
                             <ng-template pTemplate="item" let-item>
-                                <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 250px;"/>
+                                <img [src]="'http://localhost:3001' + item.image_url" style="width: 100%; display: block; height: 250px;"/>
                             </ng-template>
-                            <ng-template pTemplate="thumbnail" let-item>
+                            <ng-template pTemplate="thumbnail" let-events>
                                 <div class="grid nogutter justify-center">
-                                    <img class="thumbnail-img" [src]="item.thumbnailImageSrc"/>
+                                    <img class="thumbnail-img" [src]="'http://localhost:3001' + events.image_url"/>
                                 </div>
                             </ng-template>
                         </p-galleria>
@@ -155,14 +155,14 @@
                     </div>
 
                     <div>
-                        <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions"
+                        <p-galleria [value]="events" [responsiveOptions]="galleriaResponsiveOptions"
                                     [containerStyle]="{'margin':'auto'}" [numVisible]="6" [circular]="true">
                             <ng-template pTemplate="item" let-item>
-                                <img [src]="item.itemImageSrc" style="width: 100%; display: block; height: 250px;"/>
+                                <img [src]="'http://localhost:3001' + item.image_url" style="width: 100%; display: block; height: 250px;"/>
                             </ng-template>
-                            <ng-template pTemplate="thumbnail" let-item>
+                            <ng-template pTemplate="thumbnail" let-events>
                                 <div class="grid nogutter justify-center">
-                                    <img class="thumbnail-img" [src]="item.thumbnailImageSrc"/>
+                                    <img class="thumbnail-img" [src]="'http://localhost:3001' + events.image_url"/>
                                 </div>
                             </ng-template>
                         </p-galleria>
@@ -195,20 +195,20 @@
                                 <span>&nbsp;Sign Up</span>
                             </a>
                         </div>
-                        <div class="checkbox-container">
+                        <!-- <div class="checkbox-container">
                             <div class="remember-me">
                                 <p-checkbox binary="true"></p-checkbox>
                                 <span>Remember me</span>
                             </div>
-                        </div>
+                        </div> -->
             
                         <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
             
-                        <div class="separator"></div>
+                        <!-- <div class="separator"></div>
             
                         <a href="#" class="subinfo">
                             <span>Forgot your password?</span>
-                        </a>
+                        </a> -->
             
                     </div>
                 </form>

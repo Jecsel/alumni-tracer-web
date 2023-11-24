@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem, SelectItem } from 'primeng/api';
 import { Product } from 'src/app/demo/domain/product';
 import { AnnouncementService } from 'src/app/demo/service/announcmentservice';
+import { ApiService } from 'src/app/services/api/api.service';
+import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.service';
 
 @Component({
   selector: 'app-user-homepage',
@@ -20,11 +22,56 @@ export class UserHomepageComponent implements OnInit {
   targetCities: any[];
   orderCities: any[];
 
-  constructor(private announcementService: AnnouncementService) { }
+  isActiveButton = 'personal';
+  myProfile: any = {};
+  jobs: any = [];
+
+  constructor(private announcementService: AnnouncementService, public authCookie: AuthCookieService, private apiService: ApiService ) { }
 
   ngOnInit(): void {
     this.getProductList();
+    this.getUserProfile();
+    this.getAllJobs();
   }
+
+  selectPersonal() {
+    this.isActiveButton = 'personal';
+  }
+
+  selectStatus() {
+    this.isActiveButton = 'status';
+  }
+
+  selectUpload() {
+    this.isActiveButton = 'uploaded';
+  }
+
+  getUserProfile() {
+    var usr_id = this.authCookie.getToken('user_id');
+  
+    this.apiService.getUserAlumniMain(usr_id).subscribe(
+      res => {
+        console.log('User Profile', res);
+        this.myProfile = res.data;
+        console.log('myProfile', this.myProfile);
+      },
+      err => {
+        console.log('Error', err);
+      }
+    )
+  }
+  
+  getAllJobs() {
+    this.apiService.getAllJobPost().subscribe(
+        res => {
+            console.log('all Jobs: ', res.data);
+            this.jobs = res.data;
+        },
+        err => {
+            console.log(err);
+        }
+    )
+}
 
   getProductList() {
     this.announcementService.getAnnouncements().then(data => this.products = data);
