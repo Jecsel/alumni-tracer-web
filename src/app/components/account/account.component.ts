@@ -20,7 +20,7 @@ export class AccountComponent implements OnInit {
     deleteProductDialog: boolean = false;
     deleteProductsDialog: boolean = false;
     products: any;
-    product: any;
+    account: any;
     selectedProducts: Product[];
     submitted: boolean;
     cols: any[];
@@ -77,7 +77,7 @@ export class AccountComponent implements OnInit {
 
 
     openNew() {
-        this.product = {};
+        this.account = {};
         this.submitted = false;
         this.productDialog = true;
     }
@@ -86,14 +86,14 @@ export class AccountComponent implements OnInit {
         this.deleteProductsDialog = true;
     }
 
-    editProduct(product: any) {
-        this.product = {...product};
+    editProduct(account: any) {
+        this.account = {...account};
         this.productDialog = true;
     }
 
-    deleteProduct(product: any) {
+    deleteProduct(account: any) {
         this.deleteProductDialog = true;
-        this.product = {...product};
+        this.account = {...account};
     }
 
     confirmDeleteSelected(){
@@ -105,9 +105,9 @@ export class AccountComponent implements OnInit {
 
     confirmDelete(){
         this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
+        this.products = this.products.filter(val => val.id !== this.account.id);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-        this.product = {};
+        this.account = {};
     }
 
     hideDialog() {
@@ -118,25 +118,25 @@ export class AccountComponent implements OnInit {
     saveProduct() {
         this.submitted = true;
 
-        if (this.product.name.trim()) {
-            if (this.product.id) {
+        if (this.account.name.trim()) {
+            if (this.account.id) {
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
+                this.account.inventoryStatus = this.account.inventoryStatus.value ? this.account.inventoryStatus.value: this.account.inventoryStatus;
+                this.products[this.findIndexById(this.account.id)] = this.account;
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
             } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
+                this.account.id = this.createId();
+                this.account.code = this.createId();
+                this.account.image = 'account-placeholder.svg';
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
+                this.account.inventoryStatus = this.account.inventoryStatus ? this.account.inventoryStatus.value : 'INSTOCK';
+                this.products.push(this.account);
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
             }
 
             this.products = [...this.products];
             this.productDialog = false;
-            this.product = {};
+            this.account = {};
         }
     }
 

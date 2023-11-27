@@ -39,6 +39,8 @@ import { AnnouncementComponent } from './components/announcement/announcement.co
 import { EventComponent } from './components/event/event.component';
 import { ReportComponent } from './components/report/report.component';
 import { UserHomepageComponent } from './components/user-homepage/user-homepage.component';
+import { UserJobComponent } from './components/user-job/user-job.component';
+import { UserEventComponent } from './components/user-event/user-event.component';
 
 @NgModule({
     imports: [
@@ -59,6 +61,8 @@ import { UserHomepageComponent } from './components/user-homepage/user-homepage.
                     {path: 'event', component: EventComponent},
                     {path: 'report', component: ReportComponent},
                     {path: 'home', component: DashboardDemoComponent},
+                    {path: 'user-job', component: UserJobComponent},
+                    {path: 'user-event', component: UserEventComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/input', component: InputDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},

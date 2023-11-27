@@ -171,6 +171,86 @@ export class ApiService {
       );
   }
 
+  getAllUserJobPosts(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/userJobPosts",data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllActiveJobs(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/currentActiveJobs", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getCurrentEvents(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/getCurrentEvents", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getUpcomingEvents(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/getUpcomingEvents", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  acceptJobPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/acceptJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  rejectJobPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/rejectJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  acceptEventPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/acceptEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  rejectEventPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/rejectEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getAllEventPost(): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/event_post", this.httpOptions)

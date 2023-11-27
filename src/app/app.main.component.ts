@@ -43,9 +43,9 @@ export class AppMainComponent implements OnInit{
         this.primengConfig.ripple = true;
 
         this.items = [
-            { label: 'Home', icon: 'pi pi-fw pi-home' },
-            { label: 'Job Portal', icon: 'pi pi-fw pi-calendar' },
-            { label: 'Events', icon: 'pi pi-fw pi-pencil' },
+            { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/homepage'] },
+            { label: 'Job Portal', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/user-job'] },
+            { label: 'Events', icon: 'pi pi-fw pi-calendar', routerLink: ['/user-event'] },
         ];
 
         this.getUserType();

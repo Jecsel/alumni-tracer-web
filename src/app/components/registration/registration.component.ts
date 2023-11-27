@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
 
     ngAfterViewInit() {
         this.accountComponent?.componentInitialized.subscribe(() => {
-          // Now accountComponent is initialized
+          // Now accountCo mponent is initialized
         });
       }
 

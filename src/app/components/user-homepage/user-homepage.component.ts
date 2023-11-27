@@ -25,13 +25,18 @@ export class UserHomepageComponent implements OnInit {
   isActiveButton = 'personal';
   myProfile: any = {};
   jobs: any = [];
+  events: any = [];
+
+  upcomingEvents: any = [];
 
   constructor(private announcementService: AnnouncementService, public authCookie: AuthCookieService, private apiService: ApiService ) { }
 
   ngOnInit(): void {
     this.getProductList();
     this.getUserProfile();
-    this.getAllJobs();
+    this.getAllActiveJobs();
+    this.getAllCurrentEvents();
+    this.getAllUpcomingEvents();
   }
 
   selectPersonal() {
@@ -61,8 +66,8 @@ export class UserHomepageComponent implements OnInit {
     )
   }
   
-  getAllJobs() {
-    this.apiService.getAllJobPost().subscribe(
+  getAllActiveJobs() {
+    this.apiService.getAllActiveJobs().subscribe(
         res => {
             console.log('all Jobs: ', res.data);
             this.jobs = res.data;
@@ -71,7 +76,31 @@ export class UserHomepageComponent implements OnInit {
             console.log(err);
         }
     )
-}
+  }
+
+  getAllCurrentEvents() {
+    this.apiService.getCurrentEvents().subscribe(
+      res => {
+        console.log('all Events: ', res.data);
+        this.events = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  getAllUpcomingEvents() {
+    this.apiService.getUpcomingEvents().subscribe(
+      res => {
+        console.log('all Events: ', res.data);
+        this.upcomingEvents = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
   getProductList() {
     this.announcementService.getAnnouncements().then(data => this.products = data);
@@ -99,9 +128,9 @@ export class UserHomepageComponent implements OnInit {
         {label: 'Price High to Low', value: '!price'},
         {label: 'Price Low to High', value: 'price'}
     ];
-}
+  }
 
-onSortChange(event) {
+  onSortChange(event) {
     const value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -111,7 +140,7 @@ onSortChange(event) {
         this.sortOrder = 1;
         this.sortField = value;
     }
-}
+  }
 
 
 }

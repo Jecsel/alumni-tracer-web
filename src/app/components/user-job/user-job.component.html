@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="card grid mt-3 announcement-container">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+        <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+        <div class="col-12">
+            <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <div class="grid">
+                            <div class="col-12 md:col-6">
+                                <h5>My Job Posts</h5>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <span class="p-input-icon-left mb-2 md:mb-0">
+                                    <i class="pi pi-search"></i>
+                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                </span>	
+                            </div>
+                        </div>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h my-4 md:my-0 w-5 md:w-10rem shadow-2 mr-5"/>
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold">Company: {{job.company_name}}</div>
+                                <div>Address: {{job.company_address}}</div>
+                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                <div class="mb-3">
+                                    <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                    <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                    <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-center">
+                                <div class="flex align-items-center">
+                                    <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h w-5 shadow-2 my-3 mx-0"/>
+
+                                <div><span class="font-semibold">Address: {{job.company_address}}</span></div>
+                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                <div class="mb-3">
+                                    <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                    <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                    <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+
+    <div class="card grid mt-3 announcement-container">
+        <div class="col-12">
+            <p-dataView #dv [value]="activeJobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <div class="grid">
+                            <div class="col-12 md:col-6">
+                                <h5>All Job Posts</h5>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <span class="p-input-icon-left mb-2 md:mb-0">
+                                    <i class="pi pi-search"></i>
+                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                </span>	
+                            </div>
+                        </div>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h my-4 md:my-0 w-5 md:w-10rem shadow-2 mr-5"/>
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold">Company: {{job.company_name}}</div>
+                                <div class="mb-3">Address: {{job.company_address}}</div>
+                                <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
+                                <div class="mb-3">
+                                    <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                    <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                    <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-center">
+                                <div class="flex align-items-center">
+                                    <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h w-5 shadow-2 my-3 mx-0"/>
+
+                                <div><span class="font-semibold">Address: {{job.company_address}}</span></div>
+                                <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
+                                <div class="mb-3">
+                                    <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                    <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                    <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+
+    <p-dialog [(visible)]="jobDialog" [style]="{width: '450px'}" header="Add New Job Post" [modal]="true" class="p-fluid">
+        <form role="form" [formGroup]="formJob">
+            <input type="file" (change)="onFileSelected($event)" />
+            <div class="field mt-2">
+                <label for="company_name">Company Name</label>
+                <input type="text" pInputText id="company_name" formControlName="company_name" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="company_email">Company Email</label>
+                <input type="text" pInputText id="company_email" formControlName="company_email" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="company_address">Company Address</label>
+                <input type="text" pInputText id="company_address" formControlName="company_address" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="position">Position</label>
+                <input type="text" pInputText id="position" formControlName="position" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="qualification">Qualification</label>
+                <input type="text" pInputText id="qualification" formControlName="qualification" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="deployment_date">Date of Submission</label>
+                <input type="date" pInputText id="deployment_date" formControlName="deployment_date" required autofocus/>
+            </div>
+            <div class="field">
+                <label for="active_date">Date Posted</label>
+                <input type="date" pInputText id="active_date" formControlName="active_date" required autofocus/>
+            </div>
+        </form>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="uploadFile()"></button>
+        </ng-template>
+    </p-dialog>
+
+</div>

@@ -16,8 +16,18 @@
     }
 }
 
+.surface-ground {
+    background: url("../../../assets/images/main_background.jpeg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .login-panel {
     position: inherit !important;
+}
+
+.thumbnail-img {
+    min-width: 100px;
 }
 
 .login-label {

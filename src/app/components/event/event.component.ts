@@ -67,6 +67,40 @@ export class EventComponent implements OnInit {
         this.getAllEventPosts();
     }
 
+    showErrorViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
+      }
+    
+    showSuccessViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: mess });
+    }
+
+    acceptEvent(id) {
+        this.apiService.acceptEventPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('event_post', res);
+                this.showSuccessViaToast('Event Accepted!');
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
+    }
+
+    rejectEvent(id) {
+        this.apiService.rejectEventPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('event_post', res);
+                this.showSuccessViaToast('Event Rejected!');
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
+    }
+
     getAllEventPosts() {
         this.apiService.getAllEventPost().subscribe(
             res => {
@@ -118,10 +152,12 @@ export class EventComponent implements OnInit {
         this.apiService.updateEventPostImage(formData).subscribe(
           (response) => {
             console.log(response);
+            this.showSuccessViaToast('Successfully created new Event');
             // Handle success
           },
           (error) => {
             console.error(error);
+            this.showErrorViaToast('Unsuccessful creating new Event!');
             // Handle error
           }
         );

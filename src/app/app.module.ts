@@ -160,6 +160,8 @@ import { UserHomepageComponent } from './components/user-homepage/user-homepage.
 import { PublicService } from './demo/service/publicservice';
 import { AnnouncementService } from './demo/service/announcmentservice';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { UserJobComponent } from './components/user-job/user-job.component';
+import { UserEventComponent } from './components/user-event/user-event.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -309,7 +311,9 @@ FullCalendarModule.registerPlugins([
         EventComponent,
         ReportComponent,
         UserHomepageComponent,
-        RegistrationComponent
+        RegistrationComponent,
+        UserJobComponent,
+        UserEventComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

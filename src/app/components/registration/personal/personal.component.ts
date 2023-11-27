@@ -120,6 +120,7 @@ export class PersonalComponent implements OnInit {
     form_value.civil_status = form_value.civil_status.id;
     form_value.gender = form_value.gender.id;
     form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
+    form_value.batch_years = form_value.year_graduated;
 
     console.log('confirm', form_value);
 

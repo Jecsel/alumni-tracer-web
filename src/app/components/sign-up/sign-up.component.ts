@@ -60,7 +60,7 @@ export class SignUpComponent implements OnInit {
 
   confirm() {
     let form_value = this.formSignUp.value;
-    form_value.user_type_id = form_value.user_type_id.id;
+    form_value.user_type_id = 1;
     form_value.batch_year = form_value.batch_year.year;
 
     console.log('sign_up', form_value);
