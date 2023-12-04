@@ -25,9 +25,11 @@ export class EventComponent implements OnInit {
     statuses: any[];
     rowsPerPageOptions = [5, 10, 20];
     events: any = [];
+    selectedEvent: any;
 
     file: File = null;
     selectedFile: File | null = null;
+    showViewDialog: boolean = false;
 
 
     formJob: FormGroup = new FormGroup({
@@ -65,6 +67,49 @@ export class EventComponent implements OnInit {
 
         // this.getAllAlumniMains();
         this.getAllEventPosts();
+    }
+
+    viewJob(data){
+        console.log('View Job', data);
+        this.selectedEvent = data;
+        this.showViewDialog = true;
+        
+    }
+
+    showErrorViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
+      }
+    
+    showSuccessViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: mess });
+    }
+
+    acceptEvent(id) {
+        this.apiService.acceptEventPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('event_post', res);
+                this.showSuccessViaToast('Event Accepted!');
+                location.reload();
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
+    }
+
+    rejectEvent(id) {
+        this.apiService.rejectEventPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('event_post', res);
+                this.showSuccessViaToast('Event Rejected!');
+                location.reload();
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
     }
 
     getAllEventPosts() {
@@ -118,10 +163,12 @@ export class EventComponent implements OnInit {
         this.apiService.updateEventPostImage(formData).subscribe(
           (response) => {
             console.log(response);
+            this.showSuccessViaToast('Successfully created new Event');
             // Handle success
           },
           (error) => {
             console.error(error);
+            this.showErrorViaToast('Unsuccessful creating new Event!');
             // Handle error
           }
         );

@@ -1,299 +1,185 @@
 <div class="container">
-
-    <div class="card home-tabs">
-        <div class="grid">
-            <div class="col-12 md:col-4">
-                <button 
-                    pButton pRipple label="Personal Information" 
-                    (click)="selectPersonal()"
-                    class="mr-2 mb-2 w-100" [ngClass]="{'p-button-secondary': isActiveButton == 'personal'}">
-                </button>
-            </div>
-            <div class="col-12 md:col-4">
-                <button 
-                    pButton pRipple label="Post Update Status" 
-                    (click)="selectStatus()"
-                    class="mr-2 mb-2 w-100" [ngClass]="{'p-button-secondary': isActiveButton == 'status'}">
-                </button>
-            </div>
-            <div class="col-12 md:col-4">   
-                <button 
-                    pButton pRipple label="Uploaded" 
-                    (click)="selectUpload()"
-                    class="mr-2 mb-2 w-100" [ngClass]="{'p-button-secondary': isActiveButton == 'uploaded'}">
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card profile-container" *ngIf="isActiveButton == 'personal'">
-        <div class="grid">
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="name" class="col-12 mb-2 md:col-2 md:mb-0">Name</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="name" type="text" disabled [(ngModel)]="myProfile.first_name + ' ' + myProfile.last_name"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="age" class="col-12 mb-2 md:col-2 md:mb-0">Age</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="age" type="text" disabled [(ngModel)]="myProfile.age"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="address" class="col-12 mb-2 md:col-2 md:mb-0">Address</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="address" type="text" disabled [(ngModel)]="myProfile.municipality + ', ' + myProfile.province"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="cp_no" class="col-12 mb-2 md:col-2 md:mb-0">Contact Number</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="cp_no" type="text" disabled [(ngModel)]="myProfile.phone_number"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="email" class="col-12 mb-2 md:col-2 md:mb-0">Email Address</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="email" type="email" disabled [(ngModel)]="myProfile.email_address"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="company_name" class="col-12 mb-2 md:col-2 md:mb-0">Company Name</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="company_name" type="text" disabled [(ngModel)]="myProfile.company_name"/>
-                    </div>
-                </div>
-            </div>  
-
-            <div class="col">
-                <div class="field grid">
-                    <label htmlFor="work_position" class="col-12 mb-2 md:col-2 md:mb-0">Work Position</label>
-                    <div class="col-12 md:col-10">
-                        <input class="mx-4" pInputText id="work_position" type="text" disabled  [(ngModel)]="myProfile.work_position"/>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="grid mt-5 announcement-container" *ngIf="isActiveButton == 'personal'">
+    <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
         <div class="col-12">
-            <div class="card">
-                <h5>JOB POSTED</h5>
-                <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
-                    <ng-template pTemplate="header">
-                        <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
-                            <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown> -->
-                            <span class="p-input-icon-left mb-2 md:mb-0">
-                                <i class="pi pi-search"></i>
-                                <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
-                            </span>	
-                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <div class="grid">
+                            <div class="col-12 md:col-6">
+                                <h5>Latest Job Posts</h5>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <span class="p-input-icon-left mb-2 md:mb-0">
+                                    <i class="pi pi-search"></i>
+                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                </span>	
+                            </div>
                         </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="listItem">
-                        <div class="col-12">
-                            <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
-                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
-                                <div class="flex-1 text-center md:text-left">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="listItem">
+                    <div class="col-12" (click)="viewJob(job)">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold">Company: {{job.company_name}}</div>
+                                <div class="mb-3">Address: {{job.company_address}}</div>
+                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                <div class="flex align-items-center mt-2">
+                                    <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-job pTemplate="gridItem">
+                    <div class="col-12 md:col-4" (click)="viewJob(job)">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-center">
+                                <div class="flex align-items-center">
                                     <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
-                                    <div class="mb-3">Address: {{job.company_address}}</div>
-                                    <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
-                                    <div class="flex align-items-center mt-2">
-                                        <!-- <span class="font-semibold"><b class="p-label-success">APPROVED</b></span> -->
-                                        <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="gridItem">
-                        <div class="col-12 md:col-4">
-                            <div class="card m-3 border-1 surface-border">
-                                <div class="flex align-items-center justify-content-between">
-                                    <div class="flex align-items-center">
-                                        <span class="font-semibold">Company: {{job.company_name}}</span>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="w-9 shadow-2 my-3 mx-0"/>
-                                    <div class="text-2xl font-bold">Address: {{job.company_address}}</div>
-                                    <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
-                                    <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
-                                </div>
+                            <div class="text-center">
+                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+
+                                <div><span class="font-semibold">Address: {{job.company_address}}</span></div>
+                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
                             </div>
                         </div>
-                    </ng-template>
-                </p-dataView>
-            </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
         </div>
+
+        <app-view-job *ngIf="showViewJobDialog" [jobDialogStat]="showViewJobDialog" [jobData]="selectedJob"></app-view-job>
     </div>
 
-    
-    <div class="grid mt-5 announcement-container" *ngIf="isActiveButton == 'status'">
+    <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
         <div class="col-12">
-            <div class="card">
-                <h5>JOB POSTED</h5>
-                <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
-                    <ng-template pTemplate="header">
-                        <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
-                            <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown> -->
-                            <span class="p-input-icon-left mb-2 md:mb-0">
-                                <i class="pi pi-search"></i>
-                                <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
-                            </span>	
-                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <div class="grid">
+                            <div class="col-12 md:col-6">
+                                <h5>Current Events</h5>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <span class="p-input-icon-left mb-2 md:mb-0">
+                                    <i class="pi pi-search"></i>
+                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                </span>	
+                            </div>
                         </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="listItem">
-                        <div class="col-12">
-                            <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
-                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
-                                <div class="flex-1 text-center md:text-left">
-                                    <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
-                                    <div class="mb-3">Address: {{job.company_address}}</div>
-                                    <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
-                                    <div class="flex align-items-center mt-2">
-                                        <span class="font-semibold">{{job.status}}</span>
-                                    </div>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-event pTemplate="listItem">
+                    <div class="col-12" (click)="viewEvent(event)">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold">Title: {{event.title}}</div>
+                                <div class="mb-3">Venue: {{event.venue}}</div>
+                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div class="flex align-items-center mt-2">
+                                    <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
                                 </div>
                             </div>
                         </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="gridItem">
-                        <div class="col-12 md:col-4">
-                            <div class="card m-3 border-1 surface-border">
-                                <div class="grid">
-                                    <div class="col-12 md:col-12 lg:col-6">
-                                        <div class=""><b>Company:</b> {{job.company_name}}</div>
-                                        <div class=""><b>Address:</b> {{job.company_address}}</div>
-                                        <div class="mb-3"><b>Deployment Date:</b> {{job.created_at | date}}</div>
-                                    </div>
-                                    <div class="col-12 md:col-12 lg:col-6">
-                                        <div class="text-center">
-                                            <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="w-9 shadow-2 mx-0"/>
-                                            
-                                        </div>
-                                    </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-event pTemplate="gridItem">
+                    <div class="col-12 md:col-4" (click)="viewEvent(event)">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="flex align-items-center">
+                                    
                                 </div>
-                                <button pButton pRipple type="button" 
-                                    class="p-button-warning mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 0"
-                                    style="text-align: center;">
-                                    {{job.status == 0 ? 'PENDING' : ''}}
-                                </button>
-
-                                <button pButton pRipple type="button" 
-                                    class="p-button-success mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 1"
-                                    style="text-align: center;">
-                                    {{job.status == 1 ? 'APPROVED' : ''}}
-                                </button>
-
-                                <button pButton pRipple type="button" 
-                                    class="p-button-danger mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 2"
-                                    style="text-align: center;">
-                                    {{job.status == 2 ? 'REJECTED' : ''}}
-                                </button>
-                                
+                            </div>
+                            <div class="text-center">
+                                <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+                            </div>
+                            <div class="text-start">
+                                <div><b>Title:</b> {{event.title}}</div>
+                                <div><b>Venue:</b> {{event.venue}}</div>
+                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
                             </div>
                         </div>
-                    </ng-template>
-                </p-dataView>
-            </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
         </div>
+
+        <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
     </div>
 
-    <div class="grid mt-5 announcement-container" *ngIf="isActiveButton == 'uploaded'">
-        <div class="col-12">
-            <div class="card">
-                <h5>JOB POSTED</h5>
-                <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
-                    <ng-template pTemplate="header">
-                        <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
-                            <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown> -->
-                            <span class="p-input-icon-left mb-2 md:mb-0">
-                                <i class="pi pi-search"></i>
-                                <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
-                            </span>	
-                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
+        <div class="col-12" (click)="viewEvent(event)">
+            <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <div class="grid">
+                            <div class="col-12 md:col-6">
+                                <h5>Upcoming Events</h5>
+                            </div>
+                            <div class="col-12 md:col-6">
+                                <span class="p-input-icon-left mb-2 md:mb-0">
+                                    <i class="pi pi-search"></i>
+                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                </span>	
+                            </div>
                         </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="listItem">
-                        <div class="col-12">
-                            <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
-                                <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="my-4 md:my-0 w-9 md:w-10rem shadow-2 mr-5"/>
-                                <div class="flex-1 text-center md:text-left">
-                                    <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
-                                    <div class="mb-3">Address: {{job.company_address}}</div>
-                                    <div class="mb-3">Deployment Date: {{job.created_at | date}}</div>
-                                    <div class="flex align-items-center mt-2">
-                                        <span class="font-semibold">{{job.status}}</span>
-                                    </div>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </ng-template>
+
+                <ng-template let-event pTemplate="listItem">
+                    <div class="col-12" (click)="viewEvent(event)">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                            <div class="flex-1 text-center md:text-left">
+                                <div class="font-bold">Title: {{event.title}}</div>
+                                <div class="mb-3">Venue: {{event.venue}}</div>
+                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div class="flex align-items-center mt-2">
+                                    <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
                                 </div>
                             </div>
                         </div>
-                    </ng-template>
-    
-                    <ng-template let-job pTemplate="gridItem">
-                        <div class="col-12 md:col-4">
-                            <div class="card m-3 border-1 surface-border">
-                                <button pButton pRipple type="button" 
-                                    class="p-button-warning mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 0"
-                                    style="text-align: center;">
-                                    {{job.status == 0 ? 'PENDING' : ''}}
-                                </button>
+                    </div>
+                </ng-template>
 
-                                <button pButton pRipple type="button" 
-                                    class="p-button-success mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 1"
-                                    style="text-align: center;">
-                                    {{job.status == 1 ? 'APPROVED' : ''}}
-                                </button>
-
-                                <button pButton pRipple type="button" 
-                                    class="p-button-danger mr-2 mb-2 w-100" 
-                                    *ngIf="job.status == 2"
-                                    style="text-align: center;">
-                                    {{job.status == 2 ? 'REJECTED' : ''}}
-                                </button>
-                                <div class="details-content">
-                                    <div class=""><b>Company:</b> {{job.company_name}}</div>
-                                    <div class=""><b>Address:</b> {{job.company_address}}</div>
-                                    <div class="mb-3"><b>Deployment Date:</b> {{job.created_at | date}}</div>
+                <ng-template let-event pTemplate="gridItem">
+                    <div class="col-12 md:col-4" (click)="viewEvent(event)">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="flex align-items-center">
+                                    
                                 </div>
-                                <div class="image-content">
-                                    <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="w-9 shadow-2 mx-0"/>
-                                </div>
-                            
-                                
+                            </div>
+                            <div class="text-center">
+                                <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+                            </div>
+                            <div class="text-start">
+                                <div><b>Title:</b> {{event.title}}</div>
+                                <div><b>Venue:</b> {{event.venue}}</div>
+                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
                             </div>
                         </div>
-                    </ng-template>
-                </p-dataView>
-            </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
         </div>
+
+        <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
     </div>
 </div>

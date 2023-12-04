@@ -141,6 +141,16 @@ export class ApiService {
       );
   }
 
+  updateWork(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/work/updateWork", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getUserAlumniWork(id): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/work/" + id, this.httpOptions)
@@ -171,6 +181,126 @@ export class ApiService {
       );
   }
 
+  getAllUserJobPosts(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/userJobPosts",data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllActiveApproveJobs(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/currentActiveApproveJobs", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateSelectedJob(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/updateJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateSelectedEvent(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/updateEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateAlumni(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/updateAlumni", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllActiveJobs(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/currentActiveJobs", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getCurrentEvents(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/getCurrentEvents", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getUpcomingEvents(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/getUpcomingEvents", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  acceptJobPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/acceptJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  rejectJobPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/rejectJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  acceptEventPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/acceptEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  rejectEventPost(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/rejectEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getAllEventPost(): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/event_post", this.httpOptions)
@@ -185,6 +315,26 @@ export class ApiService {
   getAllAlumniMains(): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/alumni_main", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getDashboardCount(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/dashboard_count", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAdminDashboardCount(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/dashboard_count", this.httpOptions)
       .pipe(
         map((res: any) => {
           return res;

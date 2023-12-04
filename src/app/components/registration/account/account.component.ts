@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
       Validators.required,
       Validators.minLength(8)
     ]),
-    user_type_id: new FormControl(null, Validators.required)
+    user_type_id: new FormControl(1)
   });
 
   batch_years: any[] = [
@@ -53,7 +53,7 @@ export class AccountComponent implements OnInit {
   confirm() {
 
     let form_value = this.accountForm.value;
-    form_value.user_type_id = form_value.user_type_id.id;
+    form_value.user_type_id = 1;
     form_value.is_active = true;
     console.log('sign_up', form_value);
 

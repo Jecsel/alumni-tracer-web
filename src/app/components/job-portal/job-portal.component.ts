@@ -28,14 +28,17 @@ export class JobPortalComponent implements OnInit {
 
     file: File = null;
     selectedFile: File | null = null;
-
+    showViewDialog: boolean = false;
+    selectedJob: any;
 
     formJob: FormGroup = new FormGroup({
         company_name: new FormControl('', [Validators.required]),
         company_email: new FormControl('' , [Validators.required]),
         company_address: new FormControl('', Validators.required),
         position: new FormControl('' , [Validators.required]),
-        qualification: new FormControl('' , [Validators.required])
+        qualification: new FormControl('' , [Validators.required]),
+        deployment_date: new FormControl(null, [Validators.required]),
+        active_date: new FormControl(null, [Validators.required])
     });
 
     constructor(private productService: ProductService, private messageService: MessageService,
@@ -67,6 +70,13 @@ export class JobPortalComponent implements OnInit {
         this.getAllJobs();
     }
 
+    viewJob(data){
+        console.log('View Job', data);
+        this.selectedJob = data;
+        this.showViewDialog = true;
+        
+    }
+
     getAllJobs() {
         this.apiService.getAllJobPost().subscribe(
             res => {
@@ -75,43 +85,42 @@ export class JobPortalComponent implements OnInit {
             },
             err => {
                 console.log(err);
+                this.showErrorViaToast('Contact your administrator');
             }
         )
+    }
+    
+
+    showErrorViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
+      }
+    
+    showSuccessViaToast(mess) {
+        this.messageService.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: mess });
     }
 
     onFileSelected(event: any): void {
         // this.file = event.target.files[0];
         this.selectedFile = event.target.files[0];
-      }
+    }
     
-      uploadFile(): void {
+    uploadFile(): void {
         if (this.selectedFile != null) {
 
             let form_value = this.formJob.value;
             form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
-
-
-        //   const formData: FormData = new FormData();
-      
-        //   formData.append('company_name', this.formJob.get('company_name')?.value);
-        //   formData.append('company_email', this.formJob.get('company_email')?.value);
-        //   formData.append('position', this.formJob.get('position')?.value);
-        //   formData.append('qualification', this.formJob.get('qualification')?.value);
-        //   formData.append('user_id', this.cookieService.getToken('user_id'));
-      
-        //   formData.append('file', this.file, this.file.name);
-      
-          console.log('formData', form_value);
-      
-          this.apiService.createJobPost({ job: form_value }).subscribe(
-            res => {
-              console.log('job_post', res);
-              this.addImage();
-            },
-            err => {
-              console.log('error: ', err);
-            }
-          );
+            console.log('formData', form_value);
+        
+            this.apiService.createJobPost({ job: form_value }).subscribe(
+                res => {
+                    console.log('job_post', res);
+                    this.addImage();
+                },
+                err => {
+                    console.log('error: ', err);
+                    this.showErrorViaToast('Unsuccessful creating new Job!');
+                }
+            );
         }
       }
 
@@ -130,15 +139,43 @@ export class JobPortalComponent implements OnInit {
         this.apiService.updateJobPostImage(formData).subscribe(
           (response) => {
             console.log(response);
-            // Handle success
+            this.showSuccessViaToast('Successfully created new Job');
+            location.reload();
           },
           (error) => {
             console.error(error);
-            // Handle error
+            this.showErrorViaToast('Unsuccessful creating new Job!');
           }
         );
       }
+    
+    acceptJob(id) {
+        this.apiService.acceptJobPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('job_post', res);
+                this.showSuccessViaToast('Job Accepted!');
+                location.reload();
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
+    }
 
+    rejectJob(id) {
+        this.apiService.rejectJobPost({ job_post_id: id}).subscribe(
+            res => {
+                console.log('job_post', res);
+                this.showSuccessViaToast('Job Rejected!');
+                location.reload();
+            },
+            err => {
+                console.log('error: ', err);
+                this.showErrorViaToast('Contact your administrator');
+            }
+        )
+    }
 
     openNew() {
         this.job = {};

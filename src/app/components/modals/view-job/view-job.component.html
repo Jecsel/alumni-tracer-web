@@ -1,0 +1,39 @@
+<p-dialog [(visible)]="jobDialog" [style]="{width: '450px'}" header="Job Post" [modal]="true" class="p-fluid">
+    <img [src]="jobData.image_url ? 'http://localhost:3001' + jobData.image_url : 'assets/demo/images/product/temp_profile.jpg'" [alt]="jobData.name" width="100" class="shadow-4" />
+    <form role="form" [formGroup]="formJob">
+        <input *ngIf="showUpdateBtn" type="file" (change)="onFileSelected($event)" />
+        <div class="field mt-2">
+            <label for="company_name">Company Name</label>
+            <input type="text" pInputText id="company_name" formControlName="company_name" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="company_email">Company Email</label>
+            <input type="text" pInputText id="company_email" formControlName="company_email" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="company_address">Company Address</label>
+            <input type="text" pInputText id="company_address" formControlName="company_address" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="position">Position</label>
+            <input type="text" pInputText id="position" formControlName="position" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="qualification">Qualifications</label>
+            <input type="text" pInputText id="qualification" formControlName="qualification" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="active_date">Date Posted</label>
+            <input type="date" pInputText id="deployment_date" formControlName="deployment_date" required autofocus/>
+        </div>
+        <div class="field">
+            <label for="deployment_date">Date of Submission</label>
+            <input type="date" pInputText id="active_date" formControlName="active_date" required autofocus/>
+        </div>
+    </form>
+
+    <ng-template pTemplate="footer" *ngIf="showUpdateBtn">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text" (click)="updateSelectedJob()"></button>
+    </ng-template>
+</p-dialog>

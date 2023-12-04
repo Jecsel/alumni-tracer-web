@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <p-toast></p-toast>
+            <p-toast key="tst" [baseZIndex]="99999"></p-toast>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
@@ -19,7 +19,7 @@
             <p-table #dt [value]="jobs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedJobs" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Users</h5>
+                        <h5 class="m-0">Manage Jobs</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
@@ -38,12 +38,12 @@
                         <th pSortableColumn="batch_year">Position <p-sortIcon field="batch_year"></p-sortIcon></th>
                         <th class="custom-w-th" pSortableColumn="created_at">Date of Submission <p-sortIcon field="created_at"></p-sortIcon></th>
 						<th class="custom-w-th" pSortableColumn="updated_at">Date Posted <p-sortIcon field="updated_at"></p-sortIcon></th>
-						<th class="custom-w-th" pSortableColumn="qualification">Qualification <p-sortIcon field="qualification"></p-sortIcon></th>
-                        <th>Actions</th>
+						<th class="custom-w-th" pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-job>
-                    <tr>
+                    <tr (click)="viewJob(job)">
                         <td>
                             <p-tableCheckbox [value]="job"></p-tableCheckbox>
                         </td>
@@ -67,18 +67,22 @@
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Date of Submission</span>
-                            {{job.created_at | date}}
+                            {{job.deployment_date | date}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Date Posted</span>
-                            {{job.updated_at | date}}
+                            {{job.active_date | date}}
                         </td> 
 						<td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Qualification</span>
-                            {{job.qualification}}
+                            <span class="p-column-title">Status</span>
+                            <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                            <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                            <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
                         </td>
                         <td>
                             <div class="flex">
+                                <button pButton pRipple label="Accept" class="p-button-success mr-2" (click)="acceptJob(job.id)"></button>
+                                <button pButton pRipple label="Reject" class="p-button-danger mr-2" (click)="rejectJob(job.id)"></button>
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(job)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(job)"></button>
                             </div>
@@ -86,6 +90,7 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <app-view-job *ngIf="showViewDialog" [jobDialogStat]="showViewDialog" [jobData]="selectedJob"></app-view-job>
         </div>
 
         <p-dialog [(visible)]="jobDialog" [style]="{width: '450px'}" header="Add New Job Post" [modal]="true" class="p-fluid">
@@ -108,8 +113,16 @@
 					<input type="text" pInputText id="position" formControlName="position" required autofocus/>
 				</div>
 				<div class="field">
-					<label for="qualification">Company Name</label>
+					<label for="qualification">Qualifications</label>
 					<input type="text" pInputText id="qualification" formControlName="qualification" required autofocus/>
+				</div>
+                <div class="field">
+					<label for="active_date">Date Posted</label>
+					<input type="date" pInputText id="deployment_date" formControlName="deployment_date" required autofocus/>
+				</div>
+                <div class="field">
+                    <label for="deployment_date">Date of Submission</label>
+					<input type="date" pInputText id="active_date" formControlName="active_date" required autofocus/>
 				</div>
 			</form>
 

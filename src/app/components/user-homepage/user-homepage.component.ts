@@ -25,14 +25,35 @@ export class UserHomepageComponent implements OnInit {
   isActiveButton = 'personal';
   myProfile: any = {};
   jobs: any = [];
+  events: any = [];
+
+  upcomingEvents: any = [];
+  showViewJobDialog: boolean = false;
+  selectedJob: any;
+
+  showViewEventDialog: boolean = false;
+  selectedEvent: any;
 
   constructor(private announcementService: AnnouncementService, public authCookie: AuthCookieService, private apiService: ApiService ) { }
 
   ngOnInit(): void {
-    this.getProductList();
     this.getUserProfile();
-    this.getAllJobs();
+    this.getAllActiveJobs();
+    this.getAllCurrentEvents();
+    this.getAllUpcomingEvents();
   }
+
+  viewEvent(data) {
+    console.log('View Job', data);
+    this.selectedEvent = data;
+    this.showViewEventDialog = true;
+}
+
+viewJob(data) {
+    console.log('View Job', data);
+    this.selectedJob = data;
+    this.showViewJobDialog = true;
+}
 
   selectPersonal() {
     this.isActiveButton = 'personal';
@@ -61,8 +82,8 @@ export class UserHomepageComponent implements OnInit {
     )
   }
   
-  getAllJobs() {
-    this.apiService.getAllJobPost().subscribe(
+  getAllActiveJobs() {
+    this.apiService.getAllActiveApproveJobs().subscribe(
         res => {
             console.log('all Jobs: ', res.data);
             this.jobs = res.data;
@@ -71,37 +92,33 @@ export class UserHomepageComponent implements OnInit {
             console.log(err);
         }
     )
-}
+  }
 
-  getProductList() {
-    this.announcementService.getAnnouncements().then(data => this.products = data);
+  getAllCurrentEvents() {
+    this.apiService.getCurrentEvents().subscribe(
+      res => {
+        console.log('all Events: ', res.data);
+        this.events = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
-    this.sourceCities = [
-        {name: 'San Francisco', code: 'SF'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Paris', code: 'PRS'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Berlin', code: 'BRL'},
-        {name: 'Barcelona', code: 'BRC'},
-        {name: 'Rome', code: 'RM'}];
-    this.targetCities = [];
+  getAllUpcomingEvents() {
+    this.apiService.getUpcomingEvents().subscribe(
+      res => {
+        console.log('all Events: ', res.data);
+        this.upcomingEvents = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
-    this.orderCities = [
-        {name: 'San Francisco', code: 'SF'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Paris', code: 'PRS'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Berlin', code: 'BRL'},
-        {name: 'Barcelona', code: 'BRC'},
-        {name: 'Rome', code: 'RM'}];
-
-    this.sortOptions = [
-        {label: 'Price High to Low', value: '!price'},
-        {label: 'Price Low to High', value: 'price'}
-    ];
-}
-
-onSortChange(event) {
+  onSortChange(event) {
     const value = event.value;
 
     if (value.indexOf('!') === 0) {
@@ -111,7 +128,7 @@ onSortChange(event) {
         this.sortOrder = 1;
         this.sortField = value;
     }
-}
+  }
 
 
 }

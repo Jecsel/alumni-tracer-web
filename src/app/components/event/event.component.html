@@ -1,7 +1,8 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <p-toast></p-toast>
+            <!-- <p-toast></p-toast> -->
+            <p-toast key="tst" [baseZIndex]="99999"></p-toast>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
@@ -19,7 +20,7 @@
             <p-table #dt [value]="events" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEvents" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Users</h5>
+                        <h5 class="m-0">Manage Events</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
@@ -37,11 +38,12 @@
 						<th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
                         <th pSortableColumn="time">Time <p-sortIcon field="time"></p-sortIcon></th>
                         <th class="muni-th" pSortableColumn="sponsor">Sponsor <p-sortIcon field="sponsor"></p-sortIcon></th>
+                        <th class="muni-th" pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
                         <th>Actions</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-event>
-                    <tr>
+                    <tr (click)="viewJob(event)">
                         <td>
                             <p-tableCheckbox [value]="event"></p-tableCheckbox>
                         </td>
@@ -53,7 +55,7 @@
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Venue</span>
-                            {{event.venue}}
+                            {{event.venue}} 
                         </td>
 						<td style="width:18%; min-width:10rem;">
                             <span class="p-column-title">Date</span>
@@ -67,8 +69,16 @@
                             <span class="p-column-title">Sponsor</span>
                             {{event.sponsor}}
                         </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Status</span>
+                            <span class="warning-span" *ngIf="event.status == 0">{{event.status == 0 ? 'Pending' : ''}}</span>
+                            <span class="success-span" *ngIf="event.status == 1">{{event.status == 1 ? 'Accepted' : ''}}</span>
+                            <span  class="danger-span" *ngIf="event.status == 2">{{event.status == 2 ? 'Rejected' : ''}}</span>
+                        </td>
                         <td>
                             <div class="flex">
+                                <button pButton pRipple label="Accept" class="p-button-success mr-2" (click)="acceptEvent(event.id)"></button>
+                                <button pButton pRipple label="Reject" class="p-button-danger mr-2" (click)="rejectEvent(event.id)"></button>
                                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editEvent(event)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEvent(event)"></button>
                             </div>
@@ -76,6 +86,8 @@
                     </tr>
                 </ng-template>
             </p-table>
+
+            <app-view-event *ngIf="showViewDialog" [eventDialogStat]="showViewDialog" [eventData]="selectedEvent"></app-view-event>
         </div>
 
         <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">

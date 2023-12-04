@@ -17,26 +17,26 @@ export class PersonalComponent implements OnInit {
   middle_name: any;
   last_name: any;
   batch_year: any;
-  personalForm: FormGroup;
+  // personalForm: FormGroup;
   msgs: Message[] = [];
 
-  // personalForm: FormGroup = new FormGroup({
-  //   first_name: new FormControl('', Validators.required),
-  //   last_name: new FormControl('', Validators.required),
-  //   batch_year: new FormControl(null, Validators.required),
-  //   dob: new FormControl(null, Validators.required),  
-  //   age: new FormControl('', Validators.required),
-  //   civil_status: new FormControl(null, Validators.required),
-  //   gender: new FormControl('', Validators.required),
-  //   region: new FormControl('', Validators.required),
-  //   province: new FormControl('', Validators.required),
-  //   municipality: new FormControl('', Validators.required),
-  //   barangay: new FormControl('', Validators.required),
-  //   course: new FormControl('', Validators.required),
-  //   year_graduated: new FormControl('', Validators.required),
-  //   email_address: new FormControl('', Validators.required),
-  //   phone_number: new FormControl('', Validators.required)
-  // });
+  personalForm: FormGroup = new FormGroup({
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
+    batch_year: new FormControl(null),
+    dob: new FormControl(null, Validators.required),  
+    age: new FormControl('', Validators.required),
+    civil_status: new FormControl(null, Validators.required),
+    gender: new FormControl('', Validators.required),
+    region: new FormControl('', Validators.required),
+    province: new FormControl('', Validators.required),
+    municipality: new FormControl('', Validators.required),
+    barangay: new FormControl('', Validators.required),
+    course: new FormControl('', Validators.required),
+    year_graduated: new FormControl('', Validators.required),
+    email_address: new FormControl('', Validators.required),
+    phone_number: new FormControl('', Validators.required)
+  });
   
   user_types: any[] = [
     { id: 1, name: 'Regular User' },
@@ -87,24 +87,24 @@ export class PersonalComponent implements OnInit {
     //   phone_number: ['', Validators.required]
     // });
 
-    this.personalForm = this.fb.group({
-      first_name: ['', Validators.required],
-      middle_name: [''],
-      last_name: [''],
-      batch_year: [null],
-      dob: [null],
-      age: [''],
-      civil_status: [null],
-      gender: [''],
-      region: [''],
-      province: [''],
-      municipality: [''],
-      barangay: [''],
-      course: [''],
-      year_graduated: [''],
-      email_address: [''],
-      phone_number: ['']
-    });
+    // this.personalForm = this.fb.group({
+    //   first_name: ['', Validators.required],
+    //   middle_name: [''],
+    //   last_name: [''],
+    //   batch_year: [null],
+    //   dob: [null],
+    //   age: [''],
+    //   civil_status: [null],
+    //   gender: [''],
+    //   region: [''],
+    //   province: [''],
+    //   municipality: [''],
+    //   barangay: [''],
+    //   course: [''],
+    //   year_graduated: [''],
+    //   email_address: [''],
+    //   phone_number: ['']
+    // });
 
     this.personalForm.valueChanges.subscribe(() => {
       this.formValidityChanged.emit(this.personalForm.valid);
@@ -116,10 +116,11 @@ export class PersonalComponent implements OnInit {
 
   confirm() {
     let form_value = this.personalForm.value;
-    form_value.batch_year = form_value.batch_year.year;
+    form_value.batch_year = form_value.year_graduated;
     form_value.civil_status = form_value.civil_status.id;
     form_value.gender = form_value.gender.id;
     form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
+    form_value.batch_years = form_value.year_graduated;
 
     console.log('confirm', form_value);
 

@@ -4,10 +4,12 @@ import { BreadcrumbService } from "../../app.breadcrumb.service";
 import { Product } from "src/app/demo/domain/product";
 import { ProductService } from "src/app/demo/service/productservice";
 import { EventService } from "src/app/demo/service/eventservice";
+import { ApiService } from "src/app/services/api/api.service";
+import { AuthCookieService } from "src/app/services/auth/auth-cookie-service.service";
 
 @Component({
     templateUrl: "./dashboard.component.html",
-    styleUrls: ["../../../assets/demo/badges.scss"],
+    styleUrls: ["../../../assets/demo/badges.scss", './dashboard.component.scss'],
     styles: [
         `
             @media screen and (max-width: 960px) {
@@ -31,43 +33,49 @@ import { EventService } from "src/app/demo/service/eventservice";
 })
 export class DashboardComponent implements OnInit {
     cities: SelectItem[];
-
     products: Product[];
-
     chartData: any;
-
-    events: any[];
-
     selectedCity: any;
-
-    items: MenuItem[];
-
     fullcalendarOptions: any;
-
     lineData: any;
-
     barData: any;
-
     pieData: any;
-
     polarData: any;
-
     radarData: any;
-
     lineOptions: any;
-
     barOptions: any;
-
     pieOptions: any;
-
     polarOptions: any;
-
     radarOptions: any;
+    items: MenuItem[] | undefined;
+    activeItem: MenuItem | undefined;
 
+    sortOptions: SelectItem[];
+    sortOrder: number;
+    sortField: string;
+    sourceCities: any[];
+    targetCities: any[];
+    orderCities: any[];
+  
+    isActiveButton = 'personal';
+    myProfile: any = {};
+    jobs: any = [];
+    events: any = [];
+    upcomingEvents: any = [];
+
+    showViewJobDialog: boolean = false;
+    selectedJob: any;
+
+    showViewEventDialog: boolean = false;
+    selectedEvent: any;
+
+    dashboard_count: any;
+  
     constructor(
         private productService: ProductService,
         private eventService: EventService,
-        private breadcrumbService: BreadcrumbService
+        private breadcrumbService: BreadcrumbService,
+        public authCookie: AuthCookieService, private apiService: ApiService
     ) {
         this.breadcrumbService.setItems([
             { label: "Dashboard", routerLink: [""] },
@@ -75,10 +83,115 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getUserProfile();
+        this.getAllJobPost();
+        this.getAllUpcomingEvents();
         this.createChart();
         this.createDashboard();
+        this.getAdminDashboardCount();
     }
 
+    getAdminDashboardCount() {
+        this.apiService.getAdminDashboardCount().subscribe(
+            res => {
+                this.dashboard_count = res;
+                console.log('dashboard_count', this.dashboard_count);
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    viewEvent(data) {
+        console.log('View Job', data);
+        this.selectedEvent = data;
+        this.showViewEventDialog = true;
+    }
+
+    viewJob(data) {
+        console.log('View Job', data);
+        this.selectedJob = data;
+        this.showViewJobDialog = true;
+    }
+
+    selectPersonal() {
+        this.isActiveButton = 'personal';
+      }
+    
+      selectStatus() {
+        this.isActiveButton = 'status';
+      }
+    
+      selectUpload() {
+        this.isActiveButton = 'uploaded';
+      }
+    
+      getUserProfile() {
+        var usr_id = this.authCookie.getToken('user_id');
+      
+        this.apiService.getUserAlumniMain(usr_id).subscribe(
+          res => {
+            console.log('User Profile', res);
+            this.myProfile = res.data;
+            console.log('myProfile', this.myProfile);
+          },
+          err => {
+            console.log('Error', err);
+          }
+        )
+      }
+      
+      getAllJobPost() {
+        this.apiService.getAllJobPost().subscribe(
+            res => {
+                console.log('all Jobs: ', res.data);
+                this.jobs = res.data;
+            },
+            err => {
+                console.log(err);
+            }
+        )
+      }
+    
+      getAllCurrentEvents() {
+        this.apiService.getCurrentEvents().subscribe(
+          res => {
+            console.log('all Events: ', res.data);
+            this.events = res.data;
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      }
+      
+    
+      getAllUpcomingEvents() {
+        this.apiService.getUpcomingEvents().subscribe(
+          res => {
+            console.log('all Events: ', res.data);
+            this.upcomingEvents = res.data;
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      }
+    
+      onSortChange(event) {
+        const value = event.value;
+    
+        if (value.indexOf('!') === 0) {
+            this.sortOrder = -1;
+            this.sortField = value.substring(1, value.length);
+        } else {
+            this.sortOrder = 1;
+            this.sortField = value;
+        }
+      }
+
+      
     createDashboard() {
         this.productService
             .getProducts()
