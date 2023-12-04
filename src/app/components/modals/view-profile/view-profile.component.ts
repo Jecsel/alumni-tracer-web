@@ -1,18 +1,19 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Message, MessageService } from 'primeng/api';
 import { ApiService } from 'src/app/services/api/api.service';
-import { MessageService, Message } from "primeng/api";
 import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.service';
 
 @Component({
-  selector: 'app-personal',
-  templateUrl: './personal.component.html',
+  selector: 'app-view-profile',
+  templateUrl: './view-profile.component.html',
   providers: [MessageService],
-  styleUrls: ['./personal.component.scss']
+  styleUrls: ['./view-profile.component.scss']
 })
-export class PersonalComponent implements OnInit {
-  @Output() formValidityChanged = new EventEmitter<boolean>();
+export class ViewProfileComponent implements OnInit {
+  @Input() profile;
+
   first_name: any;
   middle_name: any;
   last_name: any;
@@ -22,8 +23,9 @@ export class PersonalComponent implements OnInit {
 
   personalForm: FormGroup = new FormGroup({
     first_name: new FormControl('', Validators.required),
+    middle_name: new FormControl(''),
     last_name: new FormControl('', Validators.required),
-    batch_year: new FormControl(null),
+    batch_year: new FormControl(null, Validators.required),
     dob: new FormControl(null, Validators.required),  
     age: new FormControl('', Validators.required),
     civil_status: new FormControl(null, Validators.required),
@@ -66,56 +68,39 @@ export class PersonalComponent implements OnInit {
 
   selectedState: any = null;
 
-  constructor(private service: MessageService, public router: Router, public apiService: ApiService, private fb: FormBuilder, private cookieService: AuthCookieService) { 
+  
+  constructor(private cookieService: AuthCookieService, private apiService: ApiService, private router: Router, private service: MessageService) { 
 
-    // this.personalForm = this.fb.group({
-    //   first_name: ['', Validators.required],
-    //   middle_name: ['', Validators.required],
-    //   last_name: ['', Validators.required],
-    //   batch_year: [null, Validators.required],
-    //   dob: [null, Validators.required],
-    //   age: ['', Validators.required],
-    //   civil_status: [null, Validators.required],
-    //   gender: ['', Validators.required],
-    //   region: ['', Validators.required],
-    //   province: ['', Validators.required],
-    //   municipality: ['', Validators.required],
-    //   barangay: ['', Validators.required],
-    //   course: ['', Validators.required],
-    //   year_graduated: ['', Validators.required],
-    //   email_address: ['', Validators.required],
-    //   phone_number: ['', Validators.required]
-    // });
-
-    // this.personalForm = this.fb.group({
-    //   first_name: ['', Validators.required],
-    //   middle_name: [''],
-    //   last_name: [''],
-    //   batch_year: [null],
-    //   dob: [null],
-    //   age: [''],
-    //   civil_status: [null],
-    //   gender: [''],
-    //   region: [''],
-    //   province: [''],
-    //   municipality: [''],
-    //   barangay: [''],
-    //   course: [''],
-    //   year_graduated: [''],
-    //   email_address: [''],
-    //   phone_number: ['']
-    // });
-
-    this.personalForm.valueChanges.subscribe(() => {
-      this.formValidityChanged.emit(this.personalForm.valid);
-    });
   }
 
   ngOnInit(): void {
+    console.log('myprofile', this.profile);
+
+    if (this.profile) {
+      this.personalForm.patchValue({
+        first_name: this.profile.first_name,
+        middle_name: this.profile.middle_name,
+        last_name: this.profile.last_name,
+        batch_year: this.profile.batch_year,
+        dob: this.profile.dob,
+        age: this.profile.age,
+        civil_status: this.profile.civil_status,
+        gender: this.profile.gender,
+        region: this.profile.region,
+        province: this.profile.province,
+        municipality: this.profile.municipality,
+        barangay: this.profile.barangay,
+        course: this.profile.course,
+        year_graduated: this.profile.year_graduated,
+        email_address: this.profile.email_address,
+        phone_number: this.profile.phone_number,
+      });
+    }
   }
 
-  confirm() {
+  update() {
     let form_value = this.personalForm.value;
+    form_value.id = this.profile.id;
     form_value.batch_year = form_value.year_graduated;
     form_value.civil_status = form_value.civil_status.id;
     form_value.gender = form_value.gender.id;
@@ -125,11 +110,11 @@ export class PersonalComponent implements OnInit {
     console.log('confirm', form_value);
 
     const register_data = { user: form_value};
-    this.apiService.createAlumniMain(register_data).subscribe(
+    this.apiService.updateAlumni(register_data).subscribe(
       res => {
-        console.log('createAlumniMain', res);
-        this.router.navigate(['registration/work']);
-        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Personal profile created!' });
+        console.log('updateAlumni', res);
+        // this.router.navigate(['registration/work']);
+        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Personal profile updated!' });
 
       },
       err => {
@@ -147,4 +132,6 @@ export class PersonalComponent implements OnInit {
     );
   }
 
+
 }
+

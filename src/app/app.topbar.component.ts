@@ -4,6 +4,7 @@ import { MenuItem } from 'primeng/api';
 import { AuthCookieService } from './services/auth/auth-cookie-service.service';
 import { Console } from 'console';
 import { ApiService } from './services/api/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -15,8 +16,9 @@ export class AppTopBarComponent {
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = false;
     myProfile: any = {};
+    showDialog: boolean = false;
   
-    constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService ) {}
+    constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService, private router: Router ) {}
   
     ngOnInit(): void {
       this.items = [
@@ -40,11 +42,18 @@ export class AppTopBarComponent {
           console.log('User Profile', res);
           this.myProfile = res.data;
           console.log('myProfile', this.myProfile);
+          if(!this.myProfile || this.myProfile == null){
+            this.router.navigate(['registration/personal']);
+          }
         },
         err => {
           console.log('Error', err);
         }
       )
+    }
+
+    showProfile() {
+      this.showDialog = true;
     }
   
     onActiveItemChange(event: MenuItem) {
@@ -52,7 +61,7 @@ export class AppTopBarComponent {
     }
   
     activateLast() {
-        this.activeItem = (this.items as MenuItem[])[(this.items as MenuItem[]).length - 1];
+      this.activeItem = (this.items as MenuItem[])[(this.items as MenuItem[]).length - 1];
     }
 
     getUserType() {

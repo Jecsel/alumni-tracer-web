@@ -28,7 +28,8 @@ export class JobPortalComponent implements OnInit {
 
     file: File = null;
     selectedFile: File | null = null;
-
+    showViewDialog: boolean = false;
+    selectedJob: any;
 
     formJob: FormGroup = new FormGroup({
         company_name: new FormControl('', [Validators.required]),
@@ -69,6 +70,13 @@ export class JobPortalComponent implements OnInit {
         this.getAllJobs();
     }
 
+    viewJob(data){
+        console.log('View Job', data);
+        this.selectedJob = data;
+        this.showViewDialog = true;
+        
+    }
+
     getAllJobs() {
         this.apiService.getAllJobPost().subscribe(
             res => {
@@ -94,9 +102,9 @@ export class JobPortalComponent implements OnInit {
     onFileSelected(event: any): void {
         // this.file = event.target.files[0];
         this.selectedFile = event.target.files[0];
-      }
+    }
     
-      uploadFile(): void {
+    uploadFile(): void {
         if (this.selectedFile != null) {
 
             let form_value = this.formJob.value;

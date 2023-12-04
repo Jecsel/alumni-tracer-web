@@ -45,8 +45,8 @@ export class WorkComponent implements OnInit {
     this.apiService.createWork(register_data).subscribe(
       res => {
         console.log('createAlumniMain', res);
-        this.router.navigate(['/']);
         this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Work profile created!' });
+        this.router.navigate(['/']);
 
       },
       err => {

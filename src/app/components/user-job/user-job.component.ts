@@ -141,7 +141,7 @@ export class UserJobComponent implements OnInit {
   }
 
   getAllActiveJobs() {
-    this.apiService.getAllActiveJobs().subscribe(
+    this.apiService.getAllActiveApproveJobs().subscribe(
         res => {
             console.log('all Jobs: ', res.data);
             this.activeJobs = res.data;
@@ -187,6 +187,7 @@ export class UserJobComponent implements OnInit {
       (response) => {
         console.log(response);
         this.showSuccessViaToast('Job Created!');
+        location.reload();
       },
       (error) => {
         console.error(error);

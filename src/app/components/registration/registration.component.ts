@@ -26,8 +26,8 @@ export class RegistrationComponent implements OnInit {
 
     
     routeItems: any[] = [
-        { label: 'Personal', routerLink: ['/registration/personal'] },
-        { label: 'Account', routerLink: ['/registration/account'] },
+        { label: 'Personal', routerLink: ['/registration/personal'], disabled: true },
+        { label: 'Account', routerLink: ['/registration/account'], disabled: true },
         // Add other steps as needed
     ];
 
@@ -44,9 +44,9 @@ export class RegistrationComponent implements OnInit {
     ngOnInit() {
 
         this.routeItems = [
-            {label: 'Account', routerLink:'account'},
-            {label: 'Personal', routerLink:'personal'},
-            {label: 'Work', routerLink:'work'}
+            {label: 'Account', routerLink:'account', disabled: true},
+            {label: 'Personal', routerLink:'personal', disabled: true},
+            {label: 'Work', routerLink:'work', disabled: true}
         ];    
     }
 

@@ -1,63 +1,176 @@
 <div class="layout-dashboard">
     <div class="grid">
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box sales">
                 <img src="assets/layout/images/icon-sales.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">EVENTS</div>
                 <div class="overview-numbers">
-                    32,700
-                </div>
-                <div class="overview-subinfo grid">
-                    <div class="col-6 progressbar">
-                        <div class="progress sale"></div>
-                    </div>
-                    <span class="col-6">23% more</span>
+                    {{dashboard_count.event_posts ?? 0}}
                 </div>
             </div>
         </div>
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box views">
                 <img src="assets/layout/images/icon-views.png" alt="ecuador-layout" style="margin-top:10px" />
                 <div class="overview-title">JOBS</div>
                 <div class="overview-numbers">
-                    21,009
-                </div>
-                <div class="overview-subinfo grid">
-                    <div class="col-6 progressbar">
-                        <div class="progress view"></div>
-                    </div>
-                    <span class="col-6">7% more</span>
+                    {{dashboard_count.job_posts ?? 0}}
                 </div>
             </div>
         </div>
-        <div class="col-12 md:col-6 lg:col-3">
-            <div class="overview-box users">
-                <img src="assets/layout/images/icon-users.png" alt="ecuador-layout" />
-                <div class="overview-title">ACCOUNTS</div>
-                <div class="overview-numbers">
-                    3,270
-                </div>
-                <div class="overview-subinfo user">
-                    <i class="pi pi-circle-on"></i>
-                    <span>Same</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 md:col-6 lg:col-3">
+        <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box checkins">
                 <img src="assets/layout/images/icon-checkin.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">ALUMNI</div>
                 <div class="overview-numbers">
-                    704
-                </div>
-                <div class="overview-subinfo checkin">
-                    <i class="pi pi-circle-on"></i>
-                    <span>Same</span>
+                    {{dashboard_count.alumni ?? 0}}
                 </div>
             </div>
         </div>
 
         <div class="col-12">
+            <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
+                <div class="col-12">
+                    <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                        <ng-template pTemplate="header">
+                            <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                                <div class="grid">
+                                    <div class="col-12 md:col-6">
+                                        <h5>Events</h5>
+                                    </div>
+                                    <div class="col-12 md:col-6">
+                                        <span class="p-input-icon-left mb-2 md:mb-0">
+                                            <i class="pi pi-search"></i>
+                                            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                        </span>	
+                                    </div>
+                                </div>
+                                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-event pTemplate="listItem">
+                            <div class="col-12" (click)="viewEvent(event)">
+                                <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                                    <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                                    <div class="flex-1 text-center md:text-left">
+                                        <div class="font-bold">Title: {{event.title}}</div>
+                                        <div class="mb-3">Venue: {{event.venue}}</div>
+                                        <div class="mb-3">Date: {{event.date | date}}</div>
+                                        <div class="mb-3">
+                                            <span class="warning-span" *ngIf="event.status == 0">{{event.status == 0 ? 'Pending' : ''}}</span>
+                                            <span class="success-span" *ngIf="event.status == 1">{{event.status == 1 ? 'Accepted' : ''}}</span>
+                                            <span  class="danger-span" *ngIf="event.status == 2">{{event.status == 2 ? 'Rejected' : ''}}</span>
+                                        </div>
+                                        <!-- <div class="flex align-items-center mt-2">
+                                            <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-event pTemplate="gridItem">
+                            <div class="col-12 md:col-4" (click)="viewEvent(event)">
+                                <div class="card m-3 border-1 surface-border">
+                                    <div class="flex align-items-center justify-content-between">
+                                        <div class="flex align-items-center">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+                                    </div>
+                                    <div class="text-start">
+                                        <div><b>Title:</b> {{event.title}}</div>
+                                        <div><b>Venue:</b> {{event.venue}}</div>
+                                        <div class="mb-3">Date: {{event.date | date}}</div>
+                                        <div class="mb-3">
+                                            <span class="warning-span" *ngIf="event.status == 0">{{event.status == 0 ? 'Pending' : ''}}</span>
+                                            <span class="success-span" *ngIf="event.status == 1">{{event.status == 1 ? 'Accepted' : ''}}</span>
+                                            <span  class="danger-span" *ngIf="event.status == 2">{{event.status == 2 ? 'Rejected' : ''}}</span>
+                                        </div>
+                                        <!-- <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataView>
+                </div>
+
+                <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card grid mt-3 announcement-container">
+                <div class="col-12">
+                    <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                        <ng-template pTemplate="header">
+                            <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                                <div class="grid">
+                                    <div class="col-12 md:col-6">
+                                        <h5>Latest Job Posts</h5>
+                                    </div>
+                                    <div class="col-12 md:col-6">
+                                        <span class="p-input-icon-left mb-2 md:mb-0">
+                                            <i class="pi pi-search"></i>
+                                            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                        </span>	
+                                    </div>
+                                </div>
+                                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-job pTemplate="listItem">
+                            <div class="col-12" (click)="viewJob(job)">
+                                <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                                    <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                                    <div class="flex-1 text-center md:text-left">
+                                        <div class="font-bold">Company: {{job.company_name}}</div>
+                                        <div class="mb-3">Address: {{job.company_address}}</div>
+                                        <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                        <div class="mb-3">
+                                            <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                            <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                            <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-job pTemplate="gridItem">
+                            <div class="col-12 md:col-4" (click)="viewJob(job)">
+                                <div class="card m-3 border-1 surface-border">
+                                    <div class="flex align-items-center justify-content-center">
+                                        <div class="flex align-items-center">
+                                            <div class="font-bold text-2xl">Company: {{job.company_name}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <img [src]="'http://localhost:3001' + job.image_url" [alt]="job.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+        
+                                        <div><span class="font-semibold">Address: {{job.company_address}}</span></div>
+                                        <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
+                                        <div class="mb-3">
+                                            <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
+                                            <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
+                                            <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataView>
+                </div>
+
+                <app-view-job *ngIf="showViewJobDialog" [jobDialogStat]="showViewJobDialog" [jobData]="selectedJob"></app-view-job>
+            </div>
+        </div>
+
+        <!-- <div class="col-12">
             <div class="grid p-fluid">
                 <div class="col-12 lg:col-6">
                     <div class="card">
@@ -666,6 +779,6 @@
             <p-panel header="Upcoming Events" [style]="{'height':'100%'}">
                 <full-calendar [options]="fullcalendarOptions" ></full-calendar>
             </p-panel>
-        </div>
+        </div> -->
     </div>
 </div>

@@ -43,7 +43,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-job>
-                    <tr>
+                    <tr (click)="viewJob(job)">
                         <td>
                             <p-tableCheckbox [value]="job"></p-tableCheckbox>
                         </td>
@@ -90,6 +90,7 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <app-view-job *ngIf="showViewDialog" [jobDialogStat]="showViewDialog" [jobData]="selectedJob"></app-view-job>
         </div>
 
         <p-dialog [(visible)]="jobDialog" [style]="{width: '450px'}" header="Add New Job Post" [modal]="true" class="p-fluid">
@@ -116,11 +117,11 @@
 					<input type="text" pInputText id="qualification" formControlName="qualification" required autofocus/>
 				</div>
                 <div class="field">
-					<label for="deployment_date">Date of Submission</label>
+					<label for="active_date">Date Posted</label>
 					<input type="date" pInputText id="deployment_date" formControlName="deployment_date" required autofocus/>
 				</div>
                 <div class="field">
-					<label for="active_date">Date Posted</label>
+                    <label for="deployment_date">Date of Submission</label>
 					<input type="date" pInputText id="active_date" formControlName="active_date" required autofocus/>
 				</div>
 			</form>

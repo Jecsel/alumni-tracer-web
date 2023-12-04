@@ -28,16 +28,32 @@ export class UserHomepageComponent implements OnInit {
   events: any = [];
 
   upcomingEvents: any = [];
+  showViewJobDialog: boolean = false;
+  selectedJob: any;
+
+  showViewEventDialog: boolean = false;
+  selectedEvent: any;
 
   constructor(private announcementService: AnnouncementService, public authCookie: AuthCookieService, private apiService: ApiService ) { }
 
   ngOnInit(): void {
-    this.getProductList();
     this.getUserProfile();
     this.getAllActiveJobs();
     this.getAllCurrentEvents();
     this.getAllUpcomingEvents();
   }
+
+  viewEvent(data) {
+    console.log('View Job', data);
+    this.selectedEvent = data;
+    this.showViewEventDialog = true;
+}
+
+viewJob(data) {
+    console.log('View Job', data);
+    this.selectedJob = data;
+    this.showViewJobDialog = true;
+}
 
   selectPersonal() {
     this.isActiveButton = 'personal';
@@ -67,7 +83,7 @@ export class UserHomepageComponent implements OnInit {
   }
   
   getAllActiveJobs() {
-    this.apiService.getAllActiveJobs().subscribe(
+    this.apiService.getAllActiveApproveJobs().subscribe(
         res => {
             console.log('all Jobs: ', res.data);
             this.jobs = res.data;
@@ -100,34 +116,6 @@ export class UserHomepageComponent implements OnInit {
         console.log(err);
       }
     )
-  }
-
-  getProductList() {
-    this.announcementService.getAnnouncements().then(data => this.products = data);
-
-    this.sourceCities = [
-        {name: 'San Francisco', code: 'SF'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Paris', code: 'PRS'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Berlin', code: 'BRL'},
-        {name: 'Barcelona', code: 'BRC'},
-        {name: 'Rome', code: 'RM'}];
-    this.targetCities = [];
-
-    this.orderCities = [
-        {name: 'San Francisco', code: 'SF'},
-        {name: 'London', code: 'LDN'},
-        {name: 'Paris', code: 'PRS'},
-        {name: 'Istanbul', code: 'IST'},
-        {name: 'Berlin', code: 'BRL'},
-        {name: 'Barcelona', code: 'BRC'},
-        {name: 'Rome', code: 'RM'}];
-
-    this.sortOptions = [
-        {label: 'Price High to Low', value: '!price'},
-        {label: 'Price Low to High', value: 'price'}
-    ];
   }
 
   onSortChange(event) {

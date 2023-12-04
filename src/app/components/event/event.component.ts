@@ -25,9 +25,11 @@ export class EventComponent implements OnInit {
     statuses: any[];
     rowsPerPageOptions = [5, 10, 20];
     events: any = [];
+    selectedEvent: any;
 
     file: File = null;
     selectedFile: File | null = null;
+    showViewDialog: boolean = false;
 
 
     formJob: FormGroup = new FormGroup({
@@ -67,6 +69,13 @@ export class EventComponent implements OnInit {
         this.getAllEventPosts();
     }
 
+    viewJob(data){
+        console.log('View Job', data);
+        this.selectedEvent = data;
+        this.showViewDialog = true;
+        
+    }
+
     showErrorViaToast(mess) {
         this.messageService.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
       }
@@ -80,6 +89,7 @@ export class EventComponent implements OnInit {
             res => {
                 console.log('event_post', res);
                 this.showSuccessViaToast('Event Accepted!');
+                location.reload();
             },
             err => {
                 console.log('error: ', err);
@@ -93,6 +103,7 @@ export class EventComponent implements OnInit {
             res => {
                 console.log('event_post', res);
                 this.showSuccessViaToast('Event Rejected!');
+                location.reload();
             },
             err => {
                 console.log('error: ', err);

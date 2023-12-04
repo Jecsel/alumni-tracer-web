@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   password: any;
   showLoginModal = false;
   events: any = [];
+  counts: any = {};
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -139,6 +140,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.getPhotos();
     this.getAllEventPosts();
+    this.getDashboardCount();
   }
 
     showErrorViaToast(mess) {
@@ -157,6 +159,18 @@ export class LoginComponent implements OnInit {
     this.publicService.getImages().then(images => {
         this.images = images;
     });
+  }
+
+  getDashboardCount() {
+    this.apiService.getDashboardCount().subscribe(
+        res => {
+            console.log(res);
+            this.counts = res;
+        },
+        err => {
+            console.log(err);
+        }
+    )
   }
 
   confirm() {

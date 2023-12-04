@@ -44,7 +44,7 @@ export class AppMainComponent implements OnInit{
 
         this.items = [
             { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/homepage'] },
-            { label: 'Job Portal', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/user-job'] },
+            { label: 'Job Posting', icon: 'pi pi-fw pi-shopping-bag', routerLink: ['/user-job'] },
             { label: 'Events', icon: 'pi pi-fw pi-calendar', routerLink: ['/user-event'] },
         ];
 

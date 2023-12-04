@@ -141,6 +141,16 @@ export class ApiService {
       );
   }
 
+  updateWork(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/work/updateWork", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getUserAlumniWork(id): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/work/" + id, this.httpOptions)
@@ -174,6 +184,46 @@ export class ApiService {
   getAllUserJobPosts(data): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/job_post/userJobPosts",data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAllActiveApproveJobs(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/currentActiveApproveJobs", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateSelectedJob(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/job_post/updateJob", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateSelectedEvent(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/event_post/updateEvent", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  updateAlumni(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/updateAlumni", data, this.httpOptions)
       .pipe(
         map((res: any) => {
           return res;
@@ -265,6 +315,26 @@ export class ApiService {
   getAllAlumniMains(): Observable<any> {
     return this.httpClient
       .get(this.baseUrl + "/alumni_main", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getDashboardCount(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/dashboard_count", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAdminDashboardCount(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/dashboard_count", this.httpOptions)
       .pipe(
         map((res: any) => {
           return res;

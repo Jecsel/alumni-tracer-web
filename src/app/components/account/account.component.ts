@@ -37,12 +37,12 @@ export class AccountComponent implements OnInit {
     }
   
     ngOnInit() {
-        this.productService.getUsers().then(
-            data => {
-                this.products = data;
-                console.log("products", this.products);
-                }
-            );
+        // this.productService.getUsers().then(
+        //     data => {
+        //         this.products = data;
+        //         console.log("products", this.products);
+        //         }
+        //     );
 
         
 

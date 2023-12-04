@@ -36,70 +36,51 @@
                     </div>
                 </div>
                 <div class="grid">
-                    <div class="col-12 md:col-3">
+                    <div class="col-12 md:col-6">
                         <div class="field">
-                            <label for="work_position">Work Position</label>
+                            <label for="work_position" class="mr-2">Work Position</label>
                             <input class="custom-input" type="text" id="work_position" pInputText formControlName="work_position">
                         </div>
-                        
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="company_name">Company Name</label>
+                            <label for="company_name" class="mr-2">Company Name</label>
                             <input class="custom-input" type="text" id="company_name" pInputText formControlName="company_name">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="company_address">Company Address</label>
+                            <label for="company_address" class="mr-2">Company Address</label>
                             <input class="custom-input" type="text" id="company_address" pInputText formControlName="company_address">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="company_acronym">Company Acronym</label>
+                            <label for="company_acronym" class="mr-2">Company Acronym</label>
                             <input class="custom-input" type="text" id="company_acronym" pInputText formControlName="company_acronym">
                         </div>
                     </div>
-                    <div class="col-12 md:col-3" *ngIf="workType == 'private'">
+                    <div class="col-12 md:col-6" *ngIf="workType == 'private'">
                         <div class="field">
-                            <label for="type_of_business">Type of Business</label>
+                            <label for="type_of_business" class="mr-2">Type of Business</label>
                             <input class="custom-input" type="text" id="type_of_business" pInputText formControlName="type_of_business">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3" *ngIf="workType == 'private'">
                         <div class="field">
-                            <label for="area_of_business">Area of Business</label>
+                            <label for="area_of_business" class="mr-2">Area of Business</label>
                             <input class="custom-input" type="text" id="area_of_business" pInputText formControlName="area_of_business">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3" *ngIf="workType != 'private'">
                         <div class="field">
-                            <label for="business_related">Business Related</label>
+                            <label for="business_related" class="mr-2">Business Related</label>
                             <input class="custom-input" type="text" id="business_related" pInputText formControlName="business_related">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3" *ngIf="workType != 'private'">
                         <div class="field">
-                            <label for="line_of_busines">Line of Business</label>
+                            <label for="line_of_busines" class="mr-2">Line of Business</label>
                             <input class="custom-input" type="text" id="line_of_busines" pInputText formControlName="line_of_busines">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="business_address">Business Address</label>
+                            <label for="business_address" class="mr-2">Business Address</label>
                             <input class="custom-input" type="text" id="business_address" pInputText formControlName="business_address">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="business_name">Business Name</label>
+                            <label for="business_name" class="mr-2">Business Name</label>
                             <input class="custom-input" type="text" id="business_name" pInputText formControlName="business_name">
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
                         <div class="field">
-                            <label for="business_acronym">Business Acronym</label>
+                            <label for="business_acronym" class="mr-2">Business Acronym</label>
                             <input class="custom-input" type="text" id="business_acronym" pInputText formControlName="business_acronym">
                         </div>
                     </div>
@@ -111,7 +92,11 @@
                 type="button" label="SUBMIT" 
                 (click)="confirm()"
                 [disabled]="workForm.invalid"
-                class="p-button-raised p-button-success mr-2 mb-2"></button>
+                class="p-button-raised p-button-success mr-2 mb-2">
+            </button>
+            <div class="text-center">
+                <a href="#">Back to Login</a>
+            </div>
         </div>
     </form>
 </div>
