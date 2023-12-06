@@ -5,7 +5,7 @@
                 <img src="assets/layout/images/icon-sales.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">EVENTS</div>
                 <div class="overview-numbers">
-                    {{dashboard_count.event_posts ?? 0}}
+                    {{dashboard_count?.event_posts ?? 0}}
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
                 <img src="assets/layout/images/icon-views.png" alt="ecuador-layout" style="margin-top:10px" />
                 <div class="overview-title">JOBS</div>
                 <div class="overview-numbers">
-                    {{dashboard_count.job_posts ?? 0}}
+                    {{dashboard_count?.job_posts ?? 0}}
                 </div>
             </div>
         </div>
@@ -23,9 +23,47 @@
                 <img src="assets/layout/images/icon-checkin.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">ALUMNI</div>
                 <div class="overview-numbers">
-                    {{dashboard_count.alumni ?? 0}}
+                    {{dashboard_count?.alumni ?? 0}}
                 </div>
             </div>
+        </div>
+
+        <div class="col-12">
+            <div class="grid p-fluid">
+                <div class="col-12 lg:col-6">
+                    <div class="card">
+                        <h5>Linear Chart</h5>
+                        <p-chart type="line" [data]="lineData" [options]="lineOptions" [style]="{'width': '50%'}"></p-chart>
+                    </div>
+        
+            
+                    <!-- <div class="card flex flex-column align-items-center">
+                        <h5 class="text-left w-full">Polar Area Chart</h5>
+                        <p-chart type="polarArea" [data]="polarData" [options]="polarOptions" [style]="{'width': '50%'}"></p-chart>
+                    </div> -->
+                </div>
+                <div class="col-12 lg:col-6">
+                    <div class="card flex flex-column align-items-center">
+                        <h5 class="text-left w-full">Pie Chart</h5>
+                        <p-chart type="pie" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
+                    </div>
+<!--                     
+                    <div class="card">
+                        <h5>Bar Chart</h5>
+                        <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
+                    </div>
+            
+                    <div class="card flex flex-column align-items-center">
+                        <h5 class="text-left w-full">Doughnut Chart</h5>
+                        <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
+                    </div>
+            
+                    <div class="card flex flex-column align-items-center">
+                        <h5 class="text-left w-full">Radar Chart</h5>
+                        <p-chart type="radar" [data]="radarData" [options]="radarOptions" [style]="{'width': '50%'}"></p-chart>
+                    </div> -->
+                </div>
+            </div>            
         </div>
 
         <div class="col-12">
@@ -170,44 +208,7 @@
             </div>
         </div>
 
-        <!-- <div class="col-12">
-            <div class="grid p-fluid">
-                <div class="col-12 lg:col-6">
-                    <div class="card">
-                        <h5>Linear Chart</h5>
-                        <p-chart type="line" [data]="lineData" [options]="lineOptions" [style]="{'width': '50%'}"></p-chart>
-                    </div>
-            
-                    <div class="card flex flex-column align-items-center">
-                        <h5 class="text-left w-full">Pie Chart</h5>
-                        <p-chart type="pie" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
-                    </div>
-            
-                    <div class="card flex flex-column align-items-center">
-                        <h5 class="text-left w-full">Polar Area Chart</h5>
-                        <p-chart type="polarArea" [data]="polarData" [options]="polarOptions" [style]="{'width': '50%'}"></p-chart>
-                    </div>
-                </div>
-                <div class="col-12 lg:col-6">
-                    <div class="card">
-                        <h5>Bar Chart</h5>
-                        <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
-                    </div>
-            
-                    <div class="card flex flex-column align-items-center">
-                        <h5 class="text-left w-full">Doughnut Chart</h5>
-                        <p-chart type="doughnut" [data]="pieData" [options]="pieOptions" [style]="{'width': '50%'}"></p-chart>
-                    </div>
-            
-                    <div class="card flex flex-column align-items-center">
-                        <h5 class="text-left w-full">Radar Chart</h5>
-                        <p-chart type="radar" [data]="radarData" [options]="radarOptions" [style]="{'width': '50%'}"></p-chart>
-                    </div>
-                </div>
-            </div>            
-        </div>
-
-        <div class="col-12 md:col-12 lg:col-4">
+      <!--   <div class="col-12 md:col-12 lg:col-4">
             <p-panel header="Contacts" styleClass="contacts">
                 <ul>
                     <li>

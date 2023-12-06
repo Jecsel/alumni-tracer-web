@@ -1,5 +1,48 @@
-<div class="card">
-    <div class="">
-        <button class="btn p-button-success" (click)="generatePDF()">Generate</button>
+<div class="card" style="padding: 20px 200px;">
+    <div class="text-center">
+        <div class="card">
+            <div class="grid">
+                <div class="col-12">
+					<div class="field-checkbox">
+						<p-checkbox name="all" binary="true" [(ngModel)]="chckAll" (onChange)="selectChckAll()" id="all"></p-checkbox>
+						<label for="all">Select All</label>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="field-checkbox">
+						<p-checkbox binary="true" name="reg" [(ngModel)]="chckReg" (onChange)="selectReg()" id="reg"></p-checkbox>
+						<label for="reg">List of Registered Alumnus Per Batch</label>
+					</div>
+                   
+				</div>
+                <div class="col-6">
+                    <p-dropdown [options]="listBatchYear" [(ngModel)]="selectBatchYear" placeholder="Select Batch Year" [showClear]="true"></p-dropdown>
+                </div>
+				<div class="col-6">
+					<div class="field-checkbox">
+						<p-checkbox  binary="true" name="work_type" [(ngModel)]="chckWorkType" (onChange)="selectWorkType()" id="work_type"></p-checkbox>
+						<label for="work_type">List of Alumnus Per Work Type</label>
+					</div>
+                   
+				</div>
+                <div class="col-6">
+                    <p-dropdown [options]="workingType" [(ngModel)]="selectType" placeholder="Are your working?" [showClear]="true"></p-dropdown>
+                </div>
+				<div class="col-12">
+					<div class="field-checkbox">
+						<p-checkbox  binary="true" name="event" [(ngModel)]="chckEvent" (onChange)="selectEvent()" id="event"></p-checkbox>
+						<label for="event">List of Upcoming Events</label>
+					</div>
+				</div>
+
+                <div class="col-12">
+					<div class="field-checkbox">
+						<p-checkbox  binary="true"name="job" [(ngModel)]="chckJob" (onChange)="selectJob()" id="job"></p-checkbox>
+						<label for="job">List of Active Job Posts</label>
+					</div>
+				</div>
+			</div>
+            <button pButton pRipple type="button" (click)="generateReport()" label="Generate" class="p-button-raised p-button-success mr-2 mb-2"></button>
+        </div>
     </div>
 </div>

@@ -138,11 +138,11 @@ export class EventComponent implements OnInit {
         
             this.apiService.createEventPost({ event: form_value }).subscribe(
                 res => {
-                console.log('job_post', res);
-                this.addImage();
+                    console.log('job_post', res);
+                    this.addImage();
                 },
                 err => {
-                console.log('error: ', err);
+                    console.log('error: ', err);
                 }
             );
         }

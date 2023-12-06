@@ -95,13 +95,16 @@ export class DashboardComponent implements OnInit {
         this.apiService.getAdminDashboardCount().subscribe(
             res => {
                 this.dashboard_count = res;
+                this.lineData = res.lineData;
                 console.log('dashboard_count', this.dashboard_count);
+                console.log('lineData', this.lineData);
             },
             err => {
                 console.log(err);
             }
         )
     }
+
 
     viewEvent(data) {
         console.log('View Job', data);

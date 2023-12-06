@@ -342,6 +342,56 @@ export class ApiService {
       );
   }
 
+  alumniGroupByBatch(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/alumniGroupByBatch", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  alumniPerBatch(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/alumniPerBatch", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  alumniGroupByWorkType(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/alumniGroupByWorkType", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  batchYearList(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/batchYearList", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  alumniPerWorkType(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/alumniPerWorkType", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   login(req: any): Observable<any>{
 
     return this.httpClient

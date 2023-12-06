@@ -17,6 +17,7 @@ export class AppTopBarComponent {
     isRegUser: Boolean = false;
     myProfile: any = {};
     showDialog: boolean = false;
+    userTypeId = '1';
   
     constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService, private router: Router ) {}
   
@@ -36,13 +37,14 @@ export class AppTopBarComponent {
 
     getUserProfile() {
       var usr_id = this.authCookie.getToken('user_id');
+      this.userTypeId = this.authCookie.getToken('user_type_id');
     
       this.apiService.getUserAlumniMain(usr_id).subscribe(
         res => {
           console.log('User Profile', res);
           this.myProfile = res.data;
           console.log('myProfile', this.myProfile);
-          if(!this.myProfile || this.myProfile == null){
+          if(!this.myProfile || this.myProfile == null && this.userTypeId != '2'){
             this.router.navigate(['registration/personal']);
           }
         },

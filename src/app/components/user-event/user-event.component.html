@@ -24,11 +24,10 @@
                         <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
                             <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
                             <div class="flex-1 text-center md:text-left">
-                                <div class="font-bold">Title: {{event.title}}</div>
-                                <div class="mb-3">Venue: {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div class="font-bold"><b>Title: </b> {{event.title}}</div>
+                                <div class="mb-3"><b>Venue: </b> {{event.venue}}</div>
+                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
                                 <div class="flex align-items-center mt-2">
-                                    <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
                                 </div>
                             </div>
                         </div>
@@ -47,10 +46,9 @@
                                 <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="img-h img-h shadow-2 my-3 mx-0"/>
                             </div>
                             <div class="text-start">
-                                <div><b>Title:</b> {{event.title}}</div>
-                                <div><b>Venue:</b> {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
-                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
+                                <div><b>Title: </b> {{event.title}}</div>
+                                <div><b>Venue: </b> {{event.venue}}</div>
+                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
                             </div>
                         </div>
                     </div>
@@ -84,12 +82,9 @@
                         <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
                             <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
                             <div class="flex-1 text-center md:text-left">
-                                <div class="font-bold">Title: {{event.title}}</div>
-                                <div class="mb-3">Venue: {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
-                                <div class="flex align-items-center mt-2">
-                                    <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
-                                </div>
+                                <div class="font-bold"><b>Title: </b> {{event.title}}</div>
+                                <div class="mb-3"><b>Venue: </b> {{event.venue}}</div>
+                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
                             </div>
                         </div>
                     </div>
@@ -109,8 +104,7 @@
                             <div class="text-start">
                                 <div><b>Title:</b> {{event.title}}</div>
                                 <div><b>Venue:</b> {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
-                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
+                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
                             </div>
                         </div>
                     </div>
