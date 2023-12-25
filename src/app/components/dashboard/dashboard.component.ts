@@ -50,6 +50,9 @@ export class DashboardComponent implements OnInit {
     items: MenuItem[] | undefined;
     activeItem: MenuItem | undefined;
 
+    pieDataItRelated: any;
+    pieDataGovSect: any;
+
     sortOptions: SelectItem[];
     sortOrder: number;
     sortField: string;
@@ -89,10 +92,49 @@ export class DashboardComponent implements OnInit {
         this.createChart();
         this.createDashboard();
         this.getAdminDashboardCount();
+        this.registeredAlumniDataChart();
+        this.getIsItRelatedData();
+        this.getGoveSect();
+    }
+
+    getIsItRelatedData() {
+        this.apiService.getIsItRelatedData({year: '2021'}).subscribe(
+            res => {
+                console.log('pieDataItRelated', res);
+                this.pieDataItRelated = res.data;
+            },err => {
+                console.log(err);
+            }
+        )
+    }
+
+    getGoveSect() {
+        this.apiService.getGoveSect({year: '2021'}).subscribe(
+            res => {
+                console.log('pieDataGovSect', res);
+                this.pieDataGovSect = res.data;
+            },err => {
+                console.log(err);
+            }
+        )
     }
 
     getAdminDashboardCount() {
         this.apiService.getAdminDashboardCount().subscribe(
+            res => {
+                this.dashboard_count = res;
+                this.barData = res.lineData;
+                console.log('dashboard_count', this.dashboard_count);
+                console.log('lineData', this.lineData);
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    registeredAlumniDataChart() {
+        this.apiService.registeredAlumniDataChart().subscribe(
             res => {
                 this.dashboard_count = res;
                 this.lineData = res.lineData;

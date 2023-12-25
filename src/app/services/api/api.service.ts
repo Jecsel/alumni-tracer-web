@@ -231,6 +231,26 @@ export class ApiService {
       );
   }
 
+  getIsItRelatedData(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/getItRelateData", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getGoveSect(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/getIsGovSect", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   getAllActiveJobs(): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/job_post/currentActiveJobs", this.httpOptions)
@@ -355,6 +375,16 @@ export class ApiService {
   alumniPerBatch(data): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/alumni_main/alumniPerBatch", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  registeredAlumniDataChart(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/registeredAlumniDataChart", this.httpOptions)
       .pipe(
         map((res: any) => {
           return res;

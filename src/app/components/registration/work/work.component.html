@@ -4,13 +4,13 @@
 
             <p class="mt-2">Are you presently working or engaged in business?</p>
             <div class="grid">
-				<div class="col-12 md:col-4">
+				<div class="col-12 md:col-2">
 					<div class="field-radiobutton">
 						<p-radioButton name="is_working" value="yes" formControlName="is_working" [(ngModel)]="isWorking" id="yes"></p-radioButton>
 						<label for="yes">Yes</label>
 					</div>
 				</div>
-				<div class="col-12 md:col-4">
+				<div class="col-12 md:col-2">
 					<div class="field-radiobutton">
 						<p-radioButton name="is_working" value="no" formControlName="is_working" [(ngModel)]="isWorking" id="no"></p-radioButton>
 						<label for="no">No</label>
@@ -22,16 +22,64 @@
             <div *ngIf="isWorking == 'yes'">
                 <p class="mt-2">If YES, Please check:</p>
                 <div class="grid">
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 md:col-2">
                         <div class="field-radiobutton">
                             <p-radioButton name="work_type" value="private" formControlName="work_type" [(ngModel)]="workType" id="private"></p-radioButton>
                             <label for="private">Working</label>
                         </div>
                     </div>
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 md:col-2">
                         <div class="field-radiobutton">
                             <p-radioButton name="work_type" value="self employed" formControlName="work_type" [(ngModel)]="workType" id="self"></p-radioButton>
-                            <label for="self">Self-Emplyed(In business)</label>
+                            <label for="self">Self-Employed(In business)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 md:col-3">
+                        <div class="field">
+                            <label for="work_position" class="mr-2">IT Related</label>
+                            
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-2">
+                        <div class="field">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="is_it_related" value="1" formControlName="is_it_related" [(ngModel)]="isItRelated" id="it_yes"></p-radioButton>
+                                <label for="it_yes">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-2">
+                        <div class="field">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="is_it_related" value="0" formControlName="is_it_related" [(ngModel)]="isItRelated" id="it_no"></p-radioButton>
+                                <label for="it_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 md:col-3">
+                        <div class="field">
+                            <label for="work_position" class="mr-2">Work Sector</label>
+                            
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-2">
+                        <div class="field">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="is_gov_sect" value="1" formControlName="is_gov_sect" [(ngModel)]="isWorkSector" id="work_yes"></p-radioButton>
+                                <label for="work_yes">Yes</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-2">
+                        <div class="field">
+                            <div class="field-radiobutton">
+                                <p-radioButton name="is_gov_sect" value="0" formControlName="is_gov_sect" [(ngModel)]="isWorkSector" id="work_no"></p-radioButton>
+                                <label for="work_no">No</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,16 +102,16 @@
                             <input class="custom-input" type="text" id="company_acronym" pInputText formControlName="company_acronym">
                         </div>
                     </div>
-                    <div class="col-12 md:col-6" *ngIf="workType == 'private'">
-                        <div class="field">
+                    <div class="col-12 md:col-6">
+                        <div class="field" *ngShow="false">
                             <label for="type_of_business" class="mr-2">Type of Business</label>
                             <input class="custom-input" type="text" id="type_of_business" pInputText formControlName="type_of_business">
                         </div>
-                        <div class="field">
+                        <div class="field" *ngShow="false">
                             <label for="area_of_business" class="mr-2">Area of Business</label>
                             <input class="custom-input" type="text" id="area_of_business" pInputText formControlName="area_of_business">
                         </div>
-                        <div class="field">
+                        <div class="field" *ngShow="false">
                             <label for="business_related" class="mr-2">Business Related</label>
                             <input class="custom-input" type="text" id="business_related" pInputText formControlName="business_related">
                         </div>

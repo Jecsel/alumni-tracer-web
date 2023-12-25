@@ -16,6 +16,8 @@ export class WorkComponent implements OnInit {
   isWorking: string;
   workType: string = 'private';
   msgs: Message[] = [];
+  isItRelated: boolean = false;
+  isWorkSector: boolean = false;
 
   workForm: FormGroup = new FormGroup({
     is_working: new FormControl('', Validators.required),
@@ -30,7 +32,9 @@ export class WorkComponent implements OnInit {
     business_address: new FormControl(''),
     business_acronym: new FormControl(''),
     business_related: new FormControl(''),
-    line_of_busines: new FormControl('')
+    line_of_busines: new FormControl(''),
+    is_it_related: new FormControl(''),
+    is_gov_sect: new FormControl('')
   });
 
   constructor(private apiService: ApiService, private router: Router, private service: MessageService, private cookieService: AuthCookieService) { }
@@ -41,7 +45,11 @@ export class WorkComponent implements OnInit {
   confirm() {
     let form_value = this.workForm.value;
     form_value.user_id = parseInt(this.cookieService.getToken('user_id'));
+    form_value.is_it_related = form_value.is_it_related == '1' ? true : false;
+    form_value.is_gov_sect = form_value.is_gov_sect == '1' ? true : false;
     const register_data = { user: form_value};
+    
+    console.log('==== work Datas ====== : ', register_data);
     this.apiService.createWork(register_data).subscribe(
       res => {
         console.log('createAlumniMain', res);

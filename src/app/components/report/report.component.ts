@@ -201,10 +201,12 @@ export class ReportComponent implements OnInit {
 
     createReportWorkType(){
       let doc = new jsPDF();
+
+      console.log(this.selectType);
+
+      let title = this.selectType.value == 'yes' ?  'List of Employed Alumni' : 'List of Unemployed Alumni';
       doc.text(
-        "List of Alumni Batch of " +
-            this.perWorkType[0].batch_year +
-            "Per Work Type",
+        title,
         20,
         30
     );
