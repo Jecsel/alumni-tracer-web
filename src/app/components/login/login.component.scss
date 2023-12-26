@@ -37,8 +37,50 @@
     right: 20px;
 }
 
+.login-container {
+    position: fixed;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 30%;
+}
+
+.logo-login {
+    text-align: start;
+    height: 80px;
+    margin: 20px;
+}
+
+.banner-tab {
+    height: 30px;
+    margin-bottom: 20px;
+    text-align: end;
+    background: #005B58;
+    width: -webkit-fill-available;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center; /* Center items vertically */
+
+    .rsu {
+        font-family: Inknut Antiqua;
+        color: white;
+        font-size: x-large;
+    }
+
+    .it {
+        font-family: Inknut Antiqua;
+        color: white;
+    }
+}
+
+.flex-row img {
+    margin-right: 10px; /* Add some margin between the image and text */
+}
+
 .banner-header {
-    height: 60px;
+    height: 80px;
     text-align: center;
     background: #005B58;
     width: -webkit-fill-available;

@@ -19,11 +19,14 @@ export class LoginComponent implements OnInit {
   showLoginModal = false;
   events: any = [];
   counts: any = {};
+  sortOrder: number;
+  sortField: string;
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('' , [Validators.required,Validators.minLength(8)])
   });
+  
 
   products: Product[];
 
@@ -143,6 +146,10 @@ export class LoginComponent implements OnInit {
     this.getDashboardCount();
   }
 
+  gotoSignUp() {
+    this.router.navigate(['registration/account']);
+  }
+
     showErrorViaToast(mess) {
         this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
     }
@@ -171,6 +178,18 @@ export class LoginComponent implements OnInit {
             console.log(err);
         }
     )
+  }
+
+  onSortChange(event) {
+    const value = event.value;
+
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    } else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
   }
 
   confirm() {
