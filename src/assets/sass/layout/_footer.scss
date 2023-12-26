@@ -3,11 +3,17 @@
         @include transition(margin-left $transitionDuration);
 
         .layout-footer {
+            width: 100%;
+            padding: 40px !important;
             background-color: $footerBgColor;
             padding: 16px 38px;
             color: $footerTextColor;
             bottom: 0;
             position: relative;
+
+            label {
+                color: white;
+            }
 
             .logo-container {
                 text-decoration: none;
@@ -28,6 +34,7 @@
 
             #footer-menu {
                 .footer-box {
+                    background: #005B58;
                     text-align: left;
 
                     span {
@@ -91,6 +98,7 @@
                     text-align: center;
 
                     .footer-box {
+                        background: #005B58;
                         text-align: center;
                         margin-bottom: 30px;
 

@@ -59,6 +59,18 @@
     width: -webkit-fill-available;
 }
 
+.footer {
+    background: #005B58;
+    width: 100%;
+    padding: 40px !important;
+
+    label {
+        color: white;
+    }
+}
+
+
+
 .flex-row {
     display: flex;
     align-items: center; /* Center items vertically */

@@ -6,7 +6,7 @@ import { AuthCookieService } from './services/auth/auth-cookie-service.service';
 
 @Component({
     selector: 'app-main',
-    templateUrl: './app.main.component.html'
+    templateUrl: './app.main.component.html',
 })
 export class AppMainComponent implements OnInit{
     isRegUser: boolean = false;
