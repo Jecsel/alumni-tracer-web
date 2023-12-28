@@ -1,9 +1,18 @@
-<div class="grid p-fluid m-5">
+<div class="banner-header" style="background: #005B58">
+    <div  class="logo-login">
+        <h1 class="p-3" style="font-family: 'Times New Roman', Times, serif; color: white; font-weight: bold;">SIGN UP</h1>
+        <!-- <div class="flex-row">
+            <img src="assets/images/logo_login_removebg.png" alt="ecuador-layout" style="height: 150px; width: 100%;" />
+        </div> -->
+        
+    </div>
+</div>
+<div class="grid p-fluid">
     <div class="col-12">
         <div class="card card-w-title flex flex-wrap">
             <div class="col-12 md:col-12 h-full">
                 <h5>Registration</h5>
-                <p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+                <p-tabMenu styleClass="mb-5" [model]="routeItems" style="justify-content: start;"></p-tabMenu>
                     <router-outlet></router-outlet>
             </div>
             
