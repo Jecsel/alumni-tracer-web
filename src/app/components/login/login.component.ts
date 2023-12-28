@@ -162,6 +162,14 @@ export class LoginComponent implements OnInit {
     this.showLoginModal = !this.showLoginModal;
   }
 
+  closeLoginModal() {
+    this.showLoginModal = false;
+  }
+
+  stopPropagation(event: Event): void {
+    event.stopPropagation();
+}
+
   getPhotos(){
     this.publicService.getImages().then(images => {
         this.images = images;

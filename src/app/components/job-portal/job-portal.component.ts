@@ -114,6 +114,7 @@ export class JobPortalComponent implements OnInit {
             this.apiService.createJobPost({ job: form_value }).subscribe(
                 res => {
                     console.log('job_post', res);
+                    this.acceptJob(res.data.id);
                     this.addImage();
                 },
                 err => {

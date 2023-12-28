@@ -192,6 +192,8 @@
                 <div *ngIf="showLoginModal">
                     <div class="login-container">
                         <p-toast key="tst" [baseZIndex]="99999"></p-toast>
+                        
+
                         <form role="form" [formGroup]="formLogin">
                             <div class="login-panel shadow-5">
                                 <label class="login-lbl">Login</label>
@@ -217,7 +219,7 @@
                                     </a>
                                 </div>
                                 <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
-                    
+                                <button class="ml-2 mt-5 btn p-button-danger" type="button" pButton label="Close" (click)="closeLoginModal()"></button>
                             </div>
                         </form>
                     </div>

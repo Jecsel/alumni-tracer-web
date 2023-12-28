@@ -15,6 +15,13 @@ export class ReportComponent implements OnInit {
     jobs: any;
     upcomingEvents: any;
     valCheck: any;
+    products: any;
+    account: any;
+    productDialog: boolean;
+    cols: any[];
+
+    deleteProductsDialog: boolean = false;
+    deleteProductDialog: boolean = false;
 
     groupByBatch: any;
     perBatch: any;
@@ -35,6 +42,7 @@ export class ReportComponent implements OnInit {
         { label: "2021", value: "2021" },
         { label: "2020", value: "2020" },
     ];
+
 
     cities = [
         { label: "New York", value: { id: 1, name: "New York", code: "NY" } },
