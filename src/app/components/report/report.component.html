@@ -1,7 +1,330 @@
-<div class="card" style="padding: 20px 200px;">
+<div class="card">
     <div class="text-center">
-        <div class="card">
-            <div class="grid">
+        <div class="first-card" style="max-height: 500px; overflow: scroll;">
+			<div class="filter">
+				<div class="flex justify-content-between">
+					<div class="left-box flex justify-content-between">
+						<div class="field grid">
+							<label htmlFor="batch_year" class="col-12 mb-2 md:col-5 md:mb-0">Batch Year</label>
+							<div class="col-12 md:col-7">
+								<!-- <input pInputText id="batch_year" type="text" /> -->
+								<p-dropdown id="batch_year" [options]="listBatchYear" [(ngModel)]="selectBatchYear" (onChange)="selectContactYear(selectBatchYear)" placeholder="Select Batch Year" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+						<div class="field grid" style="margin-left: 30px;">
+							<label htmlFor="municipality_id" class="col-12 mb-2 md:col-4 md:mb-0">Municipality</label>
+							<div class="col-12 md:col-8">
+								<!-- <input pInputText id="municipality" type="text" /> -->
+								<p-dropdown id="municipality_id" [options]="municipalities" [(ngModel)]="selectedMunicipality" (onChange)="selectMuni(selectedMunicipality)" placeholder="Select Municipality" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+					</div>
+					<div class="right-box">
+						<div class="field grid">
+							<label htmlFor="all" class="col-12 mb-2 md:col-4 md:mb-0">All</label>
+							<div class="col-12 md:col-8">
+								<p-checkbox name="all" binary="true" [(ngModel)]="chckAll" (onChange)="selectChckAll()" id="all"></p-checkbox>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contact-details-container" id="contact-table-id">
+				<div class="" style="margin-top: 60px; text-align: -webkit-center;">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div style="margin-right: 10px;"><img src="assets/images/it_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+								<td>
+									<div style="text-align: center;">
+										<label><b>ROMBLON STATE UNIVERSITY</b></label><br/>
+										<label>Institute of Information Technology</label>
+									</div>
+								</td>
+								<td>
+									<div style="margin-left: 10px;"><img src="assets/images/rsu_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h5 style="margin-top: 50px;"><b>REGISTERED ALUMNI CONTACT DETAILS</b></h5>
+				<div class="contact-counter-table">
+					<table style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								No. of Registered Alumni</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								Male</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
+								Female</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								{{lowercaseSelectedMunicipality | uppercase}}</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contact-data-table mt-3" style="margin-top: 20px;">
+					<table 	style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Last Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">First Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Year</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Municipality</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Email</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Contact Number</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr *ngFor="let alum of reg_alumni">
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.last_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.first_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.batch_year}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.municipality}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.email_address}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.phone_number}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="flex justify-content-end mt-3">
+				<button pButton pRipple type="button" (click)="printContact()" label="Print" class="p-button-raised p-button-success mr-2 mb-2"></button>
+			</div>
+        </div>
+
+		<hr class="my-5"/>
+
+		<div class="second-card" style="max-height: 500px; overflow: scroll;">
+			<div class="filter">
+				<div class="flex justify-content-between">
+					<div class="left-box flex justify-content-between">
+						<div class="field grid">
+							<label htmlFor="batch_year" class="col-12 mb-2 md:col-5 md:mb-0">Batch Year</label>
+							<div class="col-12 md:col-7">
+								<!-- <input pInputText id="batch_year" type="text" /> -->
+								<p-dropdown id="batch_year" [options]="listBatchYear" [(ngModel)]="selectBatchYear" (onChange)="selectContactYear(selectBatchYear)" placeholder="Select Batch Year" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+						<div class="field grid" style="margin-left: 30px;">
+							<label htmlFor="municipality_id" class="col-12 mb-2 md:col-4 md:mb-0">Municipality</label>
+							<div class="col-12 md:col-8">
+								<!-- <input pInputText id="municipality" type="text" /> -->
+								<p-dropdown id="municipality_id" [options]="municipalities" [(ngModel)]="selectedMunicipality" (onChange)="selectMuni(selectedMunicipality)" placeholder="Select Municipality" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+					</div>
+					<div class="right-box">
+						<div class="field grid">
+							<label htmlFor="all" class="col-12 mb-2 md:col-4 md:mb-0">All</label>
+							<div class="col-12 md:col-8">
+								<p-checkbox name="all" binary="true" [(ngModel)]="chckAll" (onChange)="selectChckAll()" id="all"></p-checkbox>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contact-details-container" id="contact-table-id">
+				<div class="" style="margin-top: 60px; text-align: -webkit-center;">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div style="margin-right: 10px;"><img src="assets/images/it_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+								<td>
+									<div style="text-align: center;">
+										<label><b>ROMBLON STATE UNIVERSITY</b></label><br/>
+										<label>Institute of Information Technology</label>
+									</div>
+								</td>
+								<td>
+									<div style="margin-left: 10px;"><img src="assets/images/rsu_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h5 style="margin-top: 50px;"><b>REGISTERED ALUMNI</b></h5>
+				<div class="contact-counter-table">
+					<table style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								No. of Registered Alumni</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								Male</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
+								Female</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								{{lowercaseSelectedMunicipality | uppercase}}</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contact-data-table mt-3" style="margin-top: 20px;">
+					<table 	style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Last Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">First Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Year</th>
+							
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Gender</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Civil Status</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Municipality</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr *ngFor="let alum of reg_alumni">
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.last_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.first_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.batch_year}}</td>
+							
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.gender != 1 ? 'Female' : 'Male'}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.civil_status != 1 ? 'Married' : 'Single'}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.municipality}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="flex justify-content-end mt-3">
+				<button pButton pRipple type="button" (click)="printContact()" label="Print" class="p-button-raised p-button-success mr-2 mb-2"></button>
+			</div>
+        </div>
+
+		<hr class="my-5"/>
+
+		<div class="third-card" style="max-height: 500px; overflow: scroll;">
+			<div class="filter">
+				<div class="flex justify-content-between">
+					<div class="left-box flex justify-content-between">
+						<div class="field grid">
+							<label htmlFor="batch_year" class="col-12 mb-2 md:col-5 md:mb-0">Batch Year</label>
+							<div class="col-12 md:col-7">
+								<!-- <input pInputText id="batch_year" type="text" /> -->
+								<p-dropdown id="batch_year" [options]="listBatchYear" [(ngModel)]="selectBatchYear" (onChange)="selectContactYear(selectBatchYear)" placeholder="Select Batch Year" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+						<div class="field grid" style="margin-left: 30px;">
+							<label htmlFor="municipality_id" class="col-12 mb-2 md:col-4 md:mb-0">Municipality</label>
+							<div class="col-12 md:col-8">
+								<!-- <input pInputText id="municipality" type="text" /> -->
+								<p-dropdown id="municipality_id" [options]="municipalities" [(ngModel)]="selectedMunicipality" (onChange)="selectMuni(selectedMunicipality)" placeholder="Select Municipality" [showClear]="true"></p-dropdown>
+							</div>
+						</div>
+					</div>
+					<div class="right-box">
+						<div class="field grid">
+							<label htmlFor="all" class="col-12 mb-2 md:col-4 md:mb-0">All</label>
+							<div class="col-12 md:col-8">
+								<p-checkbox name="all" binary="true" [(ngModel)]="chckAll" (onChange)="selectChckAll()" id="all"></p-checkbox>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="contact-details-container" id="contact-table-id">
+				<div class="" style="margin-top: 60px; text-align: -webkit-center;">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<div style="margin-right: 10px;"><img src="assets/images/it_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+								<td>
+									<div style="text-align: center;">
+										<label><b>ROMBLON STATE UNIVERSITY</b></label><br/>
+										<label>Institute of Information Technology</label>
+									</div>
+								</td>
+								<td>
+									<div style="margin-left: 10px;"><img src="assets/images/rsu_logo.png" alt="ecuador-layout" style="height: 50px" /></div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<h5 style="margin-top: 50px;"><b>ALUMNI EMPLOYMENT STATUS</b></h5>
+				<div class="contact-counter-table">
+					<table style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								No. of Registered Alumni</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								Male</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
+								Female</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
+								{{lowercaseSelectedMunicipality | uppercase}}</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="contact-data-table mt-3" style="margin-top: 20px;">
+					<table 	style="border-collapse: collapse;width: 100%;border: 1px solid #000;">
+						<thead>
+						  <tr>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Last Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">First Name</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Year</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Work Status</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">Work Sector</th>
+							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">IT Related</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr *ngFor="let alum of joinedAlumniWork[yearchoosen]">
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.last_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.first_name}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.batch_year}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.work_status}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.work_sector}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.it_related}}</td>
+						  </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="flex justify-content-end mt-3">
+				<button pButton pRipple type="button" (click)="printContact()" label="Print" class="p-button-raised p-button-success mr-2 mb-2"></button>
+			</div>
+        </div>
+
+		<hr class="my-5"/>
+    </div>
+</div>
+            <!-- <div class="grid">
                 <div class="col-12">
 					<div class="field-checkbox">
 						<p-checkbox name="all" binary="true" [(ngModel)]="chckAll" (onChange)="selectChckAll()" id="all"></p-checkbox>
@@ -41,8 +364,4 @@
 						<label for="job">List of Active Job Posts</label>
 					</div>
 				</div>
-			</div>
-            <button pButton pRipple type="button" (click)="generateReport()" label="Generate" class="p-button-raised p-button-success mr-2 mb-2"></button>
-        </div>
-    </div>
-</div>
+			</div> -->

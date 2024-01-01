@@ -20,6 +20,9 @@ export class ViewProfileComponent implements OnInit {
   batch_year: any;
   // personalForm: FormGroup;
   msgs: Message[] = [];
+  is_updating = false;
+  maxDate: string;
+  age: number | undefined;
 
   personalForm: FormGroup = new FormGroup({
     first_name: new FormControl('', Validators.required),
@@ -76,7 +79,7 @@ export class ViewProfileComponent implements OnInit {
   ngOnInit(): void {
     console.log('myprofile', this.profile);
 
-    if (this.profile) {
+    if (this.profile) {         
       this.personalForm.patchValue({
         first_name: this.profile.first_name,
         middle_name: this.profile.middle_name,
@@ -95,7 +98,66 @@ export class ViewProfileComponent implements OnInit {
         email_address: this.profile.email_address,
         phone_number: this.profile.phone_number,
       });
+
+    this.disableAllFields();
+  }
+
+  this.personalForm
+  .get("dob")
+  .valueChanges.subscribe((val) => {
+    // this.personalForm.value.perf_ind_id = val;
+    this.updateAge();
+  });
+}
+
+updateAge() {
+  const dobValue = this.personalForm.get('dob')?.value;
+
+  if (dobValue) {
+    const age = this.calculateAge();
+    this.personalForm.patchValue({ age });
+    this.personalForm.value.age = age;
+  } else {
+    this.personalForm.patchValue({ age: '' });
+  }
+}
+
+calculateAge() {
+  if (this.personalForm.value.dob) {
+    const birthdate = new Date(this.personalForm.value.dob);
+    const today = new Date();
+    
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const monthDiff = today.getMonth() - birthdate.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+      age--;
     }
+    
+    this.age = age;
+  } else {
+    this.age = undefined;
+  }
+
+  console.log(this.age);
+  return this.age;
+}
+
+  disableAllFields() {
+    Object.keys(this.personalForm.controls).forEach(controlName => {
+      this.personalForm.get(controlName).disable();
+    });
+  }
+
+  enableAllFields() {
+    Object.keys(this.personalForm.controls).forEach(controlName => {
+      this.personalForm.get(controlName).enable();
+    });
+  }
+
+  edit(){
+    this.is_updating = true;
+    this.enableAllFields();
   }
 
   update() {

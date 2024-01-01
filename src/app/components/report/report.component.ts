@@ -28,11 +28,25 @@ export class ReportComponent implements OnInit {
     groupByWorkType: any;
     perWorkType: any;
 
-    chckAll: boolean = true;
+    chckAll: boolean = false;
     chckReg: boolean = true;
     chckWorkType: boolean = true;
     chckEvent: boolean = true;
     chckJob: boolean = true;
+
+    selectedMunicipality: any = 'Odiongan';
+    lowercaseSelectedMunicipality: any = 'odiongan';
+    reg_alumni: any = {};
+    countRegAlumni = {
+        total: 0,
+        male: 0,
+        female: 0,
+        odiongan: 0
+    }
+
+    joinedAlumniWork: any = {};
+
+    yearchoosen = "2021";
 
     selectType: SelectItem;
     selectBatchYear: SelectItem;
@@ -42,6 +56,18 @@ export class ReportComponent implements OnInit {
         { label: "2021", value: "2021" },
         { label: "2020", value: "2020" },
     ];
+
+    municipalities = [
+        { label: "Alcantara", value: "Alcantara" },
+        { label: "Calatrava", value: "Calatrava" },
+        { label: "Ferrol", value: "Ferrol" },
+        { label: "Looc", value: "Looc" },
+        { label: "Odiongan", value: "Odiongan" },
+        { label: "San Agustin,", value: "San Agustin," },
+        { label: "San Andres", value: "San Andres" },
+        { label: "Santa Fe", value: "Santa Fe" },
+        { label: "Santa Maria", value: "Santa Maria" }
+    ]
 
 
     cities = [
@@ -60,12 +86,13 @@ export class ReportComponent implements OnInit {
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
-        this.getAllJobPost();
-        this.getAllCurrentEvents();
-        this.getAllUpcomingEvents();
+        // this.getAllJobPost();
+        // this.getAllCurrentEvents();
+        // this.getAllUpcomingEvents();
         this.alumniGroupByBatch();
+        this.joinAlumniWork();
 
-        this.alumniGroupByWorkType();
+        // this.alumniGroupByWorkType();
         this.batchYearList();
     }
 
@@ -107,7 +134,60 @@ export class ReportComponent implements OnInit {
         this.apiService.alumniGroupByBatch().subscribe((res) => {
             console.log("all alumniGroupByBatch: ", res.data);
             this.groupByBatch = res.data;
+
+            this.listBatchYear = Object.keys(this.groupByBatch).map(year => ({
+                label: year,
+                value: year
+            }));
+            this.listBatchYear.sort((a, b) => b.label.localeCompare(a.label));
+
+            this.selectBatchYear = this.listBatchYear[0];
+            this.selectedMunicipality = this.municipalities[4];
+            this.lowercaseSelectedMunicipality = this.selectedMunicipality.label.toLowerCase();
+
+            this.reg_alumni = this.groupByBatch[this.selectBatchYear.label];
+            this.reg_alumni = this.reg_alumni.filter(item => item.municipality === this.selectedMunicipality.label);
+
+            this.countRegAlumni.total = res.total;
+            const countGender = this.reg_alumni.reduce(
+                (count, entry) => {
+                  if (entry.gender === 1) {
+                    count.gender1++;
+                  } else if (entry.gender === 2) {
+                    count.gender2++;
+                  }
+                  return count;
+                },
+                { gender1: 0, gender2: 0 }
+              );
+            this.countRegAlumni.male = countGender.gender1;
+            this.countRegAlumni.female = countGender.gender2;
+            this.countRegAlumni[this.lowercaseSelectedMunicipality] = this.reg_alumni.length;
+
         });
+    }
+
+    selectContactYear(year_selected){
+        this.reg_alumni = this.groupByBatch[year_selected];
+        this.yearchoosen = year_selected;
+    }
+
+    selectMuni(selectedMuni){
+        this.lowercaseSelectedMunicipality = selectedMuni.toLowerCase();
+        this.reg_alumni = this.reg_alumni.filter(item => item.municipality === selectedMuni);
+    }
+
+    joinAlumniWork() {
+        this.apiService.joinAlumniWork().subscribe(
+            (res) => {
+                this.joinedAlumniWork = res.data;
+                console.log('joinedAlumniWork', this.joinedAlumniWork);
+
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
     }
 
     alumniPerBatch(val) {
@@ -330,6 +410,36 @@ export class ReportComponent implements OnInit {
             }
         );
     }
+
+
+    printContact(): void {
+        const printContent = document.getElementById('contact-table-id');
+        
+        if (printContent) {
+          const printWindow = window.open('', '_blank');
+          
+          if (printWindow) {
+            // Include the CSS styles
+            const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
+            styles.forEach(style => {
+              printWindow.document.head.appendChild(style.cloneNode(true));
+            });
+    
+            // Write the content
+            printWindow.document.write('<html><head><title>REGISTERED ALUMNI CONTACT DETAILS</title></head><body>');
+            printWindow.document.write(printContent.innerHTML);
+            printWindow.document.write('</body></html>');
+            
+            // Close the document and print
+            printWindow.document.close();
+            printWindow.print();
+          } else {
+            console.error('Unable to open a new window for printing.');
+          }
+        } else {
+          console.error('Table not found.');
+        }
+      }
 
     generateReport() {
         let doc = new jsPDF();

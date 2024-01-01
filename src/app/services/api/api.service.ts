@@ -372,6 +372,16 @@ export class ApiService {
       );
   }
 
+  joinAlumniWork(): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_main/joinAlumniWork", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   alumniPerBatch(data): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/alumni_main/alumniPerBatch", data, this.httpOptions)

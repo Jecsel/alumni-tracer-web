@@ -79,6 +79,7 @@ export class PersonalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.maxDate = this.getCurrentDate();
 
     this.personalForm
     .get("dob")
