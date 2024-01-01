@@ -6,37 +6,41 @@
                     <div class="account-form">
                         <div class="p-col-12">
                             <div class="field">
-                                <label for="username">Email</label>
+                                <label for="username">Email <span class="required"> *</span></label>
                                 <input class="custom-input" type="text" id="username" pInputText formControlName="username">
-                            </div>
-                        </div>
-                        <div class="p-col-12">
-                            <div class="field">
-                                <label for="password">Password</label>
-                                <input class="custom-input" type="password" autocomplete="off" id="password" pInputText formControlName="password">
-                            </div>
-                        </div>
-                        <div class="p-col-12">
-                            <div class="field">
-                                <label for="confirm_password">Confirm Password</label>
-                                <input class="custom-input" type="password" autocomplete="off" id="confirm_password" pInputText formControlName="confirm_password">
-                            </div>
-                        </div>
-                        <!-- <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="user_type">User Type</label>
-                                    <p-dropdown inputId="user_type" [autoDisplayFirst]="false" [options]="user_types" optionLabel="name" formControlName="user_type_id"></p-dropdown>
+                                <div *ngIf="accountForm.get('username').invalid && (accountForm.get('username').dirty || accountForm.get('username').touched)">
+                                    <div class="error-text" *ngIf="accountForm.get('username').errors?.required">Email is required.</div>
+                                    <div class="error-text" *ngIf="accountForm.get('username').errors?.email">Invalid email format.</div>
                                 </div>
                             </div>
-                        </div> -->
-
-                        <div class="grid p-fluid">
+                        </div>
+                        <div class="p-col-12">
+                            <div class="field">
+                                <label for="password">Password <span class="required"> *</span></label>
+                                <input class="custom-input" type="password" autocomplete="off" id="password" pInputText formControlName="password" required>
+                            </div>
+                            <div *ngIf="accountForm.get('password').invalid && (accountForm.get('password').dirty || accountForm.get('password').touched)">
+                                <div class="error-text" *ngIf="accountForm.get('password').errors?.required">Password is required.</div>
+                                <div class="error-text" *ngIf="accountForm.get('password').errors?.minlength">Must be atleast 8 digits.</div>
+                            </div>
+                        </div>
+                        <div class="p-col-12">
+                            <div class="field">
+                                <label for="confirm_password">Confirm Password <span class="required"> *</span></label>
+                                <input class="custom-input" type="password" autocomplete="off" id="confirm_password" pInputText formControlName="confirm_password">
+                            </div>
+                            <div *ngIf="accountForm.get('confirm_password').invalid && (accountForm.get('confirm_password').dirty || accountForm.get('confirm_password').touched) || accountForm.value.confirm_password != accountForm.value.password">
+                                <div class="error-text" *ngIf="accountForm.get('confirm_password').errors?.required">Password is required.</div>
+                                <div class="error-text" *ngIf="accountForm.get('confirm_password').errors?.minlength">Must be atleast 8 digits.</div>
+                                <div class="error-text" *ngIf="accountForm.value.confirm_password != accountForm.value.password">Must be match in password.</div>
+                            </div>
+                        </div>
+                        <div class="grid p-fluid mt-2">
                             <div class="col-12">
                                 <button 
                                     pButton pRipple 
                                     type="button" label="NEXT" 
-                                    [disabled]="accountForm.invalid"
+                                    [disabled]="accountForm.invalid || accountForm.value.confirm_password != accountForm.value.password"
                                     (click)="confirm()" class="p-button-raised p-button-success mr-2 mb-2"></button>
                             </div>
                         </div>

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   sortField: string;
 
   formLogin: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('' , [Validators.required,Validators.minLength(8)])
   });
   

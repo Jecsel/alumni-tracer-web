@@ -204,11 +204,19 @@
                                             <label for="username">Email</label>
                                         </span>
                                     </div>
+                                    <div *ngIf="formLogin.get('username').invalid && (formLogin.get('username').dirty || formLogin.get('username').touched)">
+                                        <div class="error-text" *ngIf="formLogin.get('username').errors?.required">Email is required.</div>
+                                        <div class="error-text" *ngIf="formLogin.get('username').errors?.email">Invalid email format.</div>
+                                    </div>
                                     <div class="p-col-12 mt-4">
                                         <span class="p-float-label">
                                             <input type="password" autocomplete="off" id="password" pInputText formControlName="password">
                                             <label for="password">Password</label>
                                         </span>
+                                    </div>
+                                    <div *ngIf="formLogin.get('password').invalid && (formLogin.get('password').dirty || formLogin.get('password').touched)">
+                                        <div class="error-text" *ngIf="formLogin.get('password').errors?.required">Password is required.</div>
+                                        <div class="error-text" *ngIf="formLogin.get('password').errors?.minlength">Must be atleast 8 digits.</div>
                                     </div>
                                 </div>
                     

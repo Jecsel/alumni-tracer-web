@@ -31,7 +31,7 @@
         </div> -->
     
         <a id="topbar-profile-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)" style="top: 0;">
-            <span>{{myProfile?.first_name}} {{myProfile?.last_name}} | {{userTypeId == '1' ? 'Alumni' : 'Admin'}}</span>
+            <span>{{myProfile?.first_name}} {{myProfile?.last_name}} | {{userTypeId == '1' ? 'User' : 'Admin'}}</span>
             <img src="assets/layout/images/avatar.png" alt="ecuador-layout" class="topbar-profile" />
             <i class="pi pi-caret-down"></i>
         </a>

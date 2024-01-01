@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -26,6 +26,13 @@ export class AccountComponent implements OnInit {
     ]),
     user_type_id: new FormControl(1)
   });
+
+  passwordsMatchValidator(): { [key: string]: boolean } | null {
+    const password = this.accountForm.value.password;
+    const confirm_password = this.accountForm.value.confirm_password;
+
+    return password === confirm_password ? null : { 'passwordsNotMatch': true };
+  }
 
   batch_years: any[] = [
     { id: 1, year: 2023 },
@@ -68,7 +75,7 @@ export class AccountComponent implements OnInit {
       },
       err => {
         console.log(err);
-        alert(err.error.error);
+        alert(err.error.message);
       }
     );
   }

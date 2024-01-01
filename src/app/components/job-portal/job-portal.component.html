@@ -12,7 +12,7 @@
 
                 <ng-template pTemplate="right">
                     <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload> -->
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                    <!-- <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button> -->
                 </ng-template>
             </p-toolbar>
 
@@ -36,6 +36,8 @@
                         <th pSortableColumn="company_email">Company Email <p-sortIcon field="company_email"></p-sortIcon></th>
 						<th pSortableColumn="company_address">Company Address <p-sortIcon field="company_address"></p-sortIcon></th>
                         <th pSortableColumn="batch_year">Position <p-sortIcon field="batch_year"></p-sortIcon></th>
+                        <th pSortableColumn="batch_year">Job Seeker Email <p-sortIcon field="batch_year"></p-sortIcon></th>
+                        <th pSortableColumn="batch_year">Job Seeker Contact <p-sortIcon field="batch_year"></p-sortIcon></th>
                         <th class="custom-w-th" pSortableColumn="created_at">Date of Submission <p-sortIcon field="created_at"></p-sortIcon></th>
 						<th class="custom-w-th" pSortableColumn="updated_at">Date Posted <p-sortIcon field="updated_at"></p-sortIcon></th>
 						<th class="custom-w-th" pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
@@ -64,6 +66,14 @@
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Position</span>
                             {{job.position}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Job Seeker Email</span>
+                            {{job.job_seeker_email}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Job Seeker Contact</span>
+                            {{job.job_seeker_contact}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Date of Submission</span>
@@ -115,6 +125,14 @@
 				<div class="field">
 					<label for="qualification">Qualifications</label>
 					<input type="text" pInputText id="qualification" formControlName="qualification" required autofocus/>
+				</div>
+                <div class="field">
+					<label for="job_seeker_email">Job Seeker Email</label>
+					<input type="text" pInputText id="job_seeker_email" formControlName="job_seeker_email" required autofocus/>
+				</div>
+                <div class="field">
+					<label for="job_seeker_contact">Job Seeker Contact</label>
+					<input type="text" pInputText id="job_seeker_contact" formControlName="job_seeker_contact" required autofocus/>
 				</div>
                 <div class="field">
                     

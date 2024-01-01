@@ -37,6 +37,8 @@ export class JobPortalComponent implements OnInit {
         company_address: new FormControl('', Validators.required),
         position: new FormControl('' , [Validators.required]),
         qualification: new FormControl('' , [Validators.required]),
+        job_seeker_email: new FormControl('' , [Validators.required]),
+        job_seeker_contact: new FormControl('' , [Validators.required]),
         deployment_date: new FormControl(null, [Validators.required]),
         active_date: new FormControl(null, [Validators.required])
     });

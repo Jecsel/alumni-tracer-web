@@ -19,9 +19,12 @@ export class PersonalComponent implements OnInit {
   batch_year: any;
   // personalForm: FormGroup;
   msgs: Message[] = [];
+  maxDate: string;
+  age: number | undefined;
 
   personalForm: FormGroup = new FormGroup({
     first_name: new FormControl('', Validators.required),
+    middle_name: new FormControl(''),
     last_name: new FormControl('', Validators.required),
     batch_year: new FormControl(null),
     dob: new FormControl(null, Validators.required),  
@@ -68,43 +71,7 @@ export class PersonalComponent implements OnInit {
 
   constructor(private service: MessageService, public router: Router, public apiService: ApiService, private fb: FormBuilder, private cookieService: AuthCookieService) { 
 
-    // this.personalForm = this.fb.group({
-    //   first_name: ['', Validators.required],
-    //   middle_name: ['', Validators.required],
-    //   last_name: ['', Validators.required],
-    //   batch_year: [null, Validators.required],
-    //   dob: [null, Validators.required],
-    //   age: ['', Validators.required],
-    //   civil_status: [null, Validators.required],
-    //   gender: ['', Validators.required],
-    //   region: ['', Validators.required],
-    //   province: ['', Validators.required],
-    //   municipality: ['', Validators.required],
-    //   barangay: ['', Validators.required],
-    //   course: ['', Validators.required],
-    //   year_graduated: ['', Validators.required],
-    //   email_address: ['', Validators.required],
-    //   phone_number: ['', Validators.required]
-    // });
-
-    // this.personalForm = this.fb.group({
-    //   first_name: ['', Validators.required],
-    //   middle_name: [''],
-    //   last_name: [''],
-    //   batch_year: [null],
-    //   dob: [null],
-    //   age: [''],
-    //   civil_status: [null],
-    //   gender: [''],
-    //   region: [''],
-    //   province: [''],
-    //   municipality: [''],
-    //   barangay: [''],
-    //   course: [''],
-    //   year_graduated: [''],
-    //   email_address: [''],
-    //   phone_number: ['']
-    // });
+    this.maxDate = this.getCurrentDate();
 
     this.personalForm.valueChanges.subscribe(() => {
       this.formValidityChanged.emit(this.personalForm.valid);
@@ -112,6 +79,52 @@ export class PersonalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.personalForm
+    .get("dob")
+    .valueChanges.subscribe((val) => {
+      // this.personalForm.value.perf_ind_id = val;
+      this.updateAge();
+  });
+  }
+
+  getCurrentDate(): string {
+    const currentDate = new Date();
+    // Format the date as 'yyyy-MM-dd' (the format expected by the input type date)
+    return currentDate.toISOString().split('T')[0];
+  }
+
+  calculateAge() {
+    if (this.personalForm.value.dob) {
+      const birthdate = new Date(this.personalForm.value.dob);
+      const today = new Date();
+      
+      let age = today.getFullYear() - birthdate.getFullYear();
+      const monthDiff = today.getMonth() - birthdate.getMonth();
+      
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+      }
+      
+      this.age = age;
+    } else {
+      this.age = undefined;
+    }
+
+    console.log(this.age);
+    return this.age;
+  }
+
+  updateAge() {
+    const dobValue = this.personalForm.get('dob')?.value;
+
+    if (dobValue) {
+      const age = this.calculateAge();
+      this.personalForm.patchValue({ age });
+      this.personalForm.value.age = age;
+    } else {
+      this.personalForm.patchValue({ age: '' });
+    }
   }
 
   confirm() {

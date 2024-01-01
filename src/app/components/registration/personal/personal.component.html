@@ -4,7 +4,7 @@
             <div class="grid">
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="first_name">First Name</label>
+                        <label for="first_name">First Name <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="first_name" pInputText formControlName="first_name">
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="last_name">Last Name</label>
+                        <label for="last_name">Last Name <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="last_name" pInputText formControlName="last_name">
                     </div>
                 </div>
@@ -33,13 +33,13 @@
 
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="dob">Date of Birth</label>
-                        <input class="custom-input" type="date" id="dob" pInputText formControlName="dob">
+                        <label for="dob">Date of Birth <span class="required"> *</span></label>
+                        <input class="custom-input" type="date" [max]="maxDate" id="dob" pInputText formControlName="dob" (change)="updateAge()">
                     </div>
                 </div>
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="age">Age</label>
+                        <label for="age">Age <span class="required"> *</span></label>
                         <input class="custom-input" type="number" id="age" pInputText formControlName="age">
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <div class="grid p-fluid">
                         <div class="col-12">
                             <div class="field">
-                                <label for="civil_status">Civil Status</label>
+                                <label for="civil_status">Civil Status <span class="required"> *</span></label>
                                 <p-dropdown inputId="civil_status" [autoDisplayFirst]="false" [options]="civil_statuses" optionLabel="name" formControlName="civil_status"></p-dropdown>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="gender">Gender</label>
+                        <label for="gender">Gender <span class="required"> *</span></label>
                         <p-dropdown inputId="gender" [autoDisplayFirst]="false" [options]="genders" optionLabel="name" formControlName="gender"></p-dropdown>
                     </div>
                 </div>
@@ -66,14 +66,14 @@
             <div class="grid">
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="region">Region</label>
+                        <label for="region">Region <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="region" pInputText formControlName="region">
                     </div>
                 </div>
 
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="province">Province</label>
+                        <label for="province">Province <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="province" pInputText formControlName="province">
                         
                     </div>
@@ -81,31 +81,15 @@
 
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="municipality">Municipality</label>
+                        <label for="municipality">Municipality <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="municipality" pInputText formControlName="municipality">
                     </div>
                 </div>
 
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="barangay">Barangay</label>
+                        <label for="barangay">Barangay <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="barangay" pInputText formControlName="barangay">
-                    </div>
-                </div>
-            </div>
-
-            <p class="mt-2"><b>Educational Background</b></p>
-            <div class="grid">
-                <div class="col-12 md:col-3">
-                    <div class="field">
-                        <label for="course">Course/Degree</label>
-                        <input class="custom-input" type="text" id="course" pInputText formControlName="course">
-                    </div>
-                </div>
-                <div class="col-12 md:col-3">
-                    <div class="field">
-                        <label for="year_graduated">Year Graduated</label>
-                        <input class="custom-input" type="text" id="year_graduated" pInputText formControlName="year_graduated">
                     </div>
                 </div>
             </div>
@@ -114,14 +98,30 @@
             <div class="grid">
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="email_address">Email Address</label>
+                        <label for="email_address">Email Address <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="email_address" pInputText formControlName="email_address">
                     </div>
                 </div>
                 <div class="col-12 md:col-3">
                     <div class="field">
-                        <label for="phone_number">Phone Number</label>
+                        <label for="phone_number">Phone Number <span class="required"> *</span></label>
                         <input class="custom-input" type="text" id="phone_number" pInputText formControlName="phone_number">
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-2"><b>Educational Background</b></p>
+            <div class="grid">
+                <div class="col-12 md:col-3">
+                    <div class="field">
+                        <label for="course">Course/Degree <span class="required"> *</span></label>
+                        <input class="custom-input" type="text" id="course" pInputText formControlName="course">
+                    </div>
+                </div>
+                <div class="col-12 md:col-3">
+                    <div class="field">
+                        <label for="year_graduated">Year Graduated <span class="required"> *</span></label>
+                        <input class="custom-input" type="text" id="year_graduated" pInputText formControlName="year_graduated">
                     </div>
                 </div>
             </div>
