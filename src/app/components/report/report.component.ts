@@ -47,6 +47,7 @@ export class ReportComponent implements OnInit {
     joinedAlumniWork: any = {};
 
     yearchoosen = "2021";
+    municipalitychoosen = "odiongan"
 
     selectType: SelectItem;
     selectBatchYear: SelectItem;
@@ -169,10 +170,12 @@ export class ReportComponent implements OnInit {
 
     selectContactYear(year_selected){
         this.reg_alumni = this.groupByBatch[year_selected];
+        this.reg_alumni = this.reg_alumni.filter(item => item.municipality === this.lowercaseSelectedMunicipality);
         this.yearchoosen = year_selected;
     }
 
     selectMuni(selectedMuni){
+        this.reg_alumni = this.groupByBatch[this.yearchoosen];
         this.lowercaseSelectedMunicipality = selectedMuni.toLowerCase();
         this.reg_alumni = this.reg_alumni.filter(item => item.municipality === selectedMuni);
     }
