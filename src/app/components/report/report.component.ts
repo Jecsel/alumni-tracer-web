@@ -23,19 +23,19 @@ export class ReportComponent implements OnInit {
     deleteProductsDialog: boolean = false;
     deleteProductDialog: boolean = false;
 
-    groupByBatch: any;
+    allAlumniDataByBatch: any;
+    allAlumniData: any;
+    
     perBatch: any;
     groupByWorkType: any;
     perWorkType: any;
 
-    chckAll: boolean = false;
+    chckAll: boolean = true;
     chckReg: boolean = true;
     chckWorkType: boolean = true;
     chckEvent: boolean = true;
     chckJob: boolean = true;
 
-    selectedMunicipality: any = 'Odiongan';
-    lowercaseSelectedMunicipality: any = 'odiongan';
     reg_alumni: any = {};
     countRegAlumni = {
         total: 0,
@@ -46,11 +46,9 @@ export class ReportComponent implements OnInit {
 
     joinedAlumniWork: any = {};
 
-    yearchoosen = "2021";
-    municipalitychoosen = "odiongan"
+    yearchoosen = "";
+    municipalitychoosen = ""
 
-    selectType: SelectItem;
-    selectBatchYear: SelectItem;
     listBatchYear = [
         { label: "2023", value: "2023" },
         { label: "2022", value: "2022" },
@@ -59,17 +57,20 @@ export class ReportComponent implements OnInit {
     ];
 
     municipalities = [
-        { label: "Alcantara", value: "Alcantara" },
-        { label: "Calatrava", value: "Calatrava" },
-        { label: "Ferrol", value: "Ferrol" },
-        { label: "Looc", value: "Looc" },
-        { label: "Odiongan", value: "Odiongan" },
-        { label: "San Agustin,", value: "San Agustin," },
-        { label: "San Andres", value: "San Andres" },
-        { label: "Santa Fe", value: "Santa Fe" },
-        { label: "Santa Maria", value: "Santa Maria" }
+        { label: "Alcantara", value: "alcantara" },
+        { label: "Calatrava", value: "calatrava" },
+        { label: "Ferrol", value: "ferrol" },
+        { label: "Looc", value: "looc" },
+        { label: "Odiongan", value: "odiongan" },
+        { label: "San Agustin", value: "san agustin" },
+        { label: "San Andres", value: "san andres" },
+        { label: "Santa Fe", value: "santa fe" },
+        { label: "Santa Maria", value: "santa maria" }
     ]
 
+    selectType: SelectItem;
+    selectBatchYear: SelectItem;
+    selectedMunicipality: SelectItem;
 
     cities = [
         { label: "New York", value: { id: 1, name: "New York", code: "NY" } },
@@ -90,11 +91,14 @@ export class ReportComponent implements OnInit {
         // this.getAllJobPost();
         // this.getAllCurrentEvents();
         // this.getAllUpcomingEvents();
+
+        this.selectedMunicipality = this.municipalities[0];
+
+        this.batchYearList();
         this.alumniGroupByBatch();
         this.joinAlumniWork();
 
         // this.alumniGroupByWorkType();
-        this.batchYearList();
     }
 
     selectChckAll() {
@@ -134,50 +138,62 @@ export class ReportComponent implements OnInit {
     alumniGroupByBatch() {
         this.apiService.alumniGroupByBatch().subscribe((res) => {
             console.log("all alumniGroupByBatch: ", res.data);
-            this.groupByBatch = res.data;
+            this.allAlumniData = res.data;
+            this.allAlumniDataByBatch = res.group;
 
-            this.listBatchYear = Object.keys(this.groupByBatch).map(year => ({
-                label: year,
-                value: year
-            }));
-            this.listBatchYear.sort((a, b) => b.label.localeCompare(a.label));
-
-            this.selectBatchYear = this.listBatchYear[0];
-            this.selectedMunicipality = this.municipalities[4];
-            this.lowercaseSelectedMunicipality = this.selectedMunicipality.label.toLowerCase();
-
-            this.reg_alumni = this.groupByBatch[this.selectBatchYear.label];
-            this.reg_alumni = this.reg_alumni.filter(item => item.municipality === this.selectedMunicipality.label);
+            this.reg_alumni = this.allAlumniData;
 
             this.countRegAlumni.total = res.total;
-            const countGender = this.reg_alumni.reduce(
-                (count, entry) => {
-                  if (entry.gender === 1) {
-                    count.gender1++;
-                  } else if (entry.gender === 2) {
-                    count.gender2++;
-                  }
-                  return count;
-                },
-                { gender1: 0, gender2: 0 }
-              );
-            this.countRegAlumni.male = countGender.gender1;
-            this.countRegAlumni.female = countGender.gender2;
-            this.countRegAlumni[this.lowercaseSelectedMunicipality] = this.reg_alumni.length;
 
+            this.getCounts(this.allAlumniData);
         });
     }
 
+    getCounts(data: any){
+        const countGender = data.reduce(
+            (count, entry) => {
+              if (entry.gender === 1) {
+                count.gender1++;
+              } else {
+                count.gender2++;
+              }
+              return count;
+            },
+            { gender1: 0, gender2: 0 }
+          );
+        this.countRegAlumni.male = countGender.gender1;
+        this.countRegAlumni.female = countGender.gender2;
+        this.countRegAlumni[this.municipalitychoosen] = this.reg_alumni.length;
+    }
+
     selectContactYear(year_selected){
-        this.reg_alumni = this.groupByBatch[year_selected];
-        this.reg_alumni = this.reg_alumni.filter(item => item.municipality === this.lowercaseSelectedMunicipality);
+
+        this.setRegAlummniData(year_selected, this.municipalitychoosen)
         this.yearchoosen = year_selected;
     }
 
     selectMuni(selectedMuni){
-        this.reg_alumni = this.groupByBatch[this.yearchoosen];
-        this.lowercaseSelectedMunicipality = selectedMuni.toLowerCase();
-        this.reg_alumni = this.reg_alumni.filter(item => item.municipality === selectedMuni);
+
+        // this.reg_alumni = this.allAlumniDataByBatch[this.yearchoosen];
+        // this.municipalitychoosen = selectedMuni;
+        // this.reg_alumni = this.reg_alumni.filter(item => item.municipality === selectedMuni);
+
+        this.setRegAlummniData(this.yearchoosen, selectedMuni)
+        this.chckAll = false;
+    }
+
+    setRegAlummniData(year_selected, muni_selected){
+
+        if(year_selected != '' && year_selected) {
+            this.reg_alumni = this.allAlumniDataByBatch[year_selected];
+        }
+
+        if(muni_selected != '' && muni_selected) {
+            this.reg_alumni = this.reg_alumni.filter(item => item.municipality.toLowerCase() === muni_selected);
+        }
+
+        this.getCounts(this.reg_alumni);
+        this.chckAll = false;
     }
 
     joinAlumniWork() {
@@ -494,15 +510,15 @@ export class ReportComponent implements OnInit {
             this.alumniPerBatch(this.selectBatchYear);
         } else {
             if (this.chckAll || this.chckReg) {
-                for (const batchYear in this.groupByBatch) {
+                for (const batchYear in this.allAlumniDataByBatch) {
                     console.log(`\nBatch Year: ${batchYear}`);
                     doc = new jsPDF();
                     let title =
                         "List of Alumni Batch of " +
-                        this.groupByBatch[batchYear][0].batch_year;
+                        this.allAlumniDataByBatch[batchYear][0].batch_year;
                     doc.text(title, 20, 30);
 
-                    let groupBatch = this.groupByBatch[batchYear].map(
+                    let groupBatch = this.allAlumniDataByBatch[batchYear].map(
                         ({
                             created_at,
                             updated_at,

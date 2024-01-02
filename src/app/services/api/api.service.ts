@@ -382,6 +382,16 @@ export class ApiService {
       );
   }
 
+  deleteAlumni(id: number): Observable<any> {
+    return this.httpClient
+      .delete(this.baseUrl + "/alumni_main/"+ id, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   alumniPerBatch(data): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/alumni_main/alumniPerBatch", data, this.httpOptions)

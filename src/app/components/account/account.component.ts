@@ -103,12 +103,22 @@ export class AccountComponent implements OnInit {
         this.selectedProducts = null;
     }
 
-    confirmDelete(){
+    confirmDelete(id){
+        this.apiService.deleteAlumni(id).subscribe(
+            res => {
+                console.log(res);
+            }, err => {
+                console.log(err);
+            }
+        )
+
         this.deleteProductDialog = false;
         this.products = this.products.filter(val => val.id !== this.account.id);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
         this.account = {};
     }
+
+
 
     hideDialog() {
         this.productDialog = false;

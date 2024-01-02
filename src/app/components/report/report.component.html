@@ -62,7 +62,7 @@
 							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
 								Female</th>
 							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
-								{{lowercaseSelectedMunicipality | uppercase}}</th>
+								{{municipalitychoosen | uppercase}}</th>
 						  </tr>
 						</thead>
 						<tbody>
@@ -70,7 +70,7 @@
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
-							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[municipalitychoosen]}}</td>
 						  </tr>
 						</tbody>
 					</table>
@@ -169,7 +169,7 @@
 							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
 								Female</th>
 							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
-								{{lowercaseSelectedMunicipality | uppercase}}</th>
+								{{municipalitychoosen | uppercase}}</th>
 						  </tr>
 						</thead>
 						<tbody>
@@ -177,7 +177,7 @@
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
-							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[municipalitychoosen]}}</td>
 						  </tr>
 						</tbody>
 					</table>
@@ -196,6 +196,7 @@
 						  </tr>
 						</thead>
 						<tbody>
+							{{reg_alumni | json}
 						  <tr *ngFor="let alum of reg_alumni">
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.last_name}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{alum.first_name}}</td>
@@ -277,7 +278,7 @@
 							<th style="border: 1px solid #000; padding: 8px;text-align: center;background-color: #f2f2f2;">
 								Female</th>
 							<th style="border: 1px solid #000; padding: 8px;text-align: center; background-color: #f2f2f2;">
-								{{lowercaseSelectedMunicipality | uppercase}}</th>
+								{{municipalitychoosen | uppercase}}</th>
 						  </tr>
 						</thead>
 						<tbody>
@@ -285,7 +286,7 @@
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.total}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.male}}</td>
 							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni.female}}</td>
-							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[lowercaseSelectedMunicipality]}}</td>
+							<td style="border: 1px solid #000; padding: 8px;text-align: center;">{{countRegAlumni[municipalitychoosen]}}</td>
 						  </tr>
 						</tbody>
 					</table>
