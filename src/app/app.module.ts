@@ -165,6 +165,7 @@ import { UserEventComponent } from './components/user-event/user-event.component
 import { ViewJobComponent } from './components/modals/view-job/view-job.component';
 import { ViewEventComponent } from './components/modals/view-event/view-event.component';
 import { ViewProfileComponent } from './components/modals/view-profile/view-profile.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -319,7 +320,8 @@ FullCalendarModule.registerPlugins([
         UserEventComponent,
         ViewJobComponent,
         ViewEventComponent,
-        ViewProfileComponent
+        ViewProfileComponent,
+        ReportsComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

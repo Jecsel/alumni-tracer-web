@@ -1,7 +1,7 @@
 <div class="layout-dashboard">
     <div class="grid">
         <div class="col-12 md:col-6 lg:col-4">
-            <div class="overview-box sales">
+            <div class="overview-box sales" (click)="visibleEvent = true">
                 <img src="assets/layout/images/icon-sales.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">EVENTS</div>
                 <div class="overview-numbers">
@@ -10,8 +10,12 @@
             </div>
         </div>
 
+        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleEvent" position="right" [baseZIndex]="10000">
+            <app-event></app-event>
+        </p-sidebar>
+
         <div class="col-12 md:col-6 lg:col-4">
-            <div class="overview-box views">
+            <div class="overview-box views"  (click)="visibleJob = true">
                 <img src="assets/layout/images/icon-views.png" alt="ecuador-layout" style="margin-top:10px" />
                 <div class="overview-title">JOBS</div>
                 <div class="overview-numbers">
@@ -20,8 +24,12 @@
             </div>
         </div>
 
+        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleJob" position="right" [baseZIndex]="10000">
+            <app-job-portal></app-job-portal>
+        </p-sidebar>
+
         <div class="col-12 md:col-6 lg:col-4">
-            <div class="overview-box checkins">
+            <div class="overview-box checkins"  (click)="visibleAlumni = true">
                 <img src="assets/layout/images/icon-checkin.png" alt="ecuador-layout" class="image-icon" />
                 <div class="overview-title">ALUMNI</div>
                 <div class="overview-numbers">
@@ -30,12 +38,16 @@
             </div>
         </div>
 
+        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleAlumni" position="right" [baseZIndex]="10000">
+            <app-account></app-account>
+        </p-sidebar>
+                        
         <div class="col-12 md:col-9">
             <div class="col-12">
                 <div class="grid p-fluid">  
                     <div class="col-12 lg:col-6">
                         <div class="card">
-                            <h5>Registered Alumni</h5>
+                            <h5>Registered Alumni {{showRegisteredTable}}</h5>
                             <p-chart type="line" [data]="lineData" [options]="lineOptions" [style]="{'width': '50%'}"></p-chart>
                         </div>
                     </div>

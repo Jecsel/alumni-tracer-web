@@ -41,6 +41,7 @@ import { ReportComponent } from './components/report/report.component';
 import { UserHomepageComponent } from './components/user-homepage/user-homepage.component';
 import { UserJobComponent } from './components/user-job/user-job.component';
 import { UserEventComponent } from './components/user-event/user-event.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { UserEventComponent } from './components/user-event/user-event.component
                     {path: 'announcement', component: AnnouncementComponent},
                     {path: 'event', component: EventComponent},
                     {path: 'report', component: ReportComponent},
+                    {path: 'reports', component: ReportsComponent},
                     {path: 'home', component: DashboardDemoComponent},
                     {path: 'user-job', component: UserJobComponent},
                     {path: 'user-event', component: UserEventComponent},

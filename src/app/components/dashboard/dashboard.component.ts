@@ -94,6 +94,11 @@ export class DashboardComponent implements OnInit {
     showViewDialog: boolean = false;
     selectedJobss: any;
 
+    showRegisteredTable = false;
+    visibleEvent;
+    visibleJob;
+    visibleAlumni;
+
     formJob: FormGroup = new FormGroup({
         company_name: new FormControl('', [Validators.required]),
         company_email: new FormControl('' , [Validators.required]),
@@ -116,6 +121,7 @@ export class DashboardComponent implements OnInit {
         this.breadcrumbService.setItems([
             { label: "Dashboard", routerLink: [""] },
         ]);
+        this.showRegisteredTable = false;
     }
 
     ngOnInit() {
@@ -123,12 +129,12 @@ export class DashboardComponent implements OnInit {
         this.getAllJobPost();
         this.getAllUpcomingEvents();
         this.createChart();
-        this.createDashboard();
         this.getAdminDashboardCount();
         this.registeredAlumniDataChart();
         this.getIsItRelatedData();
         this.getGoveSect();
         this.getAllJobs();
+        this.createDashboard();
     }
 
     getAllJobs() {
@@ -456,7 +462,19 @@ export class DashboardComponent implements OnInit {
         }
       }
 
-      
+    handleClick(event, elements) {
+        if (elements.length > 0) {
+          // User clicked on a point
+          var index = elements[0].index;
+          this.showRegisteredTable = true;
+          var value = this.lineData.data.datasets[0].data[index];
+          var label = this.lineData.data.labels[index];
+          console.log('Clicked on point:', { label, value });
+          // You can perform additional actions here based on the clicked 
+          
+        }
+    }
+
     createDashboard() {
         this.productService
             .getProducts()
@@ -595,6 +613,7 @@ export class DashboardComponent implements OnInit {
                     },
                 },
             },
+            onClick: this.handleClick
         };
 
         this.barData = {
