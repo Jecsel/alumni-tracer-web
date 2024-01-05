@@ -14,7 +14,7 @@ export class AppTopBarComponent {
 
     items: MenuItem[] | undefined;
     activeItem: MenuItem | undefined;
-    isRegUser: Boolean = false;
+    isRegUser: Boolean = true;
     myProfile: any = {};
     myWorkProfile: any = {};
     showDialog: boolean = false;
@@ -46,9 +46,12 @@ export class AppTopBarComponent {
           this.myProfile = res.data;
           this.myWorkProfile = res.work;
           console.log('myProfile', this.myProfile);
-          if(!this.myProfile || this.myProfile == null && !this.getUserType()){
-            this.router.navigate(['registration/personal']);
+          if(this.getUserType()) {
+            if(!this.myProfile || this.myProfile == null){
+              this.router.navigate(['registration/personal']);
+            }
           }
+
         },
         err => {
           console.log('Error', err);
@@ -71,7 +74,7 @@ export class AppTopBarComponent {
     getUserType() {
       const user_type_id: any = this.authCookie.getToken('user_type_id')
       console.log('user_type', user_type_id);
-      if(user_type_id === 2 || user_type_id === '2'){
+      if(user_type_id == 2 || user_type_id === '2'){
         this.isRegUser = false;
       } else {  
         this.isRegUser = true;
