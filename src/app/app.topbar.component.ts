@@ -16,6 +16,7 @@ export class AppTopBarComponent {
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = false;
     myProfile: any = {};
+    myWorkProfile: any = {};
     showDialog: boolean = false;
     userTypeId = '1';
   
@@ -43,6 +44,7 @@ export class AppTopBarComponent {
         res => {
           console.log('User Profile', res);
           this.myProfile = res.data;
+          this.myWorkProfile = res.work;
           console.log('myProfile', this.myProfile);
           if(!this.myProfile || this.myProfile == null && this.userTypeId != '2'){
             this.router.navigate(['registration/personal']);

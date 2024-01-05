@@ -52,7 +52,7 @@
         </ul>
 
         <p-dialog class="p-3" [(visible)]="showDialog" header="Profile" [modal]="true" [style]="{width:'auto'}">
-            <app-view-profile *ngIf="showDialog" [profile]="myProfile"></app-view-profile>
+            <app-view-profile *ngIf="showDialog" [profile]="myProfile" [work]="myWorkProfile"></app-view-profile>
         </p-dialog>
     
         <!-- <a href="#" id="right-panel-button" [ngClass]="{'menu-button-rotate': app.rightPanelActive}" (click)="app.onRightPanelButtonClick($event)">

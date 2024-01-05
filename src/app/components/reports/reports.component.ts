@@ -40,7 +40,7 @@ export class ReportsComponent implements OnInit {
   constructor(private customerService: CustomerService, private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getCustomer();
+    // this.getCustomer();
     this.joinAlumniWork();
 
     this.cols = [
@@ -90,20 +90,31 @@ export class ReportsComponent implements OnInit {
     });
   }
 
-  joinAlumniWork() {
-    this.apiService.joinAlumniWork().subscribe(
-        (res) => {
-            this.joinedAlumniWork = res.data;
-            console.log('joinedAlumniWork', this.joinedAlumniWork);
+    joinAlumniWork() {
+      this.apiService.joinAlumniWork().subscribe(
+          (res) => {
+              this.joinedAlumniWork = res.data;
+              console.log('joinedAlumniWork', this.joinedAlumniWork);
 
-        },
-        (err) => {
-            console.log(err);
-        }
-    );
-}
+          },
+          (err) => {
+              console.log(err);
+          }
+      );
+  }
 
 printContact(): void {
+
+  let searchContent = document.getElementById('search-content');
+  if (searchContent) {
+    searchContent.style.display = 'none';
+  }
+
+  let filterIcon = document.getElementById('filter-icon-id');
+  if (filterIcon) {
+    filterIcon.style.display = 'none';
+  }
+
   const printContent = document.getElementById('contact-table-id');
 
   
@@ -132,6 +143,8 @@ printContact(): void {
     console.error('Table not found.');
   }
 
+  searchContent.style.display = '';
+  filterIcon.style.display = '';
 }
 
 }

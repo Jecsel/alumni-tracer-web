@@ -1,195 +1,350 @@
 <div class="container">
     <p-toast key="tst" [baseZIndex]="99999"></p-toast>
 
-    <div class="edit-form">
-        <form role="form" [formGroup]="personalForm">
-            <div class="sign-up-panel">
-                <div class="grid">
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="first_name">First Name</label>
-                                    <input class="custom-input" type="text" id="first_name" pInputText formControlName="first_name">
+    <p-tabView>
+        <p-tabPanel header="Alumni Personal Profile">
+            <div class="edit-form">
+                <form role="form" [formGroup]="personalForm">
+                    <div class="sign-up-panel">
+                        <div class="grid">
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="first_name">First Name</label>
+                                            <input class="custom-input" type="text" id="first_name" pInputText formControlName="first_name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="middle_name">Middle Name</label>
+                                            <input  class="custom-input" type="text" id="middle_name" pInputText formControlName="middle_name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="last_name">Last Name</label>
+                                            <input class="custom-input" type="text" id="last_name" pInputText formControlName="last_name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="dob">Date of Birth</label>
+                                    <input class="custom-input" type="date" id="dob" [max]="maxDate"  pInputText formControlName="dob">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="age">Age</label>
+                                            <input class="custom-input" type="number" id="age" pInputText formControlName="age">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="civil_status">Civil Status</label>
+                                            <p-dropdown inputId="civil_status" [autoDisplayFirst]="false" [options]="civil_statuses" optionLabel="name" formControlName="civil_status"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="gender">Gender</label>
+                                    <p-dropdown inputId="gender" [autoDisplayFirst]="false" [options]="genders" optionLabel="name" formControlName="gender"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+            
+                        <p class="mt-2"><b>Home Address</b></p>
+                        <div class="grid">
+            
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="region">Region</label>
+                                            <input class="custom-input" type="text" id="region" pInputText formControlName="region">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="province">Province</label>
+                                            <input class="custom-input" type="text" id="province" pInputText formControlName="province">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="municipality">Municipality</label>
+                                            <input class="custom-input" type="text" id="municipality" pInputText formControlName="municipality">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="barangay">Barangay</label>
+                                    <input class="custom-input" type="text" id="barangay" pInputText formControlName="barangay">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="middle_name">Middle Name</label>
-                                    <input  class="custom-input" type="text" id="middle_name" pInputText formControlName="middle_name">
+            
+                        <p class="mt-2"><b>Educational Background</b></p>
+                        <div class="grid">
+            
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="course">Course/Degree</label>
+                                            <input class="custom-input" type="text" id="course" pInputText formControlName="course">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="year_graduated">Year Graduated</label>
+                                            <input class="custom-input" type="text" id="year_graduated" pInputText formControlName="year_graduated">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="last_name">Last Name</label>
-                                    <input class="custom-input" type="text" id="last_name" pInputText formControlName="last_name">
+            
+                        <p class="mt-2"><b>Contact Information</b></p>
+                        <div class="grid">
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="email_address">Email Address</label>
+                                            <input class="custom-input" type="text" id="email_address" pInputText formControlName="email_address">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="grid p-fluid">
+                                    <div class="col-12">
+                                        <div class="field">
+                                            <label for="phone_number">Phone Number</label>
+                                    <input class="custom-input" type="text" id="phone_number" pInputText formControlName="phone_number">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+            
+                        <button 
+                            *ngIf="is_updating"
+                            pButton pRipple 
+                            type="button" label="UPDATE"
+                            (click)="update()" class="p-button-raised p-button-success mr-2 mb-2">
+                        </button>
                     </div>
-    
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="dob">Date of Birth</label>
-                            <input class="custom-input" type="date" id="dob" [max]="maxDate"  pInputText formControlName="dob">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="age">Age</label>
-                                    <input class="custom-input" type="number" id="age" pInputText formControlName="age">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="civil_status">Civil Status</label>
-                                    <p-dropdown inputId="civil_status" [autoDisplayFirst]="false" [options]="civil_statuses" optionLabel="name" formControlName="civil_status"></p-dropdown>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="gender">Gender</label>
-                            <p-dropdown inputId="gender" [autoDisplayFirst]="false" [options]="genders" optionLabel="name" formControlName="gender"></p-dropdown>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>
-    
-                <p class="mt-2"><b>Home Address</b></p>
-                <div class="grid">
-    
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="region">Region</label>
-                                    <input class="custom-input" type="text" id="region" pInputText formControlName="region">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="province">Province</label>
-                                    <input class="custom-input" type="text" id="province" pInputText formControlName="province">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="municipality">Municipality</label>
-                                    <input class="custom-input" type="text" id="municipality" pInputText formControlName="municipality">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="barangay">Barangay</label>
-                            <input class="custom-input" type="text" id="barangay" pInputText formControlName="barangay">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <p class="mt-2"><b>Educational Background</b></p>
-                <div class="grid">
-    
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="course">Course/Degree</label>
-                                    <input class="custom-input" type="text" id="course" pInputText formControlName="course">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="year_graduated">Year Graduated</label>
-                                    <input class="custom-input" type="text" id="year_graduated" pInputText formControlName="year_graduated">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <p class="mt-2"><b>Contact Information</b></p>
-                <div class="grid">
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="email_address">Email Address</label>
-                                    <input class="custom-input" type="text" id="email_address" pInputText formControlName="email_address">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 md:col-3">
-                        <div class="grid p-fluid">
-                            <div class="col-12">
-                                <div class="field">
-                                    <label for="phone_number">Phone Number</label>
-                            <input class="custom-input" type="text" id="phone_number" pInputText formControlName="phone_number">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <button 
-                    *ngIf="is_updating"
-                    pButton pRipple 
-                    type="button" label="UPDATE" 
-                    [disabled]="personalForm.invalid"
-                    (click)="update()" class="p-button-raised p-button-success mr-2 mb-2">
-                </button>
+                </form>
             </div>
-        </form>
-    </div>
+        
+            <button 
+                *ngIf="!is_updating"
+                pButton pRipple 
+                type="button" label="EDIT" 
+                (click)="edit()" class="p-button-raised p-button-primary mr-2 mb-2">
+            </button>
+        </p-tabPanel>
 
-    <button 
-        *ngIf="!is_updating"
-        pButton pRipple 
-        type="button" label="EDIT" 
-        [disabled]="personalForm.invalid"
-        (click)="edit()" class="p-button-raised p-button-primary mr-2 mb-2">
-    </button>
+        <p-tabPanel header="Alumni Work Profile">
+            <div class="container">
+                <form role="form" [formGroup]="workForm">
+                    <div class="sign-up-panel">
+            
+                        <p class="mt-2">Are you presently working or engaged in business? <span class="required"> *</span></p>
+                        <div class="grid">
+                            <div class="col-12 md:col-2">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="is_working" value="yes" formControlName="is_working" [(ngModel)]="isWorking" id="yes"></p-radioButton>
+                                    <label for="yes">Yes</label>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-2">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="is_working" value="no" formControlName="is_working" [(ngModel)]="isWorking" id="no"></p-radioButton>
+                                    <label for="no">No</label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        
+                        <div *ngIf="isWorking == 'yes'">
+                            <p class="mt-2">If YES, Please check:  <span class="required"> *</span></p>
+                            <div class="grid">
+                                <div class="col-12 md:col-2">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="work_type" value="private" formControlName="work_type" [(ngModel)]="workType" id="private"></p-radioButton>
+                                        <label for="private">Working</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-2">
+                                    <div class="field-radiobutton">
+                                        <p-radioButton name="work_type" value="self employed" formControlName="work_type" [(ngModel)]="workType" id="self"></p-radioButton>
+                                        <label for="self">Self-Employed(In business)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-12 md:col-3">
+                                    <div class="field">
+                                        <label for="work_position" class="mr-2">IT Related <span class="required"> *</span></label>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-2">
+                                    <div class="field">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="is_it_related" value="1" formControlName="is_it_related" [(ngModel)]="isItRelated" id="it_yes"></p-radioButton>
+                                            <label for="it_yes">Yes</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-2">
+                                    <div class="field">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="is_it_related" value="0" formControlName="is_it_related" [(ngModel)]="isItRelated" id="it_no"></p-radioButton>
+                                            <label for="it_no">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-12 md:col-3">
+                                    <div class="field">
+                                        <label for="work_position" class="mr-2">Work Sector <span class="required"> *</span></label>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-2">
+                                    <div class="field">
+                                            <div class="field-radiobutton">
+                                            <p-radioButton name="is_gov_sect" value="1" formControlName="is_gov_sect" [(ngModel)]="isWorkSector" id="is_gov"></p-radioButton>
+                                            <label for="is_gov">Public</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-2">
+                                    <div class="field">
+                                        <div class="field-radiobutton">
+                                            <p-radioButton name="is_gov_sect" value="0" formControlName="is_gov_sect" [(ngModel)]="isWorkSector" id="is_private"></p-radioButton>
+                                            <label for="is_private">Private</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-12 md:col-6">
+                                    <div class="field">
+                                        <label for="work_position" class="mr-2">Work Position <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="work_position" pInputText formControlName="work_position">
+                                    </div>
+                                    <div class="field">
+                                        <label for="company_name" class="mr-2">Company Name <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="company_name" pInputText formControlName="company_name">
+                                    </div>
+                                    <div class="field">
+                                        <label for="company_address" class="mr-2">Company Address <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="company_address" pInputText formControlName="company_address">
+                                    </div>
+                                    <div class="field">
+                                        <label for="company_acronym" class="mr-2">Company Acronym <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="company_acronym" pInputText formControlName="company_acronym">
+                                    </div>
+                                </div>
+                                <div class="col-12 md:col-6">
+                                    <div class="field" *ngShow="false">
+                                        <label for="type_of_business" class="mr-2">Type of Business <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="type_of_business" pInputText formControlName="type_of_business">
+                                    </div>
+                                    <div class="field" *ngShow="false">
+                                        <label for="area_of_business" class="mr-2">Area of Business <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="area_of_business" pInputText formControlName="area_of_business">
+                                    </div>
+                                    <div class="field" *ngShow="false">
+                                        <label for="business_related" class="mr-2">Business Related <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="business_related" pInputText formControlName="business_related">
+                                    </div>
+                                    <div class="field">
+                                        <label for="line_of_busines" class="mr-2">Line of Business <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="line_of_busines" pInputText formControlName="line_of_busines">
+                                    </div>
+                                    <div class="field">
+                                        <label for="business_address" class="mr-2">Business Address <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="business_address" pInputText formControlName="business_address">
+                                    </div>
+                                    <div class="field">
+                                        <label for="business_name" class="mr-2">Business Name <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="business_name" pInputText formControlName="business_name">
+                                    </div>
+                                    <div class="field">
+                                        <label for="business_acronym" class="mr-2">Business Acronym <span class="required"> *</span></label>
+                                        <input class="custom-input" type="text" id="business_acronym" pInputText formControlName="business_acronym">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <button 
+                            pButton pRipple 
+                            type="button" label="UPDATE" 
+                            (click)="updateWork()"
+                            [disabled]="workForm.invalid"
+                            class="p-button-raised p-button-success mr-2 mb-2">
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </p-tabPanel>
+    </p-tabView>
+
+
 </div>

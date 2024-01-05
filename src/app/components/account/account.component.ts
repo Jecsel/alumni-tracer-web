@@ -27,6 +27,10 @@ export class AccountComponent implements OnInit {
     statuses: any[];
     rowsPerPageOptions = [5, 10, 20];
 
+    showDialog: boolean = false;
+    myProfile: any = {};
+    myWorkProfile: any = {};
+
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,
                 private apiService: ApiService) {
@@ -46,13 +50,42 @@ export class AccountComponent implements OnInit {
 
         
 
+        // this.cols = [
+        //     {field: 'first_name', header: 'First Name'},
+        //     {field: 'price', header: 'Price'},
+        //     {field: 'category', header: 'Category'},
+        //     {field: 'rating', header: 'Reviews'},
+        //     {field: 'inventoryStatus', header: 'Status'}
+        // ];
+
         this.cols = [
-            {field: 'first_name', header: 'First Name'},
-            {field: 'price', header: 'Price'},
-            {field: 'category', header: 'Category'},
-            {field: 'rating', header: 'Reviews'},
-            {field: 'inventoryStatus', header: 'Status'}
-        ];
+            { field: 'first_name', header: 'First Name' },
+            { field: 'last_name', header: 'Last Name' },
+            { field: 'batch_year', header: 'Batch Year' },
+            { field: 'dob', header: 'Date of Birth' },
+            { field: 'age', header: 'Age' },
+            { field: 'civil_status', header: 'Civil Status' },
+            { field: 'gender', header: 'Gender' },
+            { field: 'region', header: 'Region' },
+            { field: 'province', header: 'Province' },
+            { field: 'municipality', header: 'Municipality' },
+            { field: 'barangay', header: 'Barangay' },
+            { field: 'course', header: 'Course' },
+            { field: 'email_address', header: 'Email Address' },
+            { field: 'phone_number', header: 'Phone Number' },
+            { field: 'work_status', header: 'Work Status' },
+            { field: 'work_sector', header: 'Work Sector' },
+            { field: 'it_related', header: 'IT Related' },
+            { field: 'work_type', header: 'Work Type' },
+            { field: 'work_position', header: 'Work Position' },
+            { field: 'business_name', header: 'Business Name' },
+            { field: 'company_name', header: 'Company Name' },
+            { field: 'company_address', header: 'Company Address' },
+            { field: 'company_acronym', header: 'Company Acronym' },
+            { field: 'type_of_business', header: 'Type of Business' },
+            { field: 'area_of_business', header: 'Area of Business' },
+            { field: 'business_address', header: 'Business Address' }
+          ];
 
         this.statuses = [
             {label: 'APPROVED', value: 'instock'},
@@ -60,7 +93,29 @@ export class AccountComponent implements OnInit {
             {label: 'REJECTED', value: 'outofstock'}
         ];
 
-        this.getAllAlumniMains();
+        // this.getAllAlumniMains();
+        this.joinAlumniWork();
+    }
+
+    showProfile(prof){
+        const wrk = {
+            work_status: 'yes',
+            work_sector: prof.is_gov_sect,
+            it_related: prof.is_it_related,
+            work_type:  prof.work_type,
+            work_position: prof.work_position,
+            business_name: prof.business_name,
+            company_name: prof.company_name,
+            company_address: prof.company_address,
+            company_acronym: prof.company_acronym,
+            type_of_business: prof.type_of_business,
+            area_of_business: prof.area_of_business,
+            business_address: prof.business_address
+        };
+
+        this.showDialog = true;
+        this.myProfile = prof;
+        this.myWorkProfile = wrk;
     }
 
     getAllAlumniMains() {
@@ -73,6 +128,17 @@ export class AccountComponent implements OnInit {
                 console.log(err);
             }
        ) 
+    }
+
+    joinAlumniWork() {
+        this.apiService.joinAlumniWork().subscribe(
+            (res) => {
+                this.products = res.data;
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
     }
 
 

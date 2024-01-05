@@ -13,6 +13,30 @@ import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.ser
 })
 export class ViewProfileComponent implements OnInit {
   @Input() profile;
+  @Input() work;
+
+  isWorking: string = 'no';
+  workType: string = 'private';
+  isItRelated: boolean = false;
+  isWorkSector: boolean = false;
+
+  workForm: FormGroup = new FormGroup({
+    is_working: new FormControl('', Validators.required),
+    work_type: new FormControl(''),
+    work_position: new FormControl(''),
+    business_name: new FormControl(''),
+    company_name: new FormControl(''),
+    company_address: new FormControl(''),
+    company_acronym: new FormControl(''),
+    type_of_business: new FormControl(''),
+    area_of_business: new FormControl(''),
+    business_address: new FormControl(''),
+    business_acronym: new FormControl(''),
+    business_related: new FormControl(''),
+    line_of_busines: new FormControl(''),
+    is_it_related: new FormControl(''),
+    is_gov_sect: new FormControl('')
+  });
 
   first_name: any;
   middle_name: any;
@@ -98,7 +122,31 @@ export class ViewProfileComponent implements OnInit {
         email_address: this.profile.email_address,
         phone_number: this.profile.phone_number,
       });
-
+    
+    if(this.work) {
+      this.isWorking = this.work.is_working;
+      this.workType = this.work.work_type;
+      
+      console.log('work data', this.work);
+      this.workForm.patchValue({
+        is_working: this.work.is_working,
+        work_type: this.work.work_type,
+        work_position: this.work.work_type,
+        business_name: this.work.work,
+        company_name: this.work.company_name,
+        company_address: this.work.company_address,
+        company_acronym: this.work.company_acronym,
+        type_of_business: this.work.type_of_business,
+        area_of_business: this.work.area_of_business,
+        business_address: this.work.business_address,
+        business_acronym: this.work.business_acronym,
+        business_related: this.work.business_related,
+        line_of_busines: this.work.line_of_busines,
+        is_it_related: this.work.is_it_related,
+        is_gov_sect: this.work.is_gov_sect
+      });
+    }
+    
     this.disableAllFields();
   }
 
@@ -108,6 +156,29 @@ export class ViewProfileComponent implements OnInit {
     // this.personalForm.value.perf_ind_id = val;
     this.updateAge();
   });
+}
+
+updateWork() {
+  let form_value = this.workForm.value;
+  form_value.user_id = parseInt(this.cookieService.getToken('user_id'));
+  form_value.is_it_related = form_value.is_it_related == '1' ? true : false;
+  form_value.is_gov_sect = form_value.is_gov_sect == '1' ? true : false;
+  const register_data = { user: form_value};
+  
+  console.log('==== work Datas ====== : ', register_data);
+  this.apiService.createWork(register_data).subscribe(
+    res => {
+      console.log('createAlumniMain', res);
+      this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Work profile created!' });
+      this.router.navigate(['/']);
+
+    },
+    err => {
+      console.log(err);
+      this.msgs = [];
+      this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Please check required fields!' });
+    }
+  );
 }
 
 updateAge() {
