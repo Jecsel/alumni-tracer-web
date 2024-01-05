@@ -158,8 +158,10 @@ export class AccountComponent implements OnInit {
     }
 
     deleteProduct(account: any) {
+        console.log(account);
         this.deleteProductDialog = true;
         this.account = {...account};
+        this.confirmDelete(account.id);
     }
 
     confirmDeleteSelected(){

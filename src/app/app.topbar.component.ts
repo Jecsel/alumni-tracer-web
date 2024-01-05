@@ -42,11 +42,11 @@ export class AppTopBarComponent {
     
       this.apiService.getUserAlumniMain(usr_id).subscribe(
         res => {
-          console.log('User Profile', res);
+          console.log('User userTypeId', this.userTypeId);
           this.myProfile = res.data;
           this.myWorkProfile = res.work;
           console.log('myProfile', this.myProfile);
-          if(!this.myProfile || this.myProfile == null && this.userTypeId != '2'){
+          if(!this.myProfile || this.myProfile == null && !this.getUserType()){
             this.router.navigate(['registration/personal']);
           }
         },
@@ -76,6 +76,7 @@ export class AppTopBarComponent {
       } else {  
         this.isRegUser = true;
       }
+      return this.isRegUser;
     }
   
   }

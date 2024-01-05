@@ -111,11 +111,6 @@ printContact(): void {
     searchContent.style.display = 'none';
   }
 
-  let filterIcon = document.getElementById('filter-icon-id');
-  if (filterIcon) {
-    filterIcon.style.display = 'none';
-  }
-
   const printContent = document.getElementById('contact-table-id');
 
   
@@ -145,7 +140,6 @@ printContact(): void {
   }
 
   searchContent.style.display = '';
-  filterIcon.style.display = '';
 }
 
 }
