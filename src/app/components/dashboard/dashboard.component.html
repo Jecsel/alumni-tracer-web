@@ -281,8 +281,10 @@
                                         <div>{{job.title}}</div>
                                         <div><b>Company</b></div>
                                         <div>{{job.company_name}}</div>
+                                        <div><b>Company</b></div>
+                                        <div>{{job.job_seeker_email}}</div>
                                         <div>Date {{job.active_date}}</div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 mt-2">
                                             <span class="warning-span" *ngIf="job.status == 0">{{job.status == 0 ? 'Pending' : ''}}</span>
                                             <span class="success-span" *ngIf="job.status == 1">{{job.status == 1 ? 'Accepted' : ''}}</span>
                                             <span  class="danger-span" *ngIf="job.status == 2">{{job.status == 2 ? 'Rejected' : ''}}</span>
@@ -306,7 +308,9 @@
                                         <div>{{job.position}}</div>
                                         <div><b>Company</b></div>
                                         <div>{{job.company_name}}</div>
-                                        <div>Date: {{job.active_date}}</div>
+                                        <div><b>Job Email</b></div>
+                                        <div>{{job.job_seeker_email}}</div>
+                                        <div class="mt-2">Date: {{job.active_date}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -317,6 +321,6 @@
                 <app-view-job *ngIf="showViewJobDialog" [jobDialogStat]="showViewJobDialog" [jobData]="selectedJob"></app-view-job>
             </div>
         </div>
-        
+
     </div>
 </div>

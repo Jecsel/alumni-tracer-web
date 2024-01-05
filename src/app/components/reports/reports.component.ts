@@ -95,10 +95,11 @@ export class ReportsComponent implements OnInit {
           (res) => {
               this.joinedAlumniWork = res.data;
               console.log('joinedAlumniWork', this.joinedAlumniWork);
-
+              this.loading = false;
           },
           (err) => {
               console.log(err);
+              this.loading = false;
           }
       );
   }
