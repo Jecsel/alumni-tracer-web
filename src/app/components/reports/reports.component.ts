@@ -29,6 +29,7 @@ export class ReportsComponent implements OnInit {
     return this._selectedColumns;
   }
   loading:boolean = true;
+  pdfTitle: string = '';
   
   customers1: Customer[];
   joinedAlumniWork: any = [];
@@ -125,7 +126,7 @@ printContact(): void {
       });
 
       // Write the content
-      printWindow.document.write('<html><head><title>REGISTERED ALUMNI CONTACT DETAILS</title></head><body><br/><br/>');
+      printWindow.document.write('<html><head><title>'+ this.pdfTitle +'</title></head><body><br/><br/>');
       printWindow.document.write(printContent.innerHTML);
       printWindow.document.write('</body></html>');
       

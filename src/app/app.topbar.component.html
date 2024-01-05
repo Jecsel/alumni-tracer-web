@@ -36,11 +36,17 @@
             <i class="pi pi-caret-down" *ngIf="userTypeId == '1'"></i>
         </a>
     
-        <ul id="topbar-usermenu" class="fadeInDown animated" [ngClass]="{'usermenu-active': app.topbarMenuActive}" *ngIf="userTypeId == '1'">
-            <li>
+        <ul id="topbar-usermenu" class="fadeInDown animated" [ngClass]="{'usermenu-active': app.topbarMenuActive}">
+            <li *ngIf="userTypeId == '1'">
                 <a (click)="showProfile()">
                     <i class="pi pi-fw pi-user"></i>
                     <span class="topbar-item-name">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="#/login">
+                    <i class="pi pi-fw pi-user"></i>
+                    <span class="topbar-item-name">Logout</span>
                 </a>
             </li>
         </ul>
