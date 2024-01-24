@@ -32,7 +32,8 @@
     
         <a id="topbar-profile-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)" style="top: 0;">
             <span>{{myProfile?.first_name}} {{myProfile?.last_name}} | {{userTypeId == '1' ? 'User' : 'Admin'}}</span>
-            <img src="assets/layout/images/avatar.png" alt="ecuador-layout" class="topbar-profile" />
+            <!-- <img src="assets/layout/images/avatar.png" alt="ecuador-layout" class="topbar-profile" /> -->
+            <img [src]="imageProfile.image_url ? 'http://localhost:3001' + imageProfile.image_url : 'assets/demo/images/product/temp_profile.jpg'" [alt]="imageProfile.name" width="100" class="shadow-4" />
             <i class="pi pi-caret-down" *ngIf="userTypeId == '1'"></i>
         </a>
     
@@ -41,6 +42,12 @@
                 <a (click)="showProfile()">
                     <i class="pi pi-fw pi-user"></i>
                     <span class="topbar-item-name">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a (click)="showForgotPassword()">
+                    <i class="pi pi-fw pi-cog"></i>
+                    <span class="topbar-item-name">Change Password</span>
                 </a>
             </li>
             <li>
@@ -60,4 +67,8 @@
         </a> -->
 
     </div>
+
+    <p-dialog [(visible)]="showModalForgotPass" [style]="{width: '450px'}" header="Forgot Password" [modal]="true" class="p-fluid">
+        <app-forgot-password></app-forgot-password>
+    </p-dialog>
 </div>

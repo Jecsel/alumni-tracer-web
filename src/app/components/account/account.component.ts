@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {Table} from 'primeng/table';
 import {BreadcrumbService} from '../../app.breadcrumb.service';
 import {MessageService, ConfirmationService} from 'primeng/api';
-import { Customer, Representative } from 'src/app/demo/domain/customer';
 import { Product } from 'src/app/demo/domain/product';
-import { CustomerService } from 'src/app/demo/service/customerservice';
 import { ProductService } from 'src/app/demo/service/productservice';
 import { ApiService } from 'src/app/services/api/api.service';
+import * as Papa from 'papaparse';
+
 
 @Component({
     selector: "app-account",
@@ -31,8 +30,11 @@ export class AccountComponent implements OnInit {
     myProfile: any = {};
     myWorkProfile: any = {};
 
+    visibleAlumniList: boolean = false;
+
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService,
+                private service: MessageService,
                 private apiService: ApiService) {
         this.breadcrumbService.setItems([
             {label: 'Pages'},
@@ -41,22 +43,6 @@ export class AccountComponent implements OnInit {
     }
   
     ngOnInit() {
-        // this.productService.getUsers().then(
-        //     data => {
-        //         this.products = data;
-        //         console.log("products", this.products);
-        //         }
-        //     );
-
-        
-
-        // this.cols = [
-        //     {field: 'first_name', header: 'First Name'},
-        //     {field: 'price', header: 'Price'},
-        //     {field: 'category', header: 'Category'},
-        //     {field: 'rating', header: 'Reviews'},
-        //     {field: 'inventoryStatus', header: 'Status'}
-        // ];
 
         this.cols = [
             { field: 'first_name', header: 'First Name' },
@@ -95,6 +81,49 @@ export class AccountComponent implements OnInit {
 
         // this.getAllAlumniMains();
         this.joinAlumniWork();
+    }
+
+    onFileSelected(event: any): void {
+        const fileInput = event.files[0];
+    
+        if (fileInput.type === 'application/vnd.ms-excel' || fileInput.type === 'text/csv') {
+
+            Papa.parse(fileInput, {
+            header: true, 
+            complete: (result) => {
+                console.log('Converted JSON:', result.data);
+                this.importDataToDatabase(result.data)
+                this.showSuccessViaToast('File successfully imported.');
+            },
+            error: (error) => {
+                // Handle any errors during parsing
+                console.error('Error parsing CSV:', error.message);
+                this.showSuccessViaToast( error.message);
+            }
+            });
+        } else {
+            // Display an error message or handle the case when the file type is not accepted
+            console.error('Invalid file type. Please select a CSV or Excel file.');
+        }
+    }
+
+    importDataToDatabase(data) {
+        this.apiService.createAlumniList({data: data}).subscribe(
+            res => {
+                console.log(res);
+            },
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    showErrorViaToast(mess) {
+        this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: mess});
+    }
+    
+    showSuccessViaToast(mess) {
+        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: mess });
     }
 
     showProfile(prof){

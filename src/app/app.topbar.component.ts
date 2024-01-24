@@ -16,9 +16,11 @@ export class AppTopBarComponent {
     activeItem: MenuItem | undefined;
     isRegUser: Boolean = true;
     myProfile: any = {};
+    imageProfile: any = {};
     myWorkProfile: any = {};
     showDialog: boolean = false;
     userTypeId = '1';
+    showModalForgotPass: boolean = false;
   
     constructor(public app: AppMainComponent, public authCookie: AuthCookieService, private apiService: ApiService, private router: Router ) {}
   
@@ -36,6 +38,11 @@ export class AppTopBarComponent {
       this.getUserProfile();
     }
 
+    showForgotPassword() {
+      this.showModalForgotPass = true;
+      console.log('showModalForgotPass', this.showModalForgotPass);
+    }
+  
     getUserProfile() {
       var usr_id = this.authCookie.getToken('user_id');
       this.userTypeId = this.authCookie.getToken('user_type_id');
@@ -43,6 +50,7 @@ export class AppTopBarComponent {
       this.apiService.getUserAlumniMain(usr_id).subscribe(
         res => {
           console.log('User userTypeId', this.userTypeId);
+          this.imageProfile = res;
           this.myProfile = res.data;
           this.myWorkProfile = res.work;
           console.log('myProfile', this.myProfile);

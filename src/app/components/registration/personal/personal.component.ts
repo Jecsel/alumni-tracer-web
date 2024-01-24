@@ -21,6 +21,8 @@ export class PersonalComponent implements OnInit {
   msgs: Message[] = [];
   maxDate: string;
   age: number | undefined;
+  selectedFile: File | null = null;
+  imageUrl: string;
 
   personalForm: FormGroup = new FormGroup({
     first_name: new FormControl('', Validators.required),
@@ -96,6 +98,45 @@ export class PersonalComponent implements OnInit {
       })
   }
 
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result;
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  addImage(): void {
+    if (!this.selectedFile) {
+      // Handle the case where no file is selected
+      return;
+    }
+
+    const formData = new FormData();
+
+    formData.append('name', this.selectedFile.name);
+    formData.append('image', this.selectedFile);
+
+    console.log('formData', formData);
+
+    // Assuming you have a service to handle HTTP requests
+    this.apiService.updateAlumniImage(formData).subscribe(
+      (response) => {
+        console.log(response);
+        location.reload();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   removeLettersAndSpecialCharacters(inputText: string): string {
     // Use regular expression to remove letters and special characters
     const cleanedText = inputText.replace(/[^0-9]/g, '');
@@ -142,29 +183,36 @@ export class PersonalComponent implements OnInit {
   }
 
   confirm() {
-    let form_value = this.personalForm.value;
-    form_value.batch_year = form_value.year_graduated;
-    form_value.civil_status = form_value.civil_status.id;
-    form_value.gender = form_value.gender.id;
-    form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
-    form_value.batch_years = form_value.year_graduated;
+    if (this.selectedFile != null) {
+      let form_value = this.personalForm.value;
+      form_value.batch_year = form_value.year_graduated;
+      form_value.civil_status = form_value.civil_status.id;
+      form_value.gender = form_value.gender.id;
+      form_value.user_id = parseInt(this.cookieService.getToken('user_id')) ?? 1;
+      form_value.batch_years = form_value.year_graduated;
+  
+      console.log('confirm', form_value);
+  
+      const register_data = { user: form_value};
+      this.apiService.createAlumniMain(register_data).subscribe(
+        res => {
+          this.addImage();
+          console.log('createAlumniMain', res);
+          this.router.navigate(['registration/work']);
+          this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Personal profile created!' });
+  
+        },
+        err => {
+          console.log(err);
+          this.msgs = [];
+          this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Please check required fields!' });
+        }
+      )
+    } else {
 
-    console.log('confirm', form_value);
+      alert("Add your Image Avatar");
+    }
 
-    const register_data = { user: form_value};
-    this.apiService.createAlumniMain(register_data).subscribe(
-      res => {
-        console.log('createAlumniMain', res);
-        this.router.navigate(['registration/work']);
-        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Personal profile created!' });
-
-      },
-      err => {
-        console.log(err);
-        this.msgs = [];
-        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Please check required fields!' });
-      }
-    );
   }
 
   isFirstComplete(): boolean {

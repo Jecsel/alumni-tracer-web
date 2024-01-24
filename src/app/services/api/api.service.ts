@@ -88,6 +88,48 @@ export class ApiService {
       );
   }
 
+  updateAlumniImage(data): Observable<any> {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "multipart/form-data",
+        "x-tracer-token": this.getToken(),
+        Authorization: `Bearer ${this.getToken()}`
+      }),
+    };
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+
+    return this.httpClient 
+      .post(this.baseUrl + "/alumni_main/updateAlumniImage", data, { headers })
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  createAlumniList(data): Observable<any> {
+    return this.httpClient
+      .post(this.baseUrl + "/alumni_list", data, this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
+  getAlumniList(): Observable<any> {
+    return this.httpClient
+      .get(this.baseUrl + "/alumni_list", this.httpOptions)
+      .pipe(
+        map((res: any) => {
+          return res;
+        })
+      );
+  }
+
   createEventPost(data): Observable<any> {
     return this.httpClient
       .post(this.baseUrl + "/event_post", data, this.httpOptions)
@@ -451,6 +493,18 @@ export class ApiService {
           this.cookieService.setToken(this.token_name, response.token);
           this.cookieService.setToken('user_type_id', response.user_type_id);
           this.cookieService.setToken('user_id', response.user_id);
+          return response;
+        })
+      );
+  }
+
+  forgotPassword(req: any): Observable<any>{
+
+    return this.httpClient
+      .post(this.baseUrl + '/auth/forgot_password', req)
+      .pipe(
+        map((response: any ) => {
+          console.log(response);
           return response;
         })
       );

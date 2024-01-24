@@ -166,6 +166,8 @@ import { ViewJobComponent } from './components/modals/view-job/view-job.componen
 import { ViewEventComponent } from './components/modals/view-event/view-event.component';
 import { ViewProfileComponent } from './components/modals/view-profile/view-profile.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { AlumniListComponent } from './components/alumni-list/alumni-list.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -321,7 +323,9 @@ FullCalendarModule.registerPlugins([
         ViewJobComponent,
         ViewEventComponent,
         ViewProfileComponent,
-        ReportsComponent
+        ReportsComponent,
+        ForgotPasswordComponent,
+        AlumniListComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

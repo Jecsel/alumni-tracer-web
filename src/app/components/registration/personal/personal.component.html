@@ -1,6 +1,12 @@
 <div class="container">
     <form role="form" [formGroup]="personalForm">
         <div class="sign-up-panel">
+            <div class="mb-5">
+                <div><img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image" width="200" height="200"/></div>
+                <input type="file" (change)="onFileSelected($event)" />
+            </div>
+            
+
             <div class="grid">
                 <div class="col-12 md:col-3">
                     <div class="field">

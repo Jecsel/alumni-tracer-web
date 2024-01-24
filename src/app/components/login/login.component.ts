@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   counts: any = {};
   sortOrder: number;
   sortField: string;
+  showModalForgotPass: boolean = false;
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
@@ -144,6 +145,12 @@ export class LoginComponent implements OnInit {
     this.getPhotos();
     this.getAllEventPosts();
     this.getDashboardCount();
+  }
+
+  showForgotPassword() {
+    this.showModalForgotPass = true;
+    this.showLoginModal = false;
+    console.log('showModalForgotPass', this.showModalForgotPass);
   }
 
   gotoSignUp() {

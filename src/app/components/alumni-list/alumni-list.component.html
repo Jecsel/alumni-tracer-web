@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="grid">
+        <div class="col-12">
+            <div class="contact-details-container" id="contact-table-id">
+                <p-table #dt1 [value]="joinedAlumniWork" dataKey="id" [rows]="100" [loading]="loading" [columns]="selectedColumns"
+                    [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="false" 
+                    [scrollable]="true" scrollHeight="400px" [resizableColumns]="true"
+                    [style]="{'border-collapse': 'collapse', 'width': '100%'}"
+                    [globalFilterFields]="['first_name','last_name','batch_year','municipality']" 
+                    responsiveLayout="scroll">
+                    <ng-template pTemplate="caption" #searchContent>
+                        <!-- <p-accordion>
+                            <p-accordionTab header="Config" class="line-height-3 m-0">
+                                
+                            </p-accordionTab>
+                        </p-accordion> -->
+                        <div class="flex justify-content-between flex-column sm:flex-row"  id="search-content">
+                            <div  class="flex justify-content-between flex-column sm:flex-row">
+                                <button pButton label="Clear" class="p-button-outlined mb-2 mr-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                                <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+                                selectedItemsLabel="{0} columns selected" [style]="{'min-width': '200px'}" placeholder="Choose Columns"></p-multiSelect>
+                            </div>
+                            
+                            <span class="p-input-icon-left mb-2">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search Keyword" class="w-full"/>
+                            </span>
+                        </div>
+                    
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" pFrozenColumn 
+                                [style]="{'border': '1px solid #000', 'padding': '8px', 'text-align': 'center', 'font-weight':'bold', 'background-color': '#f2f2f2', 'width':'160px'}"
+                                [frozen]="idFrozen">
+                                <div class="flex justify-content-between align-items-center">
+                                    {{col.header}}
+                                    <p-columnFilter type="text" [field]="col.field" display="menu" placeholder="Search"></p-columnFilter>
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-alu let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns" pFrozenColumn 
+                                [style]="{'border': '1px solid #000', 'padding': '8px','text-align': 'center'}"
+                                [frozen]="idFrozen">
+                                {{alu[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="7">No alumni found.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="loadingbody">
+                        <tr>
+                            <td colspan="7">Loading alumni data. Please wait.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            
+            <div class="flex justify-content-end mt-3">
+				<button pButton pRipple type="button" (click)="printContact()" label="Print" class="p-button-raised p-button-success mr-2 mb-2"></button>
+			</div>
+        </div>
+    </div>
+</div>

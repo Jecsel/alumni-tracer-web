@@ -6,10 +6,6 @@
 
                     <div class="flex-row">
                         <img src="assets/images/logo_login_removebg.png" alt="ecuador-layout" style="height: 150px; width: 100%;" />
-                        <!-- <span>
-                            <span class="rsu">ROMBLON STATE UNIVERSITY</span><br/>
-                            <span class="it">Institute of Information Technology</span>
-                        </span>  -->
                     </div>
                     
                 </div>
@@ -25,47 +21,6 @@
                     <div class="col">
                         <div class="px-4 py-5 md:px-6 lg:px-8">
                             <div class="card">
-                                <!-- <div class="grid mb-3" style="padding: 0 65px;">
-                                    <div class="col-12 md:col-6 lg:col-4">
-                                        <div class="surface-card shadow-2 p-3 border-round">
-                                            <div class="flex justify-content-between mb-3">
-                                                <div>
-                                                    <span class="block text-500 font-medium mb-3">Upcoming Events</span>
-                                                    <div class="text-900 font-medium text-xl">{{counts.event_counts ?? 0}}</div>
-                                                </div>
-                                                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
-                                                    <i class="pi pi-calendar text-blue-500 text-xl"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 md:col-6 lg:col-4">
-                                        <div class="surface-card shadow-2 p-3 border-round">
-                                            <div class="flex justify-content-between mb-3">
-                                                <div>
-                                                    <span class="block text-500 font-medium mb-3">Job Posting</span>
-                                                    <div class="text-900 font-medium text-xl">{{counts.job_counts ?? 0}}</div>
-                                                </div>
-                                                <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
-                                                    <i class="pi pi-shopping-bag text-orange-500 text-xl"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 md:col-6 lg:col-4">
-                                        <div class="surface-card shadow-2 p-3 border-round">
-                                            <div class="flex justify-content-between mb-3">
-                                                <div>
-                                                    <span class="block text-500 font-medium mb-3">Alumni</span>
-                                                    <div class="text-900 font-medium text-xl">{{counts.alumni_counts ?? 0}}</div>
-                                                </div>
-                                                <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
-                                                    <i class="pi pi-discord text-purple-500 text-xl"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
 
                                 <div class="grid mt-5">
                                     <div  style="padding: 0 65px; width: 100%;">
@@ -74,7 +29,7 @@
                                         <p> May we therefore request your precious time to please answer the questionnaire sincerely. There is no right or wrong answer. We would appreciate if you could complete the following questionnaire and return to us, at your earliest convenience.</p>
                                         <p>Thank you for your cooperation and God bless.</p>
                                         <p>Sincerely,</p>
-                                        <p>John Lloyd Galicia, Cristine Montoya, Jonvie Marquina, Lea Dela Cruz, Rhiyan Mar Amar</p>
+                                        <p>John Lloyd Galicia, Cristine Montoya, Jonvie Marquina, Lea Dela Cruz, Rhiyan Mar Mazo</p>
                                         <p>Researcher</p>
                                         <p>Mobile: 0912 345 6789</p>
                                         <p>Email:iitalumni@yahoo.com</p>
@@ -130,63 +85,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="col-3">
-                        <div *ngIf="showLoginModal">
-                            <p-toast key="tst" [baseZIndex]="99999"></p-toast>
-                            <form role="form" [formGroup]="formLogin">
-                                <div class="login-panel shadow-5">
-                                    <label class="login-lbl">Login</label>
-                                    <div class="login-form mt-5 mb-2">
-                                        <div class="p-col-12">
-                                            <span class="p-float-label">
-                                                <input type="text" id="username" pInputText formControlName="username">
-                                                <label for="username">Email</label>
-                                            </span>
-                                        </div>
-                                        <div class="p-col-12 mt-4">
-                                            <span class="p-float-label">
-                                                <input type="password" autocomplete="off" id="password" pInputText formControlName="password">
-                                                <label for="password">Password</label>
-                                            </span>
-                                        </div>
-                                    </div>
-                        
-                                    <div class="p-col-12 sign-up-link">
-                                        Don't have an account?
-                                        <a href="#/registration" class="subinfo">
-                                            <span>&nbsp;Sign Up</span>
-                                        </a>
-                                    </div>
-                                    <button class="mt-5" type="button" pButton label="Login" (click)="confirm()"  [disabled]="formLogin.invalid"></button>
-                        
-                                </div>
-                            </form>
-                        </div>
-                        <div>
-                            <div class="header text-center my-2"><b>DEVELOPERS</b></div>
-                            <div class="dev-container">
-                                <img src="../../../assets/images/lloyd.jpeg" style="width: 100%; display: block; height: 200px;"/>
-                                <div class="header text-center">JOHN LLOYD GALICIA</div>
-                            </div>
-                            <div class="dev-container">
-                                <img src="../../../assets/images/tine.jpeg" style="width: 100%; display: block; height: 200px;"/>
-                                <div class="header text-center">CRISTINE MONTOYA</div>
-                            </div>
-                            <div class="dev-container">
-                                <img src="../../../assets/images/lea.jpeg" style="width: 100%; display: block; height: 200px;"/>
-                                <div class="header text-center">LEA DELA CRUZ</div>
-                            </div>
-                            <div class="dev-container">
-                                <img src="../../../assets/images/rhiyan.jpeg" style="width: 100%; display: block; height: 200px;"/>
-                                <div class="header text-center">RHIYAN MAR MAZO</div>
-                            </div>
-                            <div class="dev-container">
-                                <img src="../../../assets/images/jonvie.jpeg" style="width: 100%; display: block; height: 200px;"/>
-                                <div class="header text-center">JONVIE MARQUINA</div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <div *ngIf="showLoginModal">
@@ -219,6 +117,12 @@
                                         <div class="error-text" *ngIf="formLogin.get('password').errors?.minlength">Must be atleast 8 digits.</div>
                                     </div>
                                 </div>
+
+                                <div class="p-col-12 sign-up-link">
+                                    <label class="forgot-password-link" (click)="showForgotPassword()">Forgot Password
+                                    </label>
+                                </div>
+
                     
                                 <div class="p-col-12 sign-up-link">
                                     Don't have an account?
@@ -232,6 +136,10 @@
                         </form>
                     </div>
                 </div>
+
+                <p-dialog [(visible)]="showModalForgotPass" [style]="{width: '450px'}" header="Forgot Password" [modal]="true" class="p-fluid">
+                    <app-forgot-password></app-forgot-password>
+                </p-dialog>
             </div>
 
             <div class="footer p-3">
