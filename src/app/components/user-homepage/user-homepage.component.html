@@ -6,12 +6,12 @@
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
                             <div class="col-12 md:col-6">
-                                <h5>Latest Job Posts</h5>
+                                <h5><b>Latest Job Posts</b></h5>
                             </div>
                             <div class="col-12 md:col-6">
                                 <span class="p-input-icon-left mb-2 md:mb-0">
                                     <i class="pi pi-search"></i>
-                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                    <input type="search" pInputText placeholder="Search by Company Name" (input)="dv.filter($event.target.value)">
                                 </span>	
                             </div>
                         </div>
@@ -28,10 +28,9 @@
                                         <div>{{job.position}}</div>
                                         <div><b>Company</b></div>
                                         <div>{{job.company_name}}</div>
-                                        <div>Date: {{job.active_date}}</div>
-                                <!-- <div class="font-bold">Company: {{job.company_name}}</div>
-                                <div class="mb-3">Address: {{job.company_address}}</div>
-                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div> -->
+                                        <br/>
+                                        <div><b>Date: </b> {{job.active_date}}</div>
+                                        <div><b>Person Posted: </b> {{job.job_postee_owner}}</div>
                                 <div class="flex align-items-center mt-2">
                                     <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
                                 </div>
@@ -54,19 +53,18 @@
                                         <div>{{job.position}}</div>
                                         <div><b>Company</b></div>
                                         <div>{{job.company_name}}</div>
-                                        <div>Date: {{job.active_date}}</div>
-
-                                <!-- <div><span class="font-semibold">Address: {{job.company_address}}</span></div>
-                                <div class="mb-3">Deployment Date: {{job.active_date | date}}</div>
-                                <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div> -->
+                                        <br/>
+                                        <div><b>Date: </b> {{job.active_date}}</div>
+                                        <div><b>Person Posted: </b> {{job.job_postee_owner}}</div>
                             </div>
                         </div>
                     </div>
                 </ng-template>
             </p-dataView>
         </div>
-
-        <app-view-job *ngIf="showViewJobDialog" [jobDialogStat]="showViewJobDialog" [jobData]="selectedJob"></app-view-job>
+        <p-dialog [(visible)]="showViewJobDialog" [style]="{width: '450px'}" header="Job Post" [modal]="true" class="p-fluid">
+            <app-view-job *ngIf="showViewJobDialog" [jobDialogStat]="showViewJobDialog" [jobData]="selectedJob"></app-view-job>
+        </p-dialog>
     </div>
 
     <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
@@ -76,12 +74,12 @@
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
                             <div class="col-12 md:col-6">
-                                <h5>Current Events</h5>
+                                <h5><b>Current Events</b></h5>
                             </div>
                             <div class="col-12 md:col-6">
                                 <span class="p-input-icon-left mb-2 md:mb-0">
                                     <i class="pi pi-search"></i>
-                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                    <input type="search" pInputText placeholder="Search by Title" (input)="dv.filter($event.target.value)">
                                 </span>	
                             </div>
                         </div>
@@ -96,7 +94,8 @@
                             <div class="flex-1 text-center md:text-left">
                                 <div class="font-bold">Title: {{event.title}}</div>
                                 <div class="mb-3">Venue: {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div>Date From: {{event.date_from | date}}</div>
+                                <div class="mb-3">Date To: {{event.date_to | date}}</div>
                                 <div class="flex align-items-center mt-2">
                                     <button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button>
                                 </div>
@@ -119,7 +118,8 @@
                             <div class="text-start">
                                 <div><b>Title:</b> {{event.title}}</div>
                                 <div><b>Venue:</b> {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div>Date From: {{event.date_from | date}}</div>
+                                <div class="mb-3">Date To: {{event.date_to | date}}</div>
                                 <div class="mb-3"><button pButton pRipple type="button" label="APPROVED" class="p-button-success mr-2 mb-2"></button></div>
                             </div>
                         </div>
@@ -139,12 +139,12 @@
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
                             <div class="col-12 md:col-6">
-                                <h5>Upcoming Events</h5>
+                                <h5><b>Upcoming Events</b></h5>
                             </div>
                             <div class="col-12 md:col-6">
                                 <span class="p-input-icon-left mb-2 md:mb-0">
                                     <i class="pi pi-search"></i>
-                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                    <input type="search" pInputText placeholder="Search by Title" (input)="dv.filter($event.target.value)">
                                 </span>	
                             </div>
                         </div>
@@ -159,7 +159,8 @@
                             <div class="flex-1 text-center md:text-left">
                                 <div class="font-bold">Title: {{event.title}}</div>
                                 <div class="mb-3">Venue: {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div>Date From: {{event.date_from | date}}</div>
+                                <div class="mb-3">Date To: {{event.date_to | date}}</div>
                                 <div class="flex align-items-center mt-2">
                                 </div>
                             </div>
@@ -181,7 +182,8 @@
                             <div class="text-start">
                                 <div><b>Title:</b> {{event.title}}</div>
                                 <div><b>Venue:</b> {{event.venue}}</div>
-                                <div class="mb-3">Date: {{event.date | date}}</div>
+                                <div>Date From: {{event.date_from | date}}</div>
+                                <div class="mb-3">Date To: {{event.date_to | date}}</div>
                             </div>
                         </div>
                     </div>

@@ -100,7 +100,9 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <app-view-job *ngIf="showViewDialog" [jobDialogStat]="showViewDialog" [jobData]="selectedJob"></app-view-job>
+            <p-dialog [(visible)]="showViewDialog" [style]="{width: '450px'}" header="Job Post" [modal]="true" class="p-fluid">
+                <app-view-job *ngIf="showViewDialog" [jobDialogStat]="showViewDialog" [jobData]="selectedJob"></app-view-job>
+            </p-dialog>
         </div>
 
         <p-dialog [(visible)]="jobDialog" [style]="{width: '450px'}" header="Add New Job Post" [modal]="true" class="p-fluid">

@@ -1,17 +1,17 @@
 <div class="container">
     <div class="card grid mt-3 announcement-container" >
         <div class="col-12">
-            <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="title" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                 <ng-template pTemplate="header">
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
                             <div class="col-12 md:col-6">
-                                <h5>Current Events</h5>
+                                <h5><b>Current Events</b></h5>
                             </div>
                             <div class="col-12 md:col-6">
                                 <span class="p-input-icon-left mb-2 md:mb-0">
                                     <i class="pi pi-search"></i>
-                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                    <input type="search" pInputText placeholder="Search by Title" (input)="dv.filter($event.target.value)">
                                 </span>	
                             </div>
                         </div>
@@ -65,17 +65,17 @@
 
     <div class="card grid mt-3 announcement-container" >
         <div class="col-12">
-            <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="title" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                 <ng-template pTemplate="header">
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
                             <div class="col-12 md:col-6">
-                                <h5>Upcoming Events</h5>
+                                <h5><b>Upcoming Events</b></h5>
                             </div>
                             <div class="col-12 md:col-6">
                                 <span class="p-input-icon-left mb-2 md:mb-0">
                                     <i class="pi pi-search"></i>
-                                    <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                    <input type="search" pInputText placeholder="Search by title" (input)="dv.filter($event.target.value)">
                                 </span>	
                             </div>
                         </div>

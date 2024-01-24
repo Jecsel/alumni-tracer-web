@@ -21,6 +21,11 @@ export class UserJobComponent implements OnInit {
   job: any;
   submitted: boolean;
 
+  showViewJobDialog: boolean = false;
+  showViewMyJobDialog: boolean = false;
+  selectedJob: any;
+  selectedMyJob: any;
+
   formJob: FormGroup = new FormGroup({
     company_name: new FormControl('', [Validators.required]),
     company_email: new FormControl('' , [Validators.required]),
@@ -64,6 +69,18 @@ export class UserJobComponent implements OnInit {
         this.jobDialog = false;
         this.job = {};
     }
+  }
+
+  viewJob(data) {
+    console.log('View Job', data);
+    this.selectedJob = data;
+    this.showViewJobDialog = true;
+  }
+
+  viewMyJob(data) {
+    console.log('View Job', data);
+    this.selectedMyJob = data;
+    this.showViewMyJobDialog = true;
   }
 
   showErrorViaToast(mess) {
