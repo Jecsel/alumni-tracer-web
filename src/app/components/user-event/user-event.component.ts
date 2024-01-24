@@ -15,6 +15,13 @@ export class UserEventComponent implements OnInit {
   events: any = [];
 
   upcomingEvents: any = [];
+  userType: string = 'user';
+
+  showViewEventDialog: boolean = false;
+  selectedEvent: any;
+
+  showViewCurrentEventDialog: boolean = false;
+  selectedCurrentEvent: any;
 
   constructor(private apiService: ApiService) { }
 
@@ -23,6 +30,18 @@ export class UserEventComponent implements OnInit {
     this.getAllCurrentEvents();
     this.getAllUpcomingEvents();
   }
+
+  viewEvent(data) {
+    console.log('View Job', data);
+    this.selectedEvent = data;
+    this.showViewEventDialog = true;
+  }
+
+  viewCurrentEvent(data) {
+    console.log('View Job', data);
+    this.selectedCurrentEvent = data;
+    this.showViewCurrentEventDialog = true;
+}
 
   onSortChange(event) {
     const value = event.value;

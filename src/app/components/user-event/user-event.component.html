@@ -20,13 +20,14 @@
                 </ng-template>
 
                 <ng-template let-event pTemplate="listItem">
-                    <div class="col-12">
+                    <div class="col-12"  (click)="viewCurrentEvent(event)">
                         <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
                             <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
                             <div class="flex-1 text-center md:text-left">
                                 <div class="font-bold"><b>Title: </b> {{event.title}}</div>
-                                <div class="mb-3"><b>Venue: </b> {{event.venue}}</div>
-                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
+                                <div><b>Venue: </b> {{event.venue}}</div>
+                                <div><b>Date From: </b> {{event.date_from | date}}</div>
+                                <div class="mb-3"><b>Date To: </b> {{event.date_to | date}}</div>
                                 <div class="flex align-items-center mt-2">
                                 </div>
                             </div>
@@ -35,7 +36,7 @@
                 </ng-template>
 
                 <ng-template let-event pTemplate="gridItem">
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 md:col-4" (click)="viewCurrentEvent(event)">
                         <div class="card m-3 border-1 surface-border">
                             <div class="flex align-items-center justify-content-between">
                                 <div class="flex align-items-center">
@@ -48,7 +49,8 @@
                             <div class="text-start">
                                 <div><b>Title: </b> {{event.title}}</div>
                                 <div><b>Venue: </b> {{event.venue}}</div>
-                                <div class="mb-3"><b>Date: </b> {{event.date | date}}</div>
+                                <div><b>Date From: </b> {{event.date_from | date}}</div>
+                                <div class="mb-3"><b>Date To: </b> {{event.date_to | date}}</div>
                             </div>
                         </div>
                     </div>
@@ -56,6 +58,10 @@
             </p-dataView>
         </div>
     </div>
+
+    <p-dialog [(visible)]="showViewCurrentEventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+        <app-view-event *ngIf="showViewCurrentEventDialog" [userType]="userType" [eventDialogStat]="showViewCurrentEventDialog" [eventData]="selectedCurrentEvent"></app-view-event>
+    </p-dialog>
 
     <div class="card grid mt-3 announcement-container" >
         <div class="col-12">
@@ -78,7 +84,7 @@
                 </ng-template>
 
                 <ng-template let-event pTemplate="listItem">
-                    <div class="col-12">
+                    <div class="col-12" (click)="viewEvent(event)">
                         <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
                             <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
                             <div class="flex-1 text-center md:text-left">
@@ -91,7 +97,7 @@
                 </ng-template>
 
                 <ng-template let-event pTemplate="gridItem">
-                    <div class="col-12 md:col-4">
+                    <div class="col-12 md:col-4" (click)="viewEvent(event)">
                         <div class="card m-3 border-1 surface-border">
                             <div class="flex align-items-center justify-content-between">
                                 <div class="flex align-items-center">
@@ -112,5 +118,9 @@
             </p-dataView>
         </div>
     </div>
+
+    <p-dialog [(visible)]="showViewEventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+        <app-view-event *ngIf="showViewEventDialog" [userType]="userType" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+    </p-dialog>
 
 </div>

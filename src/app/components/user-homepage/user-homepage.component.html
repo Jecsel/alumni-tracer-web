@@ -1,7 +1,7 @@
 <div class="container">
     <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
         <div class="col-12">
-            <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="jobs" [paginator]="true" [rows]="9" filterBy="company_name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                 <ng-template pTemplate="header">
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
@@ -71,7 +71,7 @@
 
     <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
         <div class="col-12">
-            <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="title" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                 <ng-template pTemplate="header">
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
@@ -127,13 +127,14 @@
                 </ng-template>
             </p-dataView>
         </div>
-
-        <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+        <p-dialog [(visible)]="showViewDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+            <app-view-event *ngIf="showViewEventDialog" [userType]="userType" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+        </p-dialog>
     </div>
 
     <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
         <div class="col-12" (click)="viewEvent(event)">
-            <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+            <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="title" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                 <ng-template pTemplate="header">
                     <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                         <div class="grid">
@@ -187,7 +188,8 @@
                 </ng-template>
             </p-dataView>
         </div>
-
-        <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+        <p-dialog [(visible)]="showViewEventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+            <app-view-event *ngIf="showViewEventDialog" [userType]="userType"  [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+        </p-dialog>
     </div>
 </div>

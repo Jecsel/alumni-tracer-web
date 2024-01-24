@@ -35,8 +35,8 @@
 						<th>Thumbnail</th>
                         <th pSortableColumn="title">Title <p-sortIcon field="title"></p-sortIcon></th>
                         <th pSortableColumn="venue">Venue <p-sortIcon field="venue"></p-sortIcon></th>
-						<th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
-                        <th pSortableColumn="time">Time <p-sortIcon field="time"></p-sortIcon></th>
+						<th pSortableColumn="date_from">Date From <p-sortIcon field="date_from"></p-sortIcon></th>
+                        <th pSortableColumn="date_to">Date To <p-sortIcon field="date_to"></p-sortIcon></th>
                         <th class="muni-th" pSortableColumn="sponsor">Sponsor <p-sortIcon field="sponsor"></p-sortIcon></th>
                     </tr>
                 </ng-template>
@@ -57,11 +57,11 @@
                         </td>
 						<td style="width:18%; min-width:10rem;">
                             <span class="p-column-title">Date</span>
-                            {{event.date | date}}
+                            {{event.date_from | date: 'dd-MM-yyyy hh:mm a'}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Time</span>
-                            {{event.time}}
+                            {{event.date_to | date: 'dd-MM-yyyy hh:mm a'}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Sponsor</span>
@@ -70,8 +70,10 @@
                     </tr>
                 </ng-template>
             </p-table>
-
-            <app-view-event *ngIf="showViewDialog" [eventDialogStat]="showViewDialog" [eventData]="selectedEvent"></app-view-event>
+            
+            <p-dialog [(visible)]="showViewDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+                <app-view-event *ngIf="showViewDialog" [eventDialogStat]="showViewDialog" [eventData]="selectedEvent"></app-view-event>
+            </p-dialog>
         </div>
 
         <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
@@ -86,12 +88,12 @@
 					<input type="text" pInputText id="venue" formControlName="venue" required autofocus/>
 				</div>
 				<div class="field">
-					<label for="date">Date</label>
-					<input type="date" pInputText id="date" formControlName="date" required autofocus/>
+					<label for="date_from">DateTime From</label>
+					<input type="datetime-local" pInputText id="date_from" formControlName="date_from" required autofocus/>
 				</div>
 				<div class="field">
-					<label for="time">Time</label>
-					<input type="text" pInputText id="time" formControlName="time" required autofocus/>
+					<label for="date_to">DateTime To</label>
+					<input type="datetime-local" pInputText id="date_to" formControlName="date_to" required autofocus/>
 				</div>
 				<div class="field">
 					<label for="sponsor">Sponsor</label>

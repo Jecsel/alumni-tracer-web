@@ -12,7 +12,7 @@
 
         <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleEvent" position="right" [baseZIndex]="10000">
             <app-event></app-event>
-        </p-sidebar>
+        </p-sidebar>x`
 
         <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box views"  (click)="visibleJob = true">
@@ -192,14 +192,77 @@
 
 
         <div class="col-12">
-            <div class="card grid mt-3 announcement-container" *ngIf="isActiveButton == 'personal'">
+            <div class="card grid mt-3 announcement-container">
+                <div class="col-12">
+                    <p-dataView #dv [value]="events" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                        <ng-template pTemplate="header">
+                            <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                                <div class="grid">
+                                    <div class="col-12 md:col-6">
+                                        <h5>Current Events</h5>
+                                    </div>
+                                    <div class="col-12 md:col-6">
+                                        <span class="p-input-icon-left mb-2 md:mb-0">
+                                            <i class="pi pi-search"></i>
+                                            <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                                        </span>	
+                                    </div>
+                                </div>
+                                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-event pTemplate="listItem">
+                            <div class="col-12" (click)="viewEvent(event)">
+                                <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                                    <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="my-4 md:my-0 img-h img-h w-5 md:w-10rem shadow-2 mr-5"/>
+                                    <div class="flex-1 text-center md:text-left">
+                                        <div class="font-bold">Title: {{event.title}}</div>
+                                        <div class="mb-3">Venue: {{event.venue}}</div>
+                                        <div class="mb-3">Date: {{event.date | date}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+        
+                        <ng-template let-event pTemplate="gridItem">
+                            <div class="col-12 md:col-4" (click)="viewCurrentEvent(event)">
+                                <div class="card m-3 border-1 surface-border">
+                                    <div class="flex align-items-center justify-content-between">
+                                        <div class="flex align-items-center">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <img [src]="'http://localhost:3001' + event.image_url" [alt]="event.name" class="img-h img-h shadow-2 my-3 mx-0"/>
+                                    </div>
+                                    <div class="text-start">
+                                        <div><b>Title:</b> {{event.title}}</div>
+                                        <div><b>Venue:</b> {{event.venue}}</div>
+                                        <div>Date From: {{event.date_from | date}}</div>
+                                        <div class="mb-3">Date To: {{event.date_to | date}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataView>
+                </div>
+                
+                <p-dialog [(visible)]="showViewCurrentEventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+                    <app-view-event *ngIf="showViewCurrentEventDialog" [eventDialogStat]="showViewCurrentEventDialog" [eventData]="selectedCurrentEvent"></app-view-event>
+                </p-dialog>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card grid mt-3 announcement-container">
                 <div class="col-12">
                     <p-dataView #dv [value]="upcomingEvents" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
                         <ng-template pTemplate="header">
                             <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
                                 <div class="grid">
                                     <div class="col-12 md:col-6">
-                                        <h5>Events</h5>
+                                        <h5>Upcoming Events</h5>
                                     </div>
                                     <div class="col-12 md:col-6">
                                         <span class="p-input-icon-left mb-2 md:mb-0">
@@ -246,8 +309,9 @@
                         </ng-template>
                     </p-dataView>
                 </div>
-
-                <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+                <p-dialog [(visible)]="showViewEventDialog" [style]="{width: '450px'}" header="Add New Event Post" [modal]="true" class="p-fluid">
+                    <app-view-event *ngIf="showViewEventDialog" [eventDialogStat]="showViewEventDialog" [eventData]="selectedEvent"></app-view-event>
+                </p-dialog>
             </div>
         </div>
 

@@ -20,7 +20,7 @@ export class WorkComponent implements OnInit {
   isWorkSector: boolean = false;
 
   workForm: FormGroup = new FormGroup({
-    is_working: new FormControl('', Validators.required),
+    is_working: new FormControl(''),
     work_type: new FormControl(''),
     work_position: new FormControl(''),
     business_name: new FormControl(''),

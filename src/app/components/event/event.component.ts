@@ -35,8 +35,8 @@ export class EventComponent implements OnInit {
     formJob: FormGroup = new FormGroup({
         title: new FormControl('', [Validators.required]),
         venue: new FormControl('' , [Validators.required]),
-        date: new FormControl('', Validators.required),
-        time: new FormControl('' , [Validators.required]),
+        date_from: new FormControl('', Validators.required),
+        date_to: new FormControl('' , [Validators.required]),
         sponsor: new FormControl('' , [Validators.required])
     });
 

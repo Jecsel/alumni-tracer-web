@@ -5,7 +5,7 @@
 
                 <div class="flex align-items-center">
                     <label class="mr-2">Title</label>
-                    <input type="text" [(ngModel)]="pdfTitle" style="width: 50%;"/>
+                    <input type="text" [(ngModel)]="pdfTitle" placeholder="Please type your title here" style="width: 50%;"/>
                 </div>
 
                 <div class="contact-details-container" id="contact-table-id">
@@ -19,7 +19,8 @@
                                     <td>
                                         <div style="text-align: center;">
                                             <label><b>ROMBLON STATE UNIVERSITY</b></label><br/>
-                                            <label>Institute of Information Technology</label>
+                                            <label>Institute of Information Technology</label><br/>
+                                            <label>Liwanag, Odiongan, Romblon</label>
                                         </div>
                                     </td>
                                     <td>
@@ -28,6 +29,10 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <div class="flex align-items-center title-header"  style="justify-content: center; margin-top: 30px">
+                            <label><b>{{pdfTitle}}</b></label><br/>
+                        </div>
                     </div>
                     <p-table #dt1 [value]="joinedAlumniWork" dataKey="id" [rows]="100" [loading]="loading" [columns]="selectedColumns"
                         [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="false" 
@@ -58,7 +63,7 @@
                         <ng-template pTemplate="header" let-columns>
                             <tr>
                                 <th *ngFor="let col of columns" pFrozenColumn 
-                                    [style]="{'border': '1px solid #000', 'padding': '8px', 'text-align': 'center', 'font-weight':'bold', 'background-color': '#f2f2f2'}"
+                                    [style]="{'border': '1px solid #000', 'padding': '8px', 'text-align': 'center', 'font-weight':'bold', 'background-color': '#f2f2f2', 'width':'160px'}"
                                     [frozen]="idFrozen">
                                     <div class="flex justify-content-between align-items-center">
                                         {{col.header}}

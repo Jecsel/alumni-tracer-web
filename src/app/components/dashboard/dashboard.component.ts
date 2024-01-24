@@ -74,6 +74,9 @@ export class DashboardComponent implements OnInit {
     showViewEventDialog: boolean = false;
     selectedEvent: any;
 
+    showViewCurrentEventDialog: boolean = false;
+    selectedCurrentEvent: any;
+
     dashboard_count: any;
 
 
@@ -128,6 +131,7 @@ export class DashboardComponent implements OnInit {
         this.getUserProfile();
         this.getAllJobPost();
         this.getAllUpcomingEvents();
+        this.getAllCurrentEvents();
         this.createChart();
         this.getAdminDashboardCount();
         this.registeredAlumniDataChart();
@@ -373,6 +377,12 @@ export class DashboardComponent implements OnInit {
         )
     }
 
+    viewCurrentEvent(data) {
+        console.log('View Job', data);
+        this.selectedCurrentEvent = data;
+        this.showViewCurrentEventDialog = true;
+    }
+
 
     viewEvent(data) {
         console.log('View Job', data);
@@ -479,13 +489,14 @@ export class DashboardComponent implements OnInit {
         this.productService
             .getProducts()
             .then((data) => (this.products = data));
-        this.eventService.getEvents().then((events) => {
-            this.events = events;
-            this.fullcalendarOptions = {
-                ...this.fullcalendarOptions,
-                ...{ events: events },
-            };
-        });
+
+        // this.eventService.getEvents().then((events) => {
+        //     this.events = events;
+        //     this.fullcalendarOptions = {
+        //         ...this.fullcalendarOptions,
+        //         ...{ events: events },
+        //     };
+        // });
 
         this.cities = [];
         this.cities.push({ label: "Select City", value: null });

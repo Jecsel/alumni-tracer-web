@@ -38,7 +38,7 @@ export class PersonalComponent implements OnInit {
     course: new FormControl('', Validators.required),
     year_graduated: new FormControl('', Validators.required),
     email_address: new FormControl('', Validators.required),
-    phone_number: new FormControl('', Validators.required)
+    phone_number: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{11}$'), Validators.maxLength(11)])
   });
   
   user_types: any[] = [
@@ -80,13 +80,26 @@ export class PersonalComponent implements OnInit {
 
   ngOnInit(): void {
     this.maxDate = this.getCurrentDate();
-
+    const user_email = this.cookieService.getToken('user_email');
+    this.personalForm.patchValue({ email_address: user_email });
     this.personalForm
-    .get("dob")
-    .valueChanges.subscribe((val) => {
-      // this.personalForm.value.perf_ind_id = val;
-      this.updateAge();
-  });
+      .get("dob")
+      .valueChanges.subscribe((val) => {
+        this.updateAge();
+      });
+    
+    this.personalForm.get('phone_number')
+      .valueChanges.subscribe((val: string) => {
+        let sanitize_phone = this.removeLettersAndSpecialCharacters(val);
+        console.log('sanitize_phone', sanitize_phone);
+        this.personalForm.patchValue({ phone_number: sanitize_phone});
+      })
+  }
+
+  removeLettersAndSpecialCharacters(inputText: string): string {
+    // Use regular expression to remove letters and special characters
+    const cleanedText = inputText.replace(/[^0-9]/g, '');
+    return cleanedText;
   }
 
   getCurrentDate(): string {

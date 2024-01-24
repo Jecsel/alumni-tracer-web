@@ -65,6 +65,7 @@ export class AccountComponent implements OnInit {
     console.log('sign_up', form_value);
 
     const register_data = { user: form_value};
+    this.cookieService.setToken('user_email', form_value.username);
     this.apiService.registerUser(register_data).subscribe(
       res => {
         console.log(res);

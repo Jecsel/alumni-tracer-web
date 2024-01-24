@@ -34,6 +34,8 @@ export class UserHomepageComponent implements OnInit {
   showViewEventDialog: boolean = false;
   selectedEvent: any;
 
+  userType: string = 'user';
+
   constructor(private announcementService: AnnouncementService, public authCookie: AuthCookieService, private apiService: ApiService ) { }
 
   ngOnInit(): void {

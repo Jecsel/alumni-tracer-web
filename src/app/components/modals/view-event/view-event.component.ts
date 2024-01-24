@@ -11,16 +11,18 @@ import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.ser
 export class ViewEventComponent implements OnInit {
   @Input() eventDialogStat;
   @Input() eventData;
-
+  @Input() userType;
+ 
   eventDialog: boolean;
   selectedFile: File | null = null;
   showUpdateBtn: boolean = true;
+  showViewCurrentEventDialog: boolean = true;
 
   formJob: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
     venue: new FormControl('' , [Validators.required]),
-    date: new FormControl('', Validators.required),
-    time: new FormControl('' , [Validators.required]),
+    date_from: new FormControl('', Validators.required),
+    date_to: new FormControl('' , [Validators.required]),
     sponsor: new FormControl('' , [Validators.required])
 });
 
@@ -34,12 +36,23 @@ export class ViewEventComponent implements OnInit {
     this.formJob.patchValue({
       title: this.eventData.title,
       venue: this.eventData.venue,
-      date: this.eventData.date,
-      time: this.eventData.time,
+      date_from: this.formatDate(this.eventData.date_from),
+      date_to: this.formatDate(this.eventData.date_to),
       sponsor: this.eventData.sponsor
     });
 
-    this.showUpdateBtn = this.cookieService.getToken('user_type_id') == '2';
+    var usrTypeID = this.cookieService.getToken('user_type_id');
+
+    this.showUpdateBtn = this.userType != 'user';
+  }
+
+  hideViewEventDialog() {
+    this.showViewCurrentEventDialog = false;
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return date.toISOString().slice(0, 16); // Format as "YYYY-MM-DDTHH:mm"
   }
 
   onFileSelected(event: any): void {
