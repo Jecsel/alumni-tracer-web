@@ -68,9 +68,22 @@ export class JobPortalComponent implements OnInit {
             {label: 'REJECTED', value: 'outofstock'}
         ];
 
+        this.formJob.get('job_seeker_contact')
+            .valueChanges.subscribe((val: string) => {
+                let sanitize_phone = this.removeLettersAndSpecialCharacters(val);
+                console.log('sanitize_phone', sanitize_phone);
+                this.formJob.patchValue({ job_seeker_contact: sanitize_phone});
+            })
+
         // this.getAllAlumniMains();
         this.getAllJobs();
     }
+
+    removeLettersAndSpecialCharacters(inputText: string): string {
+        // Use regular expression to remove letters and special characters
+        const cleanedText = inputText.replace(/[^0-9]/g, '');
+        return cleanedText;
+      }
 
     viewJob(data){
         console.log('View Job', data);

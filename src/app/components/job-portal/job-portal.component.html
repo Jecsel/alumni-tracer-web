@@ -133,8 +133,9 @@
 					<input type="text" pInputText id="job_seeker_email" formControlName="job_seeker_email" required autofocus/>
 				</div>
                 <div class="field">
-					<label for="job_seeker_contact">Job Seeker Contact</label>
-					<input type="text" pInputText id="job_seeker_contact" formControlName="job_seeker_contact" required autofocus/>
+					<label for="job_seeker_contact">Job Seeker Contact Number</label>
+					<!-- <input type="text" pInputText id="job_seeker_contact" formControlName="job_seeker_contact" required autofocus/> -->
+                    <input class="custom-input" type="text" maxlength="11" minlength="11" id="phone_number" pInputText formControlName="job_seeker_contact" required autofocus>
 				</div>
                 <div class="field">
                     

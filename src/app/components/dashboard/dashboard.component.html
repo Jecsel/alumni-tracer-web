@@ -10,10 +10,6 @@
             </div>
         </div>
 
-        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleEvent" position="right" [baseZIndex]="10000">
-            <app-event></app-event>
-        </p-sidebar>x`
-
         <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box views"  (click)="visibleJob = true">
                 <img src="assets/layout/images/icon-views.png" alt="ecuador-layout" style="margin-top:10px" />
@@ -24,10 +20,6 @@
             </div>
         </div>
 
-        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleJob" position="right" [baseZIndex]="10000">
-            <app-job-portal></app-job-portal>
-        </p-sidebar>
-
         <div class="col-12 md:col-6 lg:col-4">
             <div class="overview-box checkins"  (click)="visibleAlumni = true">
                 <img src="assets/layout/images/icon-checkin.png" alt="ecuador-layout" class="image-icon" />
@@ -37,6 +29,14 @@
                 </div>
             </div>
         </div>
+
+        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleEvent" position="right" [baseZIndex]="10000">
+            <app-event></app-event>
+        </p-sidebar>
+
+        <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleJob" position="right" [baseZIndex]="10000">
+            <app-job-portal></app-job-portal>
+        </p-sidebar>
 
         <p-sidebar styleClass="p-sidebar-lg" [(visible)]="visibleAlumni" position="right" [baseZIndex]="10000">
             <app-account></app-account>
@@ -219,7 +219,8 @@
                                     <div class="flex-1 text-center md:text-left">
                                         <div class="font-bold">Title: {{event.title}}</div>
                                         <div class="mb-3">Venue: {{event.venue}}</div>
-                                        <div class="mb-3">Date: {{event.date | date}}</div>
+                                        <div>Date From: {{event.date_from | date}}</div>
+                                        <div class="mb-3">Date To: {{event.date_to | date}}</div>
                                     </div>
                                 </div>
                             </div>

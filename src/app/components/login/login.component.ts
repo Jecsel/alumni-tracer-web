@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   sortOrder: number;
   sortField: string;
   showModalForgotPass: boolean = false;
+  showViewCurrentEventDialog: boolean = false;
+    selectedCurrentEvent: any;
+    responsiveOptions: any[] | undefined;
 
   formLogin: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
@@ -142,9 +145,29 @@ export class LoginComponent implements OnInit {
   </div>`;
 
   ngOnInit(): void {
+    this.responsiveOptions = [
+        {
+            breakpoint: '1199px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '991px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
+    
     this.getPhotos();
     this.getAllEventPosts();
     this.getDashboardCount();
+
+
   }
 
   showForgotPassword() {
