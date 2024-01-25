@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { MessageService, Message } from "primeng/api";
 import { AuthCookieService } from 'src/app/services/auth/auth-cookie-service.service';
+import { PsgcService } from 'src/app/services/psgc/psgc.service';
 
 @Component({
   selector: 'app-personal',
@@ -69,9 +70,20 @@ export class PersonalComponent implements OnInit {
     { id: 2, year: 2018 },
   ]
 
+  regions: any = [];
+  provincies: any = [];
+  municipalities: any =[];
+  barangays: any = [];
+
   selectedState: any = null;
 
-  constructor(private service: MessageService, public router: Router, public apiService: ApiService, private fb: FormBuilder, private cookieService: AuthCookieService) { 
+  constructor(
+    private service: MessageService, 
+    public router: Router, 
+    public apiService: ApiService, 
+    private fb: FormBuilder, 
+    private psgc: PsgcService,
+    private cookieService: AuthCookieService) { 
 
     this.maxDate = this.getCurrentDate();
 
@@ -96,6 +108,77 @@ export class PersonalComponent implements OnInit {
         console.log('sanitize_phone', sanitize_phone);
         this.personalForm.patchValue({ phone_number: sanitize_phone});
       })
+
+    this.getRegions();
+
+
+    this.personalForm.get('region')
+      .valueChanges.subscribe((val: any) => {
+        console.log(val);
+        this.getProvinces(val.code);
+      });
+
+    this.personalForm.get('province')
+      .valueChanges.subscribe((val: any) => {
+        console.log(val);
+        this.getMunicipalities(val.code);
+      });
+    
+    this.personalForm.get('municipality')
+      .valueChanges.subscribe((val: any) => {
+        console.log(val);
+        this.getBrgys(val.code)
+      });
+
+    this.personalForm.get('barangay')
+      .valueChanges.subscribe((val: any) => {
+        console.log(val);
+      });
+  }
+
+
+  getRegions(){
+    this.psgc.getRegions().subscribe(
+      res => {
+        this.regions = res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  getProvinces(region_cd){
+    this.psgc.getProvinces(region_cd).subscribe(
+      res => {
+        this.provincies = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getMunicipalities(province_cd){
+    this.psgc.getMunicipalities(province_cd).subscribe(
+      res => {
+        this.municipalities = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getBrgys(municipality_cd){
+    this.psgc.getBrgys(municipality_cd).subscribe(
+      res => {
+        this.barangays = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   onFileSelected(event: any): void {

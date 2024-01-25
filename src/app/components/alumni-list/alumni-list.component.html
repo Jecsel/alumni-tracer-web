@@ -9,11 +9,6 @@
                     [globalFilterFields]="['first_name','last_name','batch_year','municipality']" 
                     responsiveLayout="scroll">
                     <ng-template pTemplate="caption" #searchContent>
-                        <!-- <p-accordion>
-                            <p-accordionTab header="Config" class="line-height-3 m-0">
-                                
-                            </p-accordionTab>
-                        </p-accordion> -->
                         <div class="flex justify-content-between flex-column sm:flex-row"  id="search-content">
                             <div  class="flex justify-content-between flex-column sm:flex-row">
                                 <button pButton label="Clear" class="p-button-outlined mb-2 mr-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
@@ -61,7 +56,7 @@
                     </ng-template>
                 </p-table>
             </div>
-            
+
             <div class="flex justify-content-end mt-3">
 				<button pButton pRipple type="button" (click)="printContact()" label="Print" class="p-button-raised p-button-success mr-2 mb-2"></button>
 			</div>
